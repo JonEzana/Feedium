@@ -2,7 +2,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
-
+from .snap import snaps
+from .follow import follows
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -21,6 +22,19 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(), default=datetime.now())
     updated_at = db.Column(db.DateTime(), default=datetime.now())
 
+    # relationships
+    stories = db.relationship('Story', back_populates='user', cascade="all, delete-orphan")
+    comments = db.relationship('Comment', back_populates='user', cascade="all, delete-orphan")
+    user_snaps = db.relationship("Story", secondary=snaps, back_populates="story_snaps")
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
+
     @property
     def password(self):
         return self.hashed_password
@@ -32,8 +46,8 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
-        return {
+    def to_dict(self, stories=False, followers=False, following=False):
+        user_dictionary = {
             'id': self.id,
             'firstName': self.first_name,
             'lastName': self.last_name,
@@ -44,3 +58,33 @@ class User(db.Model, UserMixin):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
+        if stories:
+            user_dictionary["stories"] = [story.to_dict() for story in self.stories]
+
+        if followers:
+            user_dictionary["followers"] = [follower.to_dict() for follower in self.followers]
+
+        if following:
+            user_dictionary["following"] = [following.to_dict() for following in self.following]
+
+        return user_dictionary
+
+    def to_dict_no_story(self, followers=False, following=False):
+        user_dictionary = {
+            'id': self.id,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'username': self.username,
+            'email': self.email,
+            'bio': self.bio,
+            'profilePic': self.profile_pic,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
+        }
+        if followers:
+            user_dictionary["followers"] = [follower.to_dict() for follower in self.followers]
+
+        if following:
+            user_dictionary["following"] = [following.to_dict() for following in self.following]
+
+        return user_dictionary
