@@ -4,6 +4,7 @@ import { useHistory, NavLink, Link } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import { thunkGetMostPopularStories } from "../../store/stories";
 import "../../styles/LandingPage.css"
+import {TrendingStoryCard} from "./TrendingStoryCard";
 
 export const LandingPage = () => {
     const dispatch = useDispatch();
@@ -59,11 +60,7 @@ export const LandingPage = () => {
                         <p className="bottom_div_p">Trending on Feedium</p>
                         {stories.map(story =>
                             <div key={story.id} className="story_card">
-                                <p>#{stories.indexOf(story) + 1}</p>
-                                <p>{story.title}</p>
-                                <img src={story.user.profilePic} style={{height: '50px', width: "50px", borderRadius: "25px"}}></img>
-                                <p>{story.user.username}</p>
-                                <p>{story.createdAt}</p>
+                                <TrendingStoryCard story={story} stories={stories} />
                             </div>
                         )}
                     </>
