@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink, Link } from "react-router-dom";
 import * as sessionActions from '../../store/session';
-import { useDispatch } from "react-redux";
+import { thunkGetMostPopularStories } from "../../store/stories";
 import "../../styles/LandingPage.css"
 
 export const LandingPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const stories = Object.values(useSelector(state => state.stories.hotStories))
 
     const LoginTheDemoUserFunction = () => {
         const email = 'demo@aa.io';
@@ -17,6 +19,12 @@ export const LandingPage = () => {
             const data = await res.json();
           });
       }
+
+    useEffect(() => {
+        dispatch(thunkGetMostPopularStories())
+    }, [dispatch]);
+
+    if (!stories.length) return <></>;
 
     return (
         <div className="landing_page_container">
@@ -47,8 +55,18 @@ export const LandingPage = () => {
             </div>
             <div className="lp_story_topics_container lp">
                 <div className="trending_stories">
-                    <p className="bottom_div_p">Trending on Feedium</p>
-                    <div>STORIES HERE</div>
+                    <>
+                        <p className="bottom_div_p">Trending on Feedium</p>
+                        {stories.map(story =>
+                            <div key={story.id} className="story_card">
+                                <p>#{stories.indexOf(story) + 1}</p>
+                                <p>{story.title}</p>
+                                <img src={story.user.profilePic} style={{height: '50px', width: "50px", borderRadius: "25px"}}></img>
+                                <p>{story.user.username}</p>
+                                <p>{story.createdAt}</p>
+                            </div>
+                        )}
+                    </>
                 </div>
                 <div className="topics">
                     <p className="bottom_div_p">Discover more of what matters to you</p>
