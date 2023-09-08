@@ -8,6 +8,18 @@ from sqlalchemy import and_
 
 story_routes = Blueprint('story', __name__)
 
+
+@story_routes.route('/all')
+@login_required
+def all_stories():
+    """
+    Returns all stories
+    """
+    stories = Story.query.all();
+    res = [story.to_dict() for story in stories]
+    return {"stories": res}
+
+
 @story_routes.route('/most-popular')
 def most_popular_stories():
     """
@@ -16,10 +28,10 @@ def most_popular_stories():
 
     stories = Story.query.all()
     res = [story.to_dict() for story in stories]
-    filtered_res = sorted(res, key=lambda story: story["snapCount"], reverse=True)
-    print('!!!!!! STORIES !!!!!!.....', filtered_res)
+    final_res = sorted(res, key=lambda x: x["snapCount"], reverse=True)[0:6]
+    print('!!!!!! STORIES !!!!!!.....', final_res)
 
-    return {'stories': filtered_res[0:7]}
+    return {'stories': final_res}
 
 
 @story_routes.route('/users/<int:userId>/stories')
@@ -29,6 +41,15 @@ def current_user_stories(userId):
     res = [story.to_dict() for story in stories]
 
     return {"stories": res}
+
+
+@story_routes.route('/<int:id>')
+def single_story(id):
+    """
+    Query for a single story by id
+    """
+    single_story = Story.query.get(id)
+    return single_story.to_dict()
 
 
 @story_routes.route('/new', methods=["POST"])
@@ -65,10 +86,29 @@ def new_story():
         return {"errors": form.errors}
 
 
-@story_routes.route('/<int:id>')
-def single_story(id):
-    """
-    Query for a single story by id
-    """
-    single_story = Story.query.get(id)
-    return single_story.to_dict()
+@story_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_story(id):
+    form = CreateStoryForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        story = Story.query.get(id)
+
+        story.title = form.data['title']
+        story.story_text = form.data['story_text']
+
+        db.session.commit()
+        return story.to_dict()
+
+    if form.errors:
+        return {"errors": form.errors}
+
+
+@story_routes.route('/<int:id>/delete', methods=["DELETE"])
+@login_required
+def delete_story(id):
+    story = Story.query.get(id)
+    db.session.delete(story)
+    db.session.commit()
+    return {"Message": "Story Deleted Successfully"}
