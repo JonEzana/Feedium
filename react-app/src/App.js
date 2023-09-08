@@ -9,6 +9,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { LandingPage } from "./components/LandingPage";
 import { CreateStory } from "./components/CreateStory";
 import { StoryDisplay } from "./components/StoryDisplay";
+import { EditStory } from "./components/EditStory";
+import { SignedInLandingPage } from "./components/SignedInLandingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,11 +27,17 @@ function App() {
           <Route exact path="/">
             <LandingPage />
           </Route>
+          <ProtectedRoute exact path="/all">
+            <SignedInLandingPage />
+          </ProtectedRoute>
           <ProtectedRoute exact path="/new-story">
             <CreateStory />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/users/:userId/stories/:storyId">
+          <ProtectedRoute exact path="/stories/:storyId">
             <StoryDisplay />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/stories/:storyId/edit">
+            <EditStory />
           </ProtectedRoute>
           {/* <Route path="/login" >
             <LoginFormPage />
