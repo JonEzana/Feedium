@@ -7,10 +7,16 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
+	const homeUrl = (user) => {
+		let url;
+		user ? url = "/all" : url = "/";
+		return url;
+	}
+
 	return (
 		<ul>
 			<li>
-				<NavLink exact to="/">Home</NavLink>
+				<NavLink exact to={homeUrl(sessionUser)}>Home</NavLink>
 			</li>
 			{isLoaded && (
 				<li>

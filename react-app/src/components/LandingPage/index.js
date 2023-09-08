@@ -9,7 +9,8 @@ import {TrendingStoryCard} from "./TrendingStoryCard";
 export const LandingPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const stories = Object.values(useSelector(state => state.stories.hotStories))
+    const stories = Object.values(useSelector(state => state.stories.hotStories)).sort((a, b) => (a.snapCount < b.snapCount ? 1 : (a.snapCount > b.snapCount) ? -1 : 0))
+    console.log('HOT STORIES: ', stories)
 
     const LoginTheDemoUserFunction = () => {
         const email = 'demo@aa.io';
@@ -59,7 +60,7 @@ export const LandingPage = () => {
                     <>
                         <p className="bottom_div_p">Trending on Feedium</p>
                         {stories.map(story =>
-                            <div key={story.id} className="story_card">
+                            <div key={story.id} className="story_card" onClick={() => history.push(`/stories/${story.id}`)}>
                                 <TrendingStoryCard story={story} stories={stories} />
                             </div>
                         )}

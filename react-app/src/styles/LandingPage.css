@@ -107,6 +107,10 @@ h3{
     border: 2px solid blue;
 }
 
+.story_card:hover{
+    cursor: pointer;
+}
+
 .topics{
     width: 30%;
     border: 2px solid green;
