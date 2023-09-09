@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink, Link } from "react-router-dom";
 import { thunkGetMostPopularStories } from "../../store/stories";
-import "../../styles/LandingPage.css"
+import "./LandingPage.css"
 import {TrendingStoryCard} from "./TrendingStoryCard";
 
 export const LandingPage = () => {
@@ -32,7 +32,7 @@ export const LandingPage = () => {
 
     return (
         <div className="landing_page_container">
-            <div className="lp_header lp">
+            {/* <div className="lp_header lp">
                 <div className="lp_logo">
                     <p>Logo</p>
                     <p className="site_name">Feedium</p>
@@ -44,7 +44,7 @@ export const LandingPage = () => {
                     <Link onClick={upcomingFeature} className="lp_link">Sign In</Link>
                     <button className="get_started_button" onClick={upcomingFeature}>Get Started</button>
                 </div>
-            </div>
+            </div> */}
             <div className="lp_text_box lp">
                 <div className="byline_and_button">
                     <div className="words_btn">
@@ -57,20 +57,21 @@ export const LandingPage = () => {
                     <h1>figure out M thing</h1>
                 </div>
             </div>
-            <div className="lp_story_topics_container lp">
-                <div className="trending_stories">
-                    <>
-                        <p className="bottom_div_p">Trending on Feedium</p>
-                        {stories.map(story =>
-                            <div key={story.id} className="story_card" onClick={() => history.push(`/stories/${story.id}`)}>
-                                <TrendingStoryCard story={story} stories={stories} />
-                            </div>
-                        )}
-                    </>
+            <div className="trending_stories">
+                <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "10px"}}>
+                    <span className="material-symbols-outlined">trending_up</span>
+                    <p className="bottom_div_p">Trending on Feedium</p>
+                </span>
+                <div className="story_card_container">
+                    {stories.map(story =>
+                        <div key={story.id} onClick={() => history.push(`/stories/${story.id}`)} className={`_${stories.indexOf(story)} story`}>
+                            <TrendingStoryCard story={story} stories={stories} />
+                        </div>
+                    )}
                 </div>
-                <div className="topics">
-                    <p className="bottom_div_p">Discover more of what matters to you</p>
-                </div>
+            </div>
+            <div style={{height: "600px"}}>
+                <p style={{fontSize: "30px", textAlign: "center", marginTop: "20%"}}>Something else here</p>
             </div>
         </div>
     )

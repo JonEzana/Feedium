@@ -1,7 +1,71 @@
-.profile-dropdown {
+/* .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+} */
+
+.lp_header{
+  background-color: #FFBF17;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  border-bottom: 1.5px solid black;
+  height: 75px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: background-color 0.5s ease-in;
+}
+
+.active{
+  background-color: white;
+}
+
+.lp_logo{
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  width: 40%;
+  gap: 20px;
+}
+
+.site_name{
+  font-weight: 900;
+}
+
+.site_name:hover{
+  cursor: pointer;
+}
+
+.lp_links{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  text-decoration: none;
+  width: 40%;
+}
+
+.lp_link{
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.get_started_button{
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  height: 50px;
+  width: 130px;
+  font-size: 17px;
+}
+
+.modal_btn:hover{
+  cursor: pointer;
 }
