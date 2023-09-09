@@ -141,9 +141,7 @@ export default function storiesReducer(state = initialState, action) {
     switch (action.type) {
         case GET_MOST_POPULAR_STORIES: {
             const newState = {...state, allStories: {}, hotStories: {}, usersStories: {}};
-            action.payload.forEach(story => {
-                newState.hotStories[story.id] = story
-            });
+            newState.hotStories = action.payload;
             return newState;
         }
         case GET_CURRENT_USER_STORIES: {

@@ -39,14 +39,14 @@ export const CreateStory = ({story, formType}) => {
                 await dispatch(storyActions.thunkGetAllStories());
                 history.push(`/stories/${updatedStory.id}`);
             }
-        }
-
-        const newStory = await dispatch(storyActions.thunkCreateStory(storyData));
-        if (newStory.id) {
-            await dispatch(storyActions.thunkGetAllStories());
-            history.push(`/stories/${newStory.id}`);
         } else {
-            console.log('Create failed in component')
+            const newStory = await dispatch(storyActions.thunkCreateStory(storyData));
+            if (newStory.id) {
+                await dispatch(storyActions.thunkGetAllStories());
+                history.push(`/stories/${newStory.id}`);
+            } else {
+                console.log('Create failed in component')
+            }
         }
     }
 
