@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink, Link } from "react-router-dom";
-import * as sessionActions from '../../store/session';
 import { thunkGetMostPopularStories } from "../../store/stories";
 import "../../styles/LandingPage.css"
 import {TrendingStoryCard} from "./TrendingStoryCard";
@@ -9,18 +8,21 @@ import {TrendingStoryCard} from "./TrendingStoryCard";
 export const LandingPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const stories = Object.values(useSelector(state => state.stories.hotStories)).sort((a, b) => (a.snapCount < b.snapCount ? 1 : (a.snapCount > b.snapCount) ? -1 : 0))
-    console.log('HOT STORIES: ', stories)
+    const stories = useSelector(state => state.stories.hotStories);
 
-    const LoginTheDemoUserFunction = () => {
-        const email = 'demo@aa.io';
-        const password = 'password';
-        return dispatch(sessionActions.login(email, password))
-          .then (() => history.push('/all'))
-          .catch(async (res) => {
-            const data = await res.json();
-          });
-      }
+    // const LoginTheDemoUserFunction = () => {
+    //     const email = 'demo@aa.io';
+    //     const password = 'password';
+    //     return dispatch(sessionActions.login(email, password))
+    //       .then (() => history.push('/all'))
+    //       .catch(async (res) => {
+    //         const data = await res.json();
+    //       });
+    //   }
+
+    const upcomingFeature = () => {
+        window.alert('Feature Coming Soon...');
+    };
 
     useEffect(() => {
         dispatch(thunkGetMostPopularStories())
@@ -36,11 +38,11 @@ export const LandingPage = () => {
                     <p className="site_name">Feedium</p>
                 </div>
                 <div className="lp_links">
-                    <NavLink to="/about" className="lp_link">Our Story</NavLink>
-                    <Link onClick={LoginTheDemoUserFunction} className="lp_link">Membership</Link>
-                    <Link onClick={LoginTheDemoUserFunction} className="lp_link">Write</Link>
-                    <Link onClick={LoginTheDemoUserFunction} className="lp_link">Sign In</Link>
-                    <button className="get_started_button">Get Started</button>
+                    <Link onClick={upcomingFeature} className="lp_link">Our Story</Link>
+                    <Link onClick={upcomingFeature} className="lp_link">Membership</Link>
+                    <Link onClick={upcomingFeature} className="lp_link">Write</Link>
+                    <Link onClick={upcomingFeature} className="lp_link">Sign In</Link>
+                    <button className="get_started_button" onClick={upcomingFeature}>Get Started</button>
                 </div>
             </div>
             <div className="lp_text_box lp">
@@ -48,7 +50,7 @@ export const LandingPage = () => {
                     <div className="words_btn">
                         <h1>Stay hungry.</h1>
                         <h3>Discover recipies, restaurants, and dish ideas from writers who appreciate great cuisine.</h3>
-                        <button className="start_reading_button">Start Reading</button>
+                        <button className="start_reading_button" onClick={upcomingFeature}>Start Reading</button>
                     </div>
                 </div>
                 <div className="m-field">

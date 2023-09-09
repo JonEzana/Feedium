@@ -1,7 +1,7 @@
 from flask import Blueprint, session, request
 from flask_login import login_required, current_user
 from app.models import Story, db
-from app.forms import CreateStoryForm
+from app.forms import CreateStoryForm, UpdateStoryForm
 # from app.forms import UpdatePhotoForm
 # from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from sqlalchemy import and_
@@ -29,7 +29,6 @@ def most_popular_stories():
     stories = Story.query.all()
     res = [story.to_dict() for story in stories]
     final_res = sorted(res, key=lambda x: x["snapCount"], reverse=True)[0:6]
-    print('!!!!!! STORIES !!!!!!.....', final_res)
 
     return {'stories': final_res}
 
@@ -63,7 +62,7 @@ def new_story():
 
     if form.validate_on_submit():
         data = form.data
-        print('~~~~ DATA ~~~~', data)
+
         if "image_url" not in data:
             new_story = Story(
                 title=data["title"],
@@ -82,24 +81,22 @@ def new_story():
         return new_story.to_dict()
 
     if form.errors:
-        print('~~~~~~~~ CREATE FORM ERRORS ~~~~~~~', form.errors)
         return {"errors": form.errors}
 
 
 @story_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def edit_story(id):
-    form = CreateStoryForm()
+    form = UpdateStoryForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        story = Story.query.get(id)
-
-        story.title = form.data['title']
-        story.story_text = form.data['story_text']
+        story_to_edit = Story.query.get(id)
+        story_to_edit.title = form.data['title']
+        story_to_edit.story_text = form.data['story_text']
 
         db.session.commit()
-        return story.to_dict()
+        return story_to_edit.to_dict()
 
     if form.errors:
         return {"errors": form.errors}
