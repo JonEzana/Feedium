@@ -1,0 +1,122 @@
+body{
+    width: 100%;
+    margin-left: 0px;
+    overflow-x: hidden;
+}
+
+.lp_text_box{
+    background-color: #FFBF17;
+  }
+.lp_text_box{
+    display: flex;
+    justify-content: space-between;
+    height: 600px;
+    width: 100vw;
+    margin-top: -40px;
+    border-bottom: 1.5px solid black;
+}
+
+.byline_and_button{
+    width: 50%;
+    align-content: center;
+}
+
+.m-field{
+    width: 50%;
+    margin-top: 6%;
+}
+
+.words_btn{
+    width: 80%;
+    height: 100%;
+    margin: 20% 15% 0 15%;
+}
+h1{
+    font-size: 100px;
+}
+h3{
+    font-size: 25px;
+    text-align: left;
+    margin-top: -25px;
+}
+
+.start_reading_button{
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    height: 50px;
+    width: 250px;
+    font-size: 20px;
+}
+
+/************ BOTTOM HALF ***********/
+.trending_stories{
+    margin: 2% 10% 0 15%;
+    height: fit-content;
+}
+
+.material-symbols-outlined {
+  border: 2px solid black;
+  border-radius: 20px;
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+}
+
+.story_card{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.story:hover{
+    cursor: pointer;
+}
+
+.topics{
+    width: 30%;
+}
+
+.bottom_div_p{
+    font-size: 20px;
+}
+
+/************ STORY CARDS ***********/
+.story_card_container{
+    display: grid;
+    grid-template-areas:
+        "a b c"
+        "d e f";
+}
+
+._0{
+    grid-area: a;
+}
+
+._1{
+    grid-area: b;
+}
+
+._2{
+    grid-area: c;
+}
+
+._3{
+    grid-area: d;
+}
+
+._4{
+    grid-area: e;
+}
+
+._5{
+    grid-area: f;
+}
+
+.individual_card{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: start;
+}

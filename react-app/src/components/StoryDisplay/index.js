@@ -51,7 +51,7 @@ export const StoryDisplay = () => {
                     <div className="sd_story_body">
                         <p>{singleStory?.storyText}</p>
                     </div>
-                    {currUser.id === singleStory.userId &&
+                    {currUser && currUser.id === singleStory.userId &&
                         <>
                             <button onClick={handleStoryEdit}>Edit story</button>
                             <OpenModalButton
