@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c94c62bf55c601734bced9b1c361537dca58e1e7b471db46a3d881c66af818fa"
+            "sha256": "a4da84fa7de04049da46541a10ee5b764e86b171d4ef32f10a32d53ba00485d1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,19 +26,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:2ccbea42fe4cbd22a8ba1e90a37ac65f05c1932e63432e429fb7158d8255bbc0",
-                "sha256:4713a4e69120db5f358f4d378459fb4ea04be98664a0908088f6e04ab49d2583"
+                "sha256:c53c92dfe22489ba31e918c2e7b59ff43e2e778bd3d3559e62351a739382bb5c",
+                "sha256:eea3b07e0f28c9f92bccab972af24a3b0dd951c69d93da75227b8ecd3e18f6c4"
             ],
             "index": "pypi",
-            "version": "==1.28.34"
+            "version": "==1.28.44"
         },
         "botocore": {
             "hashes": [
-                "sha256:4dad7c5a5e70940de54ebf8de3955450c1f092f43cacff8103819d1e7d5374fa",
-                "sha256:c33a453328d361c089e6a8f9dd671a7b939288e539e6550c7030152e8162e906"
+                "sha256:83d61c1ca781e6ede19fcc4d5dd73004eee3825a2b220f0d7727e32069209d98",
+                "sha256:84f90919fecb4a4f417fd10145c8a87ff2c4b14d6381cd34d9babf02110b3315"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.31.41"
+            "version": "==1.31.44"
         },
         "click": {
             "hashes": [
@@ -303,11 +303,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:3d4dfa6d95f1b101d695a6160a7626e15583af71a5f52176efa5d39a054d475d",
-                "sha256:3d8083eed2d13afc9426f227b24fd1659489ec107c0e86cec2ffdde5c92e790b"
+                "sha256:00478ca80aeebeecb2f288d3206b0de568df5cd2b8fada1209843cc9a8d88a48",
+                "sha256:af3d5949030c3f493f550876b2fd1dd5ec66689c4ee5d5344f009746f71fd5a8"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==68.1.2"
+            "version": "==68.2.0"
         },
         "six": {
             "hashes": [
