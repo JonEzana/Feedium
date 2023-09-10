@@ -123,16 +123,10 @@ def add_images_to_story(id):
                 story_to_change.image_url4 = img_data[3]["url"]
 
             # for x in range(0, len(img_data)):
-            #     # col_name = f"image_url{x + 1}"
-            #     story_to_change.image_url1 = img_data[0]["url"]
-            #     story_to_change.image_url2 = img_data[1]["url"]
-            #     story_to_change.image_url3 = img_data[2]["url"]
-            #     story_to_change.image_url4 = img_data[3]["url"]
-
-            print('~~~ STORY IN FOR LOOP~~~', story_to_change)
+            #     col_name = f"image_url{x + 1}"
+            #     story_to_change[col_name] = img_data[x]["url"]
 
         db.session.commit()
-        print('~~~ STORY TO CHANGE ~~~', story_to_change)
         return story_to_change.to_dict()
 
     if form.errors:

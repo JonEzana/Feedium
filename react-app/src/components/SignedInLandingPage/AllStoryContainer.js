@@ -8,19 +8,30 @@ export const AllStoryContainer = ({ story }) => {
         return res;
     }
 
+    const convertDate = (date) => {
+        const dateArr = date.split(' ');
+        return `${dateArr[2]} ${dateArr[1]}`
+    }
+
     return  (
-        <div className="allstory_card_container">
-            <div className="card_top">
-                <img src={story.user.profilePic}/>
-                <p>{story.user.firstName} {story.user.firstName}</p>
-                <p>{story.createdAt}</p>
+        <div className="story_and_img">
+            <div className="story_card_container">
+                <div className="card_top">
+                    <img className="author_pro_pic" src={story.user.profilePic}/>
+                    <p>{story.user.firstName} {story.user.firstName}</p>
+                    <p>·</p>
+                    <p>{convertDate(story.createdAt)}</p>
+                </div>
+                <div className="card_title">
+                    <h3>{story.title}</h3>
+                </div>
+                <div className="card_preview">
+                    <p>{storyPreview(story.storyText)}</p>
+                </div>
             </div>
-            <div className="card_title">
-                <h3>{story.title}</h3>
+            <div className="story_image">
+                { story.imageUrl1 && <img className="preview_img" src={story.imageUrl1}/>}
             </div>
-            <div className="card_preview">
-                <p>{storyPreview(story.storyText)}</p>
-            </div>
-        </div>
+    </div>
     )
 }
