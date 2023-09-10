@@ -15,7 +15,10 @@ class Story(db.Model):
   title = db.Column(db.String(255), nullable=False)
   story_text = db.Column(db.String(4000), nullable=False)
   snap_count = db.Column(db.Integer, nullable=False, default=0)
-  image_url = db.Column(db.String(500))
+  image_url1 = db.Column(db.String(500))
+  image_url2 = db.Column(db.String(500))
+  image_url3 = db.Column(db.String(500))
+  image_url4 = db.Column(db.String(500))
   created_at = db.Column(db.DateTime(), default=datetime.now())
   updated_at = db.Column(db.DateTime(), default=datetime.now())
 
@@ -33,7 +36,10 @@ class Story(db.Model):
       'title': self.title,
       'storyText': self.story_text,
       'snapCount': self.snap_count,
-      'imageUrl': self.image_url,
+      'imageUrl1': self.image_url1,
+      'imageUrl2': self.image_url2,
+      'imageUrl3': self.image_url3,
+      'imageUrl4': self.image_url4,
       'createdAt': self.created_at,
       'updatedAt': self.updated_at,
       'user': self.user.to_dict_no_story()

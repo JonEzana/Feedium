@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import { DeleteStoryOrComment } from "../DeleteStoryOrComment";
 import { CreateComment } from "../CreateComment";
 import { thunkCommentsByStoryId } from "../../store/comments";
+import "./StoryDisplay.css";
 
 export const StoryDisplay = () => {
     const history = useHistory();
@@ -36,18 +37,32 @@ export const StoryDisplay = () => {
 
     if (!Object.values(singleStory).length) return <></>;
 
+    // const imgArr = [];
+    // if (singleStory && singleStory.imageUrl1 !== null) imgArr.push(imageUrl1);
+    // if (singleStory && singleStory.imageUrl2 !== null) imgArr.push(imageUrl2);
+    // if (singleStory && singleStory.imageUrl3 !== null) imgArr.push(imageUrl3);
+    // if (singleStory && singleStory.imageUrl4 !== null) imgArr.push(imageUrl4);
+
     return (
         <div style={{display: "flex", flexDirection:"row"}}>
             <div className="story_display_body">
                 <div className="sd_header"></div>
                 <div className="sd_container">
                     <h1>{singleStory?.title}</h1>
-                    <div className="sd_author_block" style={{display: "flex", flexDirection: "row", gap: "20px"}}>
-                        <img src={singleStory?.user?.profilePic} style={{height: "60px", width: "60px", borderRadius: "30px"}} />
-                        <p>By: {singleStory?.user?.firstName} {singleStory?.user?.lastName}</p>
-                        <p>{singleStory?.createdAt}</p>
+                    <div className="sd_author_block">
+                        <div style={{display: "flex", flexDirection: "row", gap: "20px"}}>
+                            <img src={singleStory?.user?.profilePic} style={{height: "60px", width: "60px", borderRadius: "30px"}} />
+                            <p>By: {singleStory?.user?.firstName} {singleStory?.user?.lastName}</p>
+                            <p>{singleStory?.createdAt}</p>
+                        </div>
+                        <div className="story_images">
+                            {singleStory.imageUrl1 && <img className="story_img1 image" src={singleStory?.imageUrl1}/>}
+                            {singleStory.imageUrl2 && <img className="story_img2 image" src={singleStory?.imageUrl2}/>}
+                            {singleStory.imageUrl3 && <img className="story_img3 image" src={singleStory?.imageUrl3}/>}
+                            {singleStory.imageUrl4 && <img className="story_img4 image" src={singleStory?.imageUrl4}/>}
+                        </div>
                     </div>
-                    <div className="sd_reaction_block"></div>
+                    <h3 className="sd_reaction_block"> COMMENT BUTTON GOES HERE</h3>
                     <div className="sd_story_body">
                         <p>{singleStory?.storyText}</p>
                     </div>

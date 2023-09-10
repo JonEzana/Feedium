@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 3e642f2ef92b
+Revision ID: 04ecb9f69f6d
 Revises:
-Create Date: 2023-09-06 18:50:48.354919
+Create Date: 2023-09-10 12:22:52.907113
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '3e642f2ef92b'
+revision = '04ecb9f69f6d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,7 +32,6 @@ def upgrade():
     sa.Column('last_name', sa.String(length=40), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
-    sa.Column('bio', sa.String(length=1000), nullable=True),
     sa.Column('profile_pic', sa.String(length=255), nullable=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
@@ -53,7 +52,10 @@ def upgrade():
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('story_text', sa.String(length=4000), nullable=False),
     sa.Column('snap_count', sa.Integer(), nullable=False),
-    sa.Column('image_url', sa.String(length=500), nullable=True),
+    sa.Column('image_url1', sa.String(length=500), nullable=True),
+    sa.Column('image_url2', sa.String(length=500), nullable=True),
+    sa.Column('image_url3', sa.String(length=500), nullable=True),
+    sa.Column('image_url4', sa.String(length=500), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -73,8 +75,8 @@ def upgrade():
     op.create_table('snaps',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('story_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['story_id'], ['stories.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['story_id'], ['stories.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('user_id', 'story_id')
     )
     op.create_table('story_topics',
