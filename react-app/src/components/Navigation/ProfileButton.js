@@ -6,7 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, style }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -41,9 +41,9 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div style={{display: "flex", flexDirection: "column", marginTop: "90px", marginRight: "15px"}}>
+      <button onClick={openMenu} style={style}>
+        <img src={user.profilePic} className="pro_pic_pro_btn"/>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -70,7 +70,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

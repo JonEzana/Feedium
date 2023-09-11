@@ -32,19 +32,6 @@ export const LandingPage = () => {
 
     return (
         <div className="landing_page_container">
-            {/* <div className="lp_header lp">
-                <div className="lp_logo">
-                    <p>Logo</p>
-                    <p className="site_name">Feedium</p>
-                </div>
-                <div className="lp_links">
-                    <Link onClick={upcomingFeature} className="lp_link">Our Story</Link>
-                    <Link onClick={upcomingFeature} className="lp_link">Membership</Link>
-                    <Link onClick={upcomingFeature} className="lp_link">Write</Link>
-                    <Link onClick={upcomingFeature} className="lp_link">Sign In</Link>
-                    <button className="get_started_button" onClick={upcomingFeature}>Get Started</button>
-                </div>
-            </div> */}
             <div className="lp_text_box lp">
                 <div className="byline_and_button">
                     <div className="words_btn">
@@ -59,7 +46,7 @@ export const LandingPage = () => {
             </div>
             <div className="trending_stories">
                 <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "10px"}}>
-                    <span className="material-symbols-outlined">trending_up</span>
+                    <span className="material-symbols-outlined trending">trending_up</span>
                     <p className="bottom_div_p">Trending on Feedium</p>
                 </span>
                 <div className="story_card_container">

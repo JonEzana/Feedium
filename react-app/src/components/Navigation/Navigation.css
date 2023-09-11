@@ -1,10 +1,5 @@
-/* .profile-dropdown {
-  position: absolute;
-}
 
-.hidden {
-  display: none;
-} */
+/********* LOGGED OUT *********/
 
 .lp_header{
   background-color: #FFBF17;
@@ -68,4 +63,81 @@
 
 .modal_btn:hover{
   cursor: pointer;
+}
+
+/******** LOGGED IN *********/
+
+.loggedin_navbar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 57px;
+}
+.loggedin_left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 30px;
+  /* border: 1px solid red; */
+  height: inherit;
+  margin-left: 2%;
+  width: 40%;
+}
+.logo{
+  color: black;
+}
+.logo:hover{
+  cursor: pointer;
+}
+.loggedin_right{
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  margin-left: 30%;
+  width: 40%;
+  gap: 15px;
+  /* border: 1px solid red; */
+}
+.new_story_button{
+  /* border: 3px solid green; */
+  color: #828282;
+  /* color: #f4f4f4; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  margin-right: 25px;
+}
+.new_story_button:hover{
+  cursor: pointer;
+}
+.fa-bell:hover{
+  cursor: pointer;
+}
+.pro-pic-container{
+  display: flex;
+  align-items: center;
+  height: inherit;
+  width: fit-content;
+  justify-content: center;
+  /* border: 3px solid blue; */
+}
+.pro_pic_pro_btn{
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}
+.pro_pic_pro_btn:hover{
+  cursor: pointer;
+}
+.fa-caret-down:hover{
+  cursor: pointer;
+}
+.hidden{
+  visibility: hidden;
 }

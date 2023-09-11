@@ -43,15 +43,24 @@ function Navigation({ isLoaded }){
 		<div>
 			{ sessionUser ? (
 				<div className="loggedin_navbar">
-					<div className="loggedin_left" style={{display: "flex", flexDirection: "row", alignContent: "center"}}>
-						<p>Logo</p>
+					<div className="loggedin_left">
+					<span class="material-symbols-outlined logo" onClick={() => history.push('/all')} >lunch_dining</span>
 						<span>
-							<i className="fas fa-search"></i>
-							<input type="text" placeholder="Search Feedium"></input>
+							<i className="fas fa-search" style={{color: "#828282", alignSelf: "center", position: "absolute", marginLeft: "0.6%", zIndex: "2", marginTop: "13px"}}></i>
+							<input type="text" style={{border: "none", borderRadius: "20px", backgroundColor: "#f4f4f4", height: "40px", width: "192px"}}></input>
+							<label style={{position: "relative", zIndex: "2", marginLeft: "-52%", color: "#828282"}}>Search Feedium</label>
 						</span>
 					</div>
 					<div className="loggedin_right">
-						<ProfileButton user={sessionUser} />
+						<div className="new_story_button" onClick={() => history.push('/new-story')}>
+							<span  class="material-symbols-outlined write">edit_square</span>
+							<p style={{marginTop: "23px"}}>Write</p>
+						</div>
+						<i className="far fa-bell" onClick={upcomingFeature} style={{fontSize: "25px", color: "#828282"}}></i>
+						<div className="pro-pic-container">
+							<ProfileButton user={sessionUser} style={{border: "none", backgroundColor: "transparent"}}/>
+							<i class="fas fa-caret-down" style={{fontSize: "20px", color: "#828282", marginRight: "50px", marginLeft: "-42px"}}></i>
+						</div>
 					</div>
 				</div>
 			) : (
