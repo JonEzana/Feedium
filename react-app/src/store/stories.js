@@ -4,7 +4,8 @@ const GET_SINGLE_STORY = "stories/getSingle";
 const GET_ALL_STORIES = "stories/getAll";
 const CREATE_STORY = "stories/create";
 const UPDATE_STORY = "stories/update";
-const DELETE_STORY = "stories/delete"
+const DELETE_STORY = "stories/delete";
+const ADD_IMG_TO_STORY = "stories/addImg";
 
 const getMostPopularStories = (stories) => ({
     type: GET_MOST_POPULAR_STORIES,
@@ -40,6 +41,11 @@ const deleteStory = (id) => ({
     type: DELETE_STORY,
     payload: id
 });
+
+const addImagesToStory = (story) => ({
+    type: ADD_IMG_TO_STORY,
+    payload: story
+})
 
 export const thunkGetMostPopularStories = () => async (dispatch) => {
     const res = await fetch('/api/stories/most-popular');
@@ -81,15 +87,14 @@ export const thunkGetAllStories = () => async (dispatch) => {
     }
 }
 
-export const thunkCreateStory = (story) => async (dispatch) => {
+export const thunkCreateStory = (formData, imgFormData) => async (dispatch) => {
     const res = await fetch('/api/stories/new', {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(story)
+        body: formData
     });
     if (res.ok) {
         const newStory = await res.json();
-        dispatch(createStory(newStory));
+        dispatch(thunkAddImagesToStory(newStory, imgFormData));
         return newStory;
     } else if (res.status < 500) {
 		const data = await res.json();
@@ -101,11 +106,29 @@ export const thunkCreateStory = (story) => async (dispatch) => {
 	}
 }
 
-export const thunkUpdateStory = (story) => async (dispatch) => {
-    const res = await fetch(`/api/stories/${story.id}/edit`, {
+export const thunkAddImagesToStory = (story, imgFormData) => async (dispatch) => {
+    const res = await fetch(`/api/stories/${story.id}/images`, {
         method: "PUT",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(story)
+        body: imgFormData
+    });
+    if (res.ok) {
+        const story = await res.json();
+        dispatch(addImagesToStory(story));
+        return story
+    } else if (res.status < 500) {
+		const data = await res.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+}
+
+export const thunkUpdateStory = (formData, imgFormData, storyId) => async (dispatch) => {
+    const res = await fetch(`/api/stories/${storyId}/edit`, {
+        method: "PUT",
+        body: formData
     });
     if (res.ok) {
         const story = await res.json();
@@ -141,9 +164,7 @@ export default function storiesReducer(state = initialState, action) {
     switch (action.type) {
         case GET_MOST_POPULAR_STORIES: {
             const newState = {...state, allStories: {}, hotStories: {}, usersStories: {}};
-            action.payload.forEach(story => {
-                newState.hotStories[story.id] = story
-            });
+            newState.hotStories = action.payload;
             return newState;
         }
         case GET_CURRENT_USER_STORIES: {
@@ -173,6 +194,15 @@ export default function storiesReducer(state = initialState, action) {
             return {
                 ...state,
                 allStories: {...state.allStories, [action.payload.id]: action.payload},
+                userStories: {...state.usersStories, [action.payload.id]: action.payload},
+                singleStory: {...action.payload}
+            }
+        }
+        case ADD_IMG_TO_STORY: {
+            return {
+                ...state,
+                allStories: {...state.allStories, [action.payload.id]: action.payload},
+                hotStories: {...state.hotStories},
                 userStories: {...state.usersStories, [action.payload.id]: action.payload},
                 singleStory: {...action.payload}
             }

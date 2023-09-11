@@ -1,3 +1,35 @@
 .story_container:hover{
     cursor: pointer;
 }
+.story_and_img{
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    margin: 100px 10% 0 10%;
+}
+.story_cards_container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 500px;
+}
+.card_top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+}
+
+.author_pro_pic{
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
+
+.preview_img{
+    height: inherit;
+    width: 200px;
+}
+.story_container{
+    width: max-content;
+}

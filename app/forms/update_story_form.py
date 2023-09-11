@@ -1,10 +1,15 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, TextAreaField, SubmitField
-from wtforms.validators import DataRequired, Length, URL
-from app.models import Comment
+from wtforms.validators import DataRequired, Length
+from app.models import Story
+from app.api.aws_routes import ALLOWED_EXTENSIONS
 
-class CreateStoryForm(FlaskForm):
+class UpdateStoryForm(FlaskForm):
   title = StringField('Title', validators=[DataRequired(), Length(min=5, max=255)])
   story_text = TextAreaField('Tell your story...', validators=[DataRequired(), Length(min=5, max=4000)])
-  image_url = StringField('Add a photo (optional)')
+  image_url_1 = FileField('Upload an image (optional)', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+  image_url_2 = FileField('Upload an image (optional)', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+  image_url_3 = FileField('Upload an image (optional)', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+  image_url_4 = FileField('Upload an image (optional)', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
   submit = SubmitField('Submit')

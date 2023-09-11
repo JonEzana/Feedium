@@ -33,9 +33,9 @@ function App() {
           <ProtectedRoute exact path="/new-story">
             <CreateStory />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/stories/:storyId">
+          <Route exact path="/stories/:storyId">
             <StoryDisplay />
-          </ProtectedRoute>
+          </Route>
           <ProtectedRoute exact path="/stories/:storyId/edit">
             <EditStory />
           </ProtectedRoute>

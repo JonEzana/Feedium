@@ -1,0 +1,29 @@
+.false{
+    visibility: hidden;
+}
+.sd_author_block{
+    display: flex;
+    flex-direction: column;
+}
+.story_images{
+    display: grid;
+    grid-template-areas:
+        "a b"
+        "c d";
+}
+.story_img1{
+    grid-area: a;
+}
+.story_img2{
+    grid-area: b;
+}
+.story_img3{
+    grid-area: c;
+}
+.story_img4{
+    grid-area: d;
+}
+.image{
+    height: 300px;
+    width: 300px;
+}

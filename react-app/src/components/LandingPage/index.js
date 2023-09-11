@@ -1,26 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink, Link } from "react-router-dom";
-import * as sessionActions from '../../store/session';
 import { thunkGetMostPopularStories } from "../../store/stories";
-import "../../styles/LandingPage.css"
+import "./LandingPage.css"
 import {TrendingStoryCard} from "./TrendingStoryCard";
 
 export const LandingPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const stories = Object.values(useSelector(state => state.stories.hotStories)).sort((a, b) => (a.snapCount < b.snapCount ? 1 : (a.snapCount > b.snapCount) ? -1 : 0))
-    console.log('HOT STORIES: ', stories)
+    const stories = useSelector(state => state.stories.hotStories);
 
-    const LoginTheDemoUserFunction = () => {
-        const email = 'demo@aa.io';
-        const password = 'password';
-        return dispatch(sessionActions.login(email, password))
-          .then (() => history.push('/all'))
-          .catch(async (res) => {
-            const data = await res.json();
-          });
-      }
+    // const LoginTheDemoUserFunction = () => {
+    //     const email = 'demo@aa.io';
+    //     const password = 'password';
+    //     return dispatch(sessionActions.login(email, password))
+    //       .then (() => history.push('/all'))
+    //       .catch(async (res) => {
+    //         const data = await res.json();
+    //       });
+    //   }
+
+    const upcomingFeature = () => {
+        window.alert('Feature Coming Soon...');
+    };
 
     useEffect(() => {
         dispatch(thunkGetMostPopularStories())
@@ -30,45 +32,33 @@ export const LandingPage = () => {
 
     return (
         <div className="landing_page_container">
-            <div className="lp_header lp">
-                <div className="lp_logo">
-                    <p>Logo</p>
-                    <p className="site_name">Feedium</p>
-                </div>
-                <div className="lp_links">
-                    <NavLink to="/about" className="lp_link">Our Story</NavLink>
-                    <Link onClick={LoginTheDemoUserFunction} className="lp_link">Membership</Link>
-                    <Link onClick={LoginTheDemoUserFunction} className="lp_link">Write</Link>
-                    <Link onClick={LoginTheDemoUserFunction} className="lp_link">Sign In</Link>
-                    <button className="get_started_button">Get Started</button>
-                </div>
-            </div>
             <div className="lp_text_box lp">
                 <div className="byline_and_button">
                     <div className="words_btn">
                         <h1>Stay hungry.</h1>
                         <h3>Discover recipies, restaurants, and dish ideas from writers who appreciate great cuisine.</h3>
-                        <button className="start_reading_button">Start Reading</button>
+                        <button className="start_reading_button" onClick={upcomingFeature}>Start Reading</button>
                     </div>
                 </div>
                 <div className="m-field">
                     <h1>figure out M thing</h1>
                 </div>
             </div>
-            <div className="lp_story_topics_container lp">
-                <div className="trending_stories">
-                    <>
-                        <p className="bottom_div_p">Trending on Feedium</p>
-                        {stories.map(story =>
-                            <div key={story.id} className="story_card" onClick={() => history.push(`/stories/${story.id}`)}>
-                                <TrendingStoryCard story={story} stories={stories} />
-                            </div>
-                        )}
-                    </>
+            <div className="trending_stories">
+                <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "10px"}}>
+                    <span className="material-symbols-outlined trending">trending_up</span>
+                    <p className="bottom_div_p">Trending on Feedium</p>
+                </span>
+                <div className="story_card_container">
+                    {stories.map(story =>
+                        <div key={story.id} onClick={() => history.push(`/stories/${story.id}`)} className={`_${stories.indexOf(story)} story`}>
+                            <TrendingStoryCard story={story} stories={stories} />
+                        </div>
+                    )}
                 </div>
-                <div className="topics">
-                    <p className="bottom_div_p">Discover more of what matters to you</p>
-                </div>
+            </div>
+            <div style={{height: "600px"}}>
+                <p style={{fontSize: "30px", textAlign: "center", marginTop: "20%"}}>Something else here</p>
             </div>
         </div>
     )

@@ -18,7 +18,7 @@ export const SignedInLandingPage = () => {
 
     return (
         <div>
-            {stories.map(story =>
+            {stories.toReversed().map(story =>
                 <div className="story_container" key={story.id} onClick={() => history.push(`/stories/${story.id}`)}>
                     <AllStoryContainer story={story} />
                 </div>

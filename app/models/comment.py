@@ -24,5 +24,6 @@ class Comment(db.Model):
       'storyId': self.story_id,
       'commentText': self.comment_text,
       'createdAt': self.created_at,
-      'updatedAt': self.updated_at
+      'updatedAt': self.updated_at,
+      'user': self.user.to_dict_no_story()
     }

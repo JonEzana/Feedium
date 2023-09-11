@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 import { useHistory } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ function LoginFormModal() {
 
   return (
     <>
-      <h1>Log In</h1>
+      <h4>Welcome back.</h4>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -53,6 +55,15 @@ function LoginFormModal() {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <span style={{display: "flex", flexDirection: "row"}}>
+        <p>No account?</p>
+        <OpenModalButton
+					className = "modal_btn"
+					buttonText="Create one"
+					modalComponent={<SignupFormModal />}
+					style={{border: "none", backgroundColor: "transparent", fontSize: "16px", color: "rgb(26, 137, 23)", fontWeight: "bold"}}
+				/>
+      </span>
     </>
   );
 }
