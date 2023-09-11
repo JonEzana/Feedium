@@ -4,11 +4,10 @@
 .story_and_img{
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
     width: max-content;
-    margin: 0 10% 0 10%;
+    margin: 100px 10% 0 10%;
 }
-.story_card_container{
+.story_cards_container{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -30,4 +29,7 @@
 .preview_img{
     height: inherit;
     width: 200px;
+}
+.story_container{
+    width: max-content;
 }

@@ -15,7 +15,7 @@ export const AllStoryContainer = ({ story }) => {
 
     return  (
         <div className="story_and_img">
-            <div className="story_card_container">
+            <div className="story_cards_container">
                 <div className="card_top">
                     <img className="author_pro_pic" src={story.user.profilePic}/>
                     <p>{story.user.firstName} {story.user.firstName}</p>

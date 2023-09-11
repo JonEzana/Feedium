@@ -49,6 +49,9 @@ h3{
     width: 250px;
     font-size: 20px;
 }
+.start_reading_button:hover{
+    cursor: pointer;
+}
 
 /************ BOTTOM HALF ***********/
 .trending_stories{
@@ -56,7 +59,7 @@ h3{
     height: fit-content;
 }
 
-.material-symbols-outlined {
+.material-symbols-outlined.trending {
   border: 2px solid black;
   border-radius: 20px;
   height: 20px;
