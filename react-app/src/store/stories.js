@@ -87,14 +87,15 @@ export const thunkGetAllStories = () => async (dispatch) => {
     }
 }
 
-export const thunkCreateStory = (formData, imgFormData) => async (dispatch) => {
+export const thunkCreateStory = (formData, imgFormData, offset) => async (dispatch) => {
+    console.log('offset create', offset)
     const res = await fetch('/api/stories/new', {
         method: "POST",
         body: formData
     });
     if (res.ok) {
         const newStory = await res.json();
-        dispatch(thunkAddImagesToStory(newStory, imgFormData));
+        dispatch(thunkAddImagesToStory(newStory, imgFormData, offset));
         return newStory;
     } else if (res.status < 500) {
 		const data = await res.json();
@@ -106,42 +107,53 @@ export const thunkCreateStory = (formData, imgFormData) => async (dispatch) => {
 	}
 }
 
-export const thunkAddImagesToStory = (story, imgFormData) => async (dispatch) => {
-    const res = await fetch(`/api/stories/${story.id}/images`, {
-        method: "PUT",
-        body: imgFormData
-    });
-    if (res.ok) {
-        const story = await res.json();
-        dispatch(addImagesToStory(story));
-        return story
-    } else if (res.status < 500) {
-		const data = await res.json();
-		if (data.errors) {
-			return data.errors;
-		}
-	} else {
-		return ["An error occurred. Please try again."];
-	}
-}
 
-export const thunkUpdateStory = (formData, imgFormData, storyId) => async (dispatch) => {
-    const res = await fetch(`/api/stories/${storyId}/edit`, {
+export const thunkUpdateStory = (formData, imgFormData, storyId, offset) => async (dispatch) => {
+    console.log('offset update', offset)
+    const res = await fetch(`/api/stories/${+storyId}/edit`, {
         method: "PUT",
         body: formData
     });
     if (res.ok) {
+        console.log('in update resok')
         const story = await res.json();
-        dispatch(updateStory(story));
+        dispatch(thunkAddImagesToStory(story, imgFormData, offset))
         return story;
     } else if (res.status < 500) {
+        console.log('in update status < 500')
 		const data = await res.json();
 		if (data.errors) {
+            console.log('in update data.errors', data.errors)
 			return data.errors;
 		}
 	} else {
+        console.log('in update else')
 		return ["An error occurred. Please try again."];
 	}
+}
+
+export const thunkAddImagesToStory = (story, imgFormData, offset) => async (dispatch) => {
+    console.log('offset add image', offset)
+    const res = await fetch(`/api/stories/${story.id}/${offset}/images`, {
+        method: "PUT",
+        body: imgFormData
+    });
+    if (res.ok) {
+        console.log('in addimg resok')
+        const story = await res.json();
+        dispatch(addImagesToStory(story));
+        return story
+    } else if (res.status < 500) {
+        console.log('in addimg status < 500')
+        const data = await res.json();
+        if (data.errors) {
+            console.log('in addimg data.errors', data.errors)
+            return data.errors;
+        }
+    } else {
+        console.log('in addimg else')
+        return ["An error occurred. Please try again."];
+    }
 }
 
 export const thunkDeleteStory = (id) => async (dispatch) => {

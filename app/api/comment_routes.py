@@ -15,7 +15,6 @@ def comments_by_story_id(id):
     '''
     Returns all comments belonging to a particular story
     '''
-    print('~~~~ IN GET ROUTE ~~~~~')
     comments = Comment.query.filter(Comment.story_id == id).all()
     res = [comment.to_dict() for comment in comments]
     return {"comments": res}
@@ -53,15 +52,13 @@ def update_comment(id):
     '''
     Update comment by comment id
     '''
-    print('~~~~ IN UPDATE API ROUTE ~~~~~~')
     form = UpdateCommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print('~~~~~ VALIDATED~~~~~~~')
         comment_to_edit = Comment.query.get(id)
         comment_to_edit.comment_text = form.data["comment_text"]
-        print ('~~~~~~~ EDITED COMMENT ~~~~~~', comment_to_edit)
+
         db.session.commit()
         return comment_to_edit.to_dict()
 

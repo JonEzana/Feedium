@@ -19,6 +19,10 @@ class Story(db.Model):
   image_url2 = db.Column(db.String(500))
   image_url3 = db.Column(db.String(500))
   image_url4 = db.Column(db.String(500))
+  image_url_1 = db.Column(db.String(500))
+  image_url_2 = db.Column(db.String(500))
+  image_url_3 = db.Column(db.String(500))
+  image_url_4 = db.Column(db.String(500))
   created_at = db.Column(db.DateTime(), default=datetime.now())
   updated_at = db.Column(db.DateTime(), default=datetime.now())
 
@@ -40,6 +44,10 @@ class Story(db.Model):
       'imageUrl2': self.image_url2,
       'imageUrl3': self.image_url3,
       'imageUrl4': self.image_url4,
+      'imageUrl_1': self.image_url_1,
+      'imageUrl_2': self.image_url_2,
+      'imageUrl_3': self.image_url_3,
+      'imageUrl_4': self.image_url_4,
       'createdAt': self.created_at,
       'updatedAt': self.updated_at,
       'user': self.user.to_dict_no_story()
