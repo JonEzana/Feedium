@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import * as storyActions from '../../store/stories';
+import  Navigation  from '../Navigation';
 import "./CreateStory.css";
 
 export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUploadSize, formType}) => {
@@ -14,6 +15,10 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
     let [urlArr, setUrlArr] = useState(story && story.urlArr ? story.urlArr : []);
     const [disabled, setDisabled] = useState(true);
     const [valObj, setValObj] = useState({});
+    const [isTitle2Short, setIsTitle2Short] = useState(true);
+    const [isStory2Short, setIsStory2Short] = useState(true);
+    const [titlecolor, setTitlecolor] = useState('red');
+    const [storycolor, setStoryColor] = useState('red');
 
     const backgroundImageStyle = (imageUrl) => {
         return {
@@ -23,7 +28,15 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
             backgroundRepeat: "no-repeat",
             height: "100px",
             width: "100px",
-            borderRadius: "20px"
+            borderRadius: "10px"
+        }
+    }
+
+    const changeTextColor = (e, val) => {
+        if (val) {
+            return e.target.style.color = "red"
+        } else {
+            return e.target.style.color = "black"
         }
     }
 
@@ -32,17 +45,33 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
         if (title && title.length >= 5 && storyText && storyText.length >= 5) {
             setDisabled(false)
         } else setDisabled(true);
-        if (urlArr.length > 4) errObj.urlArr = "Please upload a maximum of 4 photos";
+
+        if (title && title.length >= 5) {
+            setTitlecolor('black')
+        } else setTitlecolor('red');
+
+        if (storyText && storyText.length >= 5) {
+            setStoryColor('black')
+        } else setStoryColor('red')
+
         setValObj(errObj)
-    }, [title, storyText, disabled, urlArr]);
+    }, [title.length, storyText.length, disabled]);
 
     useEffect(() => {
         dispatch(storyActions.thunkGetSingleStory(storyId))
     }, [dispatch])
 
-    // useEffect(() => {
-    //     console.log('urlArr length', urlArr.length)
-    // }, [urlArr])
+    // const handleTitleFocus = () => {
+    //     let style;
+    //     title && title.length < 5 ? style = "1px solid red" : style = "none"
+    //     return style;
+    // }
+
+    // const handleStoryTextFocus = () => {
+    //     let style;
+    //     storyText && storyText.length < 5 ? style = "1px solid red" : style = "none"
+    //     return style;
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -115,34 +144,60 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
 
     return (
         <div className='create_page_container'>
-            <div className="create_page_header"></div>
-            <div className="create_page_body">
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="text"
-                        placeholder="Tell your story..."
-                        value={storyText}
-                        onChange={(e) => setStoryText(e.target.value)}
-                        required
-                    />
+            {/* <Navigation pageType="create" type="submit" form="story-form" disabled={disabled} /> */}
+            {/* <button type="submit" form="story-form" disabled={disabled}>Publish</button> */}
+            <div className="create_page_body" style={{width: "90vw"}}>
+                <form onSubmit={handleSubmit} encType="multipart/form-data" className="create-story-form" id='story-form'>
                     { !formType &&
-                        <label>
-                            <input
-                                className=""
-                                type="file"
-                                onChange={(e) => setUrlArr(Array.prototype.slice.call(e.target.files))}
-                                accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
-                                multiple={true}
-                                />
-                        </label>
+                        <span className="add-img-span">
+                            <label
+                                className='add-images-label'
+                                for='images-upload'
+                            >
+                                <span className="material-symbols-outlined plus">add_circle</span>
+                            </label>
+                                <input
+                                    id="images-upload"
+                                    className=""
+                                    type="file"
+                                    onChange={(e) => setUrlArr(Array.prototype.slice.call(e.target.files))}
+                                    accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
+                                    multiple={true}
+                                    hidden
+                                    />
+                        </span>
                     }
+                    <span className="input-fields-span">
+                        <textarea
+                            type="textarea"
+                            placeholder="Title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                            className="input-field_ _1"
+                            rows="5"
+                            // onFocus={ e => changeTextColor(e, isTitle2Short)}
+                            style={{height: "60px", color: `${titlecolor}`}}
+                            />
+                            {urlArr.length > 0 && <em style={{marginBottom: "10px"}}>{urlArr.length} attachments.</em>}
+                        <textarea
+                            type="textarea"
+                            placeholder="Tell your story..."
+                            value={storyText}
+                            onChange={(e) => setStoryText(e.target.value)}
+                            required
+                            className="input-field_ _2"
+                            rows="50"
+                            // onFocus={(e) => {
+                            //     if (isStory2Short) {
+                            //         e.target.style.border = "1px solid red"
+                            //     } else {
+                            //         e.target.style.border = '1px solid black'
+                            //     }
+                            // }}
+                            style={{color: `${storycolor}`}}
+                            />
+                    </span>
                     {valObj.urlArr && <p className="errors">{valObj.urlArr}</p>}
                     <div className={story ? "old-photos" : "hidden"}>
                         {storyUrl && storyUrl.length > 0 && storyUrl.map(pic =>
@@ -160,7 +215,6 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                             </span>
                         )}
                     </div>
-                    <button type="submit" disabled={disabled}>Publish</button>
                 </form>
             </div>
         </div>
