@@ -5,12 +5,13 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useLocation } from 'react-router-dom';
 import ProfileButton from "./ProfileButton";
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	const history = useHistory();
+	const location = useLocation();
 	const [transition, setTransition] = useState(false);
 
 	const goHome = () => {
@@ -30,16 +31,25 @@ function Navigation({ isLoaded }){
 		window.addEventListener("scroll", bgColor)
 	}, [window.scrollY, transition])
 
+	if (sessionUser && location.pathname === '/new-story') {
+		return (
+			<div className="loggedin_navbar" style={{justifyContent: "center"}}>
+					<div className="loggedin_left">
+						<span class="material-symbols-outlined logo" onClick={() => history.push('/all')} >lunch_dining</span>
+						<p>Draft in {sessionUser.firstName} {sessionUser.lastName}</p>
+					</div>
+					<div className="loggedin_right">
+						<button type="submit" form="story-form" className="submit-story-button">Publish</button>
+						<div className="pro-pic-container">
+							<ProfileButton user={sessionUser} style={{border: "none", backgroundColor: "transparent", marginLeft:"0px", width: "fit-content"}}/>
+							{/* <i class="fas fa-caret-down" style={{fontSize: "20px", color: "#828282", marginRight: "50px", marginLeft: "-42px"}}></i> */}
+						</div>
+					</div>
+				</div>
+		)
+	}
+
 	return (
-		// <ul>
-		// 	<li>
-		// 		<NavLink exact to={homeUrl(sessionUser)}>Home</NavLink>
-		// 	</li>
-		// 	{isLoaded && (
-		// 		<li>
-		// 		</li>
-		// 	)}
-		// </ul>
 		<div>
 			{ sessionUser ? (
 				<div className="loggedin_navbar">

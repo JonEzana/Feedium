@@ -141,3 +141,14 @@
 .hidden{
   visibility: hidden;
 }
+.submit-story-button{
+  border: none;
+  border-radius: 15px;
+  color: white;
+  background-color: rgb(26, 137, 23);
+  height: 30px;
+  width: 70px;
+}
+.submit-story-button:hover{
+  cursor: pointer;
+}
