@@ -37,12 +37,6 @@ export const StoryDisplay = () => {
 
     if (!Object.values(singleStory).length) return <></>;
 
-    // const imgArr = [];
-    // if (singleStory && singleStory.imageUrl1 !== null) imgArr.push(imageUrl1);
-    // if (singleStory && singleStory.imageUrl2 !== null) imgArr.push(imageUrl2);
-    // if (singleStory && singleStory.imageUrl3 !== null) imgArr.push(imageUrl3);
-    // if (singleStory && singleStory.imageUrl4 !== null) imgArr.push(imageUrl4);
-
     return (
         <div style={{display: "flex", flexDirection:"row"}}>
             <div className="story_display_body">
@@ -56,10 +50,10 @@ export const StoryDisplay = () => {
                             <p>{singleStory?.createdAt}</p>
                         </div>
                         <div className="story_images">
-                            {singleStory.imageUrl1 && <img className="story_img1 image" src={singleStory?.imageUrl1}/>}
-                            {singleStory.imageUrl2 && <img className="story_img2 image" src={singleStory?.imageUrl2}/>}
-                            {singleStory.imageUrl3 && <img className="story_img3 image" src={singleStory?.imageUrl3}/>}
-                            {singleStory.imageUrl4 && <img className="story_img4 image" src={singleStory?.imageUrl4}/>}
+                            {singleStory.imageUrl_1 && <img className="story_img1 image" src={singleStory?.imageUrl_1}/>}
+                            {singleStory.imageUrl_2 && <img className="story_img2 image" src={singleStory?.imageUrl_2}/>}
+                            {singleStory.imageUrl_3 && <img className="story_img3 image" src={singleStory?.imageUrl_3}/>}
+                            {singleStory.imageUrl_4 && <img className="story_img4 image" src={singleStory?.imageUrl_4}/>}
                         </div>
                     </div>
                     <h3 className="sd_reaction_block"> COMMENT BUTTON GOES HERE</h3>
