@@ -1,0 +1,56 @@
+.signup-modal{
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 450px;
+    align-items: center;
+    margin-top: 50px;
+}
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.greet{
+    margin-bottom: 0px;
+}
+.input_field{
+    border: none;
+    height: 20px;
+    background-color: rgb(242, 242, 242);
+    border-radius: 20px;
+    padding: 10px;
+    width: 20vw;
+}
+
+input:focus{
+    border-color: red;
+}
+
+p{
+    font-size: 18px;
+}
+.file-span{
+    margin: 10px 0 10px 0;
+    text-align: center;
+}
+.fa-upload{
+    margin-left: 10px;
+    color:black;
+    font-size: 15px;
+}
+.fa-upload:hover{
+    cursor: pointer;
+    color:rgb(26, 137, 23);
+}
+
+.signup-button{
+    border-radius: 10px;
+    height: 25px;
+    width: 15vw;
+    align-self: center;
+}
+
+.signup-button:hover{
+    cursor: pointer
+}

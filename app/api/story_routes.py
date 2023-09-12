@@ -78,9 +78,9 @@ def new_story():
         return {"errors": form.errors}
 
 
-@story_routes.route('/<int:id>/images', methods=['PUT'])
+@story_routes.route('/<int:id>/<int:offset>/images', methods=['PUT'])
 @login_required
-def add_images_to_story(id):
+def add_images_to_story(id, offset):
 
     form = AddImagesToStoryForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -88,7 +88,7 @@ def add_images_to_story(id):
 
     if form.validate_on_submit():
         data = form.data
-
+        print('~~~ DATA ~~~~', data)
         img_list = []
         if data['image_url1']:
             img_list.append(data["image_url1"])
@@ -108,19 +108,76 @@ def add_images_to_story(id):
 
         if len(img_data) > 0:
             if len(img_data) == 1:
-                story_to_change.image_url1 = img_data[0]["url"]
+                story_to_change.image_url_1 = img_data[0]["url"]
             elif len(img_data) == 2:
-                story_to_change.image_url1 = img_data[0]["url"]
-                story_to_change.image_url2 = img_data[1]["url"]
+                story_to_change.image_url_1 = img_data[0]["url"]
+                story_to_change.image_url_2 = img_data[1]["url"]
             elif len(img_data) == 3:
-                story_to_change.image_url1 = img_data[0]["url"]
-                story_to_change.image_url2 = img_data[1]["url"]
-                story_to_change.image_url3 = img_data[2]["url"]
+                story_to_change.image_url_1 = img_data[0]["url"]
+                story_to_change.image_url_2 = img_data[1]["url"]
+                story_to_change.image_url_3 = img_data[2]["url"]
             else:
-                story_to_change.image_url1 = img_data[0]["url"]
-                story_to_change.image_url2 = img_data[1]["url"]
-                story_to_change.image_url3 = img_data[2]["url"]
-                story_to_change.image_url4 = img_data[3]["url"]
+                story_to_change.image_url_1 = img_data[0]["url"]
+                story_to_change.image_url_2 = img_data[1]["url"]
+                story_to_change.image_url_3 = img_data[2]["url"]
+                story_to_change.image_url_4 = img_data[3]["url"]
+        # print('~~~~ IMG_DATA ~~~~', img_data)
+
+        # allStoryImgs = [story_to_change.image_url_1, story_to_change.image_url_2, story_to_change.image_url_3, story_to_change.image_url_4 ]
+
+        # eligibleImgs = allStoryImgs[offset:]
+        # print('~~~~ ELIGIBLE: BEFORE~~~~', eligibleImgs)
+
+        # img_data_new = img_data
+
+        # if offset != 0:
+        #     img_data_new = img_data[0:len(eligibleImgs)]
+
+        # for x in range(0, len(img_data_new)):
+        #     eligibleImgs[x] = img_data_new[x]["url"]
+
+        # print('~~~~ ELIGIBLE: AFTER~~~~', eligibleImgs)
+
+        # if len(img_data) > 0:
+        #     if story_to_change.image_url_4 is None:
+        #         story_to_change.image_url_4 = img_data[0]["url"]
+
+        #     elif story_to_change.image_url_3 is None:
+        #         if len(img_data) == 1:
+        #             story_to_change.image_url_3 = img_data[0]["url"]
+        #         else :
+        #             story_to_change.image_url_3 = img_data[0]["url"]
+        #             story_to_change.image_url_4 = img_data[1]["url"]
+
+        #     elif story_to_change.image_url_2 is None:
+        #         if len(img_data) == 1:
+        #             story_to_change.image_url_2 = img_data[0]["url"]
+        #         elif len(img_data) == 2:
+        #             story_to_change.image_url_2 = img_data[0]["url"]
+        #             story_to_change.image_url_3 = img_data[1]["url"]
+        #         else:
+        #             story_to_change.image_url_2 = img_data[0]["url"]
+        #             story_to_change.image_url_3 = img_data[1]["url"]
+        #             story_to_change.image_url_4 = img_data[2]["url"]
+
+        #     elif story_to_change.image_url_1 is None:
+        #         if len(img_data) == 1:
+        #             story_to_change.image_url_1 = img_data[0]["url"]
+        #         elif len(img_data) == 2:
+        #             story_to_change.image_url_1 = img_data[0]["url"]
+        #             story_to_change.image_url_2 = img_data[1]["url"]
+        #         elif len(img_data) == 3:
+        #             story_to_change.image_url_1 = img_data[0]["url"]
+        #             story_to_change.image_url_2 = img_data[1]["url"]
+        #             story_to_change.image_url_3 = img_data[2]["url"]
+        #         else:
+        #             story_to_change.image_url_1 = img_data[0]["url"]
+        #             story_to_change.image_url_2 = img_data[1]["url"]
+        #             story_to_change.image_url_3 = img_data[2]["url"]
+        #             story_to_change.image_url_4 = img_data[3]["url"]
+
+        #     else:
+        #         pass
 
             # for x in range(0, len(img_data)):
             #     col_name = f"image_url{x + 1}"
@@ -143,8 +200,33 @@ def edit_story(id):
 
     if form.validate_on_submit():
         story_to_edit = Story.query.get(id)
+        print('~~~~ STORY TO EDIT ~~~~~~~~', story_to_edit.to_dict())
         story_to_edit.title = form.data['title']
         story_to_edit.story_text = form.data['story_text']
+
+        story_to_edit.image_url_1 = None
+        story_to_edit.image_url_2 = None
+        story_to_edit.image_url_3 = None
+        story_to_edit.image_url_4 = None
+
+        if form.data['image_url_1']:
+            story_to_edit.image_url_1 = form.data['image_url_1']
+        if form.data['image_url_2']:
+            story_to_edit.image_url_2 = form.data['image_url_2']
+        if form.data['image_url_3']:
+            story_to_edit.image_url_3 = form.data['image_url_3']
+        if form.data['image_url_4']:
+            story_to_edit.image_url_4 = form.data['image_url_4']
+
+
+        # if story_to_edit.image_url_1 and not form.data['image_url_1']:
+        #     story_to_edit.image_url_1 == None
+        # if story_to_edit.image_url_2 and not form.data['image_url_2']:
+        #     story_to_edit.image_url_2 == None
+        # if story_to_edit.image_url_3 and not form.data['image_url_3']:
+        #     story_to_edit.image_url_3 == None
+        # if story_to_edit.image_url_4 and not form.data['image_url_4']:
+        #     story_to_edit.image_url_4 == None
 
         db.session.commit()
         return story_to_edit.to_dict()

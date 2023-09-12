@@ -1,0 +1,21 @@
+.hidden{
+    visibility: hidden;
+}
+
+.old-photos{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 15px;
+}
+
+.old-pic{
+    height: 100px;
+    width: 100px;
+    border: 1px solid grey;
+    border-radius: 20px;
+}
+
+.old-pic:hover{
+    cursor: pointer;
+}
