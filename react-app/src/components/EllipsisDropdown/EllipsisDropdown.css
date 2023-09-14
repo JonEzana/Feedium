@@ -1,0 +1,19 @@
+.ellipsis-dropdown{
+    /* display: flex; */
+    /* border: 1px solid red; */
+    height: fit-content;
+    width: fit-content;
+}
+.hidden{
+    visibility: none;
+}
+
+.comment-dropdown-span{
+    position: absolute;
+    z-index: 3;
+    height: 100px;
+    width: 100px;
+    background-color:red;
+    box-shadow: 0 0 5px .8px grey;
+    border-radius: 5px;
+}

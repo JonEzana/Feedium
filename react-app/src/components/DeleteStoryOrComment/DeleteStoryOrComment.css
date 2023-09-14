@@ -1,0 +1,71 @@
+.delete-modal{
+    height: 350px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: -4%;
+}
+
+.heading{
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.disclaimer{
+    margin-top: -3%;
+}
+
+#modal-background{
+    background-color: rgba(255, 255, 255, 0.917);
+}
+
+.yes-no-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+.no-button,
+.yes-button{
+    border-radius: 20px;
+    height: 37px;
+    width: 73px;
+    font-size: 15px;
+}
+
+.no-button:hover,
+.yes-button:hover{
+    cursor: pointer;
+}
+
+.no-button{
+    background-color: transparent;
+    border: 1px solid rgb(127, 127, 127);
+}
+
+.yes-button{
+    border: none;
+    background-color: rgb(201, 74, 74);
+    color: white
+}
+
+.yes-button:hover{
+    background-color: #bc3737;
+}
+
+._comment_modal{
+    margin-top: 50%;
+}
+._comment_yes{
+    width: 130px;
+}
+._comment_no{
+    border: none;
+}
+.disclaimer._comment{
+
+    margin-bottom: -3%;
+}

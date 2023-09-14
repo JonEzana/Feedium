@@ -55,7 +55,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
         } else setStoryColor('red')
 
         setValObj(errObj)
-    }, [title.length, storyText.length, disabled]);
+    }, [title, storyText, disabled]);
 
     useEffect(() => {
         dispatch(storyActions.thunkGetSingleStory(storyId))
