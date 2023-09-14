@@ -1,0 +1,109 @@
+.single-comment-container{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgb(234, 234, 234);
+    margin-top: 20px;
+    height: 100px;
+}
+
+.single-comment-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.commenter-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid green; */
+    gap: 2%;
+}
+
+.img-name-date{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    /* border: 1px solid red; */
+    gap: 10px;
+}
+
+.comment-proPic{
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
+
+.comment-name-date{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-name{
+    margin-bottom: -13px;
+}
+
+.comment-name-date > p{
+    font-size: 15px;
+}
+
+.comment-date{
+    color: rgb(166, 166, 166);
+}
+
+.comment-body{
+    margin: -0.2px 0;
+    font-size: 15px;
+}
+
+.elip{
+    align-self: start;
+    margin-top: 4%;
+    /* border: 1px solid blue; */
+}
+
+.ellipsis-button-comment{
+    border: none;
+    background-color: transparent;
+    margin-top: -50%;
+}
+
+.comment-dropdown-span{
+    position: absolute;
+    z-index: 3;
+    right: 6%;
+    height: 75px;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+    background-color:white;
+    box-shadow: 0 0 5px .8px grey;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.edit-comment-button{
+    margin-top: 10px;
+}
+.edit-comment-button,
+.delete-comment-button{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    margin-left: 9px;
+}
+.edit-comment-button:hover,
+.delete-comment-button:hover{
+    cursor: pointer;
+    font-weight: 590;
+}
+
+.hidden{
+    position: absolute;
+    z-index: 4;
+    visibility: hidden;
+}

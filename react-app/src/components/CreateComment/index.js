@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import * as commentActions from "../../store/comments";
 import * as storyActions from "../../store/stories";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import { thunkGetSingleStory } from "../../store/stories";
+import "./CreateComment.css";
 
-export const CreateComment = ({ story, comment, clicked, setClicked, type }) => {
+export const CreateComment = ({ story, comment, type, showEditComponent, setShowEditComponent }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const comments = Object.values(useSelector(state => state.comments.storyComments));
@@ -15,6 +16,7 @@ export const CreateComment = ({ story, comment, clicked, setClicked, type }) => 
     const [valObj, setValObj] = useState({});
     const [disabled, setDisabled] = useState(true);
     const [buttonId, setButtonId] = useState('disabled-comment-button');
+    const location = useLocation();
 
     useEffect(() => {
         const errObj = {};
@@ -33,22 +35,21 @@ export const CreateComment = ({ story, comment, clicked, setClicked, type }) => 
         if (type && type === "Update") {
             // comment['comment_text'] = commentTxt;
             // console.log('COMMENT', comment)
-            const updatedComment = await dispatch(commentActions.thunkUpdateComment({comment_text: commentTxt, user_id: user.id, story_id: +storyId, id: comment.id}));
+            const updatedComment = await dispatch(commentActions.thunkUpdateComment({comment_text: commentTxt, user_id: user.id, story_id: comment.storyId, id: comment.id}));
             if (updatedComment.id) {
-                await storyActions.thunkGetSingleStory(storyId);
-                await commentActions.thunkCommentsByStoryId(storyId);
-                setClicked(!clicked)
-                history.push(`/stories/${storyId}`)
+                await storyActions.thunkGetSingleStory(updatedComment.storyId);
+                await commentActions.thunkCommentsByStoryId(updatedComment.storyId);
+                setShowEditComponent(!showEditComponent);
+                history.push(`/stories/${updatedComment.storyId}`)
             }
         } else {
-            const commentData = {comment_text: commentTxt, user_id: user.id, story_id: +storyId};
-            const newComment = await dispatch(commentActions.thunkCreateComment(commentData, storyId));
+            const commentData = {comment_text: commentTxt, user_id: user.id, story_id: story.id};
+            const newComment = await dispatch(commentActions.thunkCreateComment(commentData, story.id));
                 if (newComment.id) {
-                    await storyActions.thunkGetSingleStory(storyId);
-                    await commentActions.thunkCommentsByStoryId(storyId);
+                    await storyActions.thunkGetSingleStory(story.id);
+                    await commentActions.thunkCommentsByStoryId(story.id);
                     setCommentTxt('');
-                    setClicked(false)
-                    history.push(`/stories/${storyId}`)
+                    history.push(`/stories/${story.id}`);
                 }
         }
             // .then(() => dispatch(commentActions.thunkCommentsByStoryId(storyId)))
@@ -59,22 +60,57 @@ export const CreateComment = ({ story, comment, clicked, setClicked, type }) => 
 
     const handleCancel = () => {
         setCommentTxt(comment ? comment.commentText : "");
-        setClicked(!clicked)
+        if (type && type === "Update") {
+            setShowEditComponent(!showEditComponent)
+        }
+    }
+
+    if (type && type === "Update") {
+        return (
+            <div className="comment-creation-container _update-container">
+                <span className="commenter-details _upate-details">
+                    <img className="commenter-prof-pic" src={user.profilePic}/>
+                    <p className="commenter-name">{user.firstName} {user.lastName}</p>
+                </span>
+                <form onSubmit={handleSubmit} className="comment-creation-form _update-form">
+                    <textarea
+                        placeholder="What are your thoughts?"
+                        value={commentTxt}
+                        onChange={(e) => setCommentTxt(e.target.value)}
+                        type="textarea"
+                        required
+                        rows="30"
+                    />
+                    <span className="comment-buttons-span">
+                        <button onClick={handleCancel} className="comment-cancel-button">Cancel</button>
+                        <button type="submit" disabled={disabled} id={buttonId} className={disabled ? "comment-submit-button-disabled" : "comment-submit-button"}>Update</button>
+                    </span>
+                </form>
+            </div>
+        )
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="comment-creation-container">
+            {user &&
+            <span className="commenter-details">
+                <img className="commenter-prof-pic" src={user.profilePic}/>
+                <p className="commenter-name">{user.firstName} {user.lastName}</p>
+            </span>
+            }
+            <form onSubmit={handleSubmit} className="comment-creation-form">
                 <textarea
-                    placeholder="What are your thoughs?"
+                    placeholder="What are your thoughts?"
                     value={commentTxt}
                     onChange={(e) => setCommentTxt(e.target.value)}
                     type="textarea"
                     required
+                    rows="30"
                 />
-                {valObj.commentTxt && <p style={{color: "red"}}>{valObj.commentTxt}</p>}
-                <button type="submit" disabled={disabled} id={buttonId}>{comment ? "Update" : "Respond"}</button>
-                <button onClick={handleCancel}>Cancel</button>
+                <span className="comment-buttons-span">
+                    <button onClick={handleCancel} className="comment-cancel-button">Cancel</button>
+                    <button type="submit" disabled={disabled} id={buttonId} className={disabled ? "comment-submit-button-disabled" : "comment-submit-button"}>Respond</button>
+                </span>
             </form>
         </div>
     )

@@ -146,7 +146,7 @@ function SignupFormModal() {
 				<p>Already have an account?</p>
 				<OpenModalButton
 					className = "modal_btn"
-					buttonText="Sign In"
+					buttonText="Sign in"
 					modalComponent={<LoginFormModal />}
 					style={{border: "none", backgroundColor: "transparent", fontSize: "16px", color: "rgb(26, 137, 23)", fontWeight: "bold"}}
 				/>
