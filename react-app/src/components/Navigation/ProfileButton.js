@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
+import "./Navigation.css";
 
 function ProfileButton({ user, style }) {
   const dispatch = useDispatch();
@@ -37,38 +38,37 @@ function ProfileButton({ user, style }) {
     history.push('/')
   };
 
+  const obscureEmail = (email) => {
+    const splitEmail = email.split('@');
+    let pre = splitEmail[0].split('').slice(0, 2).join('');
+    splitEmail[0].split('').slice(2).forEach(i => pre += "*");
+    return `${pre}@${splitEmail[1]}`;
+  }
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <div style={{display: "flex", flexDirection: "column", marginTop: "90px", marginRight: "15px"}}>
-      <button onClick={openMenu} style={style}>
+    <div className="profilepic-component">
+      <span onClick={openMenu} className="pic-caret">
         <img src={user.profilePic} className="pro_pic_pro_btn"/>
-      </button>
+				<i class="fas fa-caret-down"></i>
+      </span>
       <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onButtonClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onButtonClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
+        {/* <span className="top-buttons">
+            <span className="PROFILE menuitem">
+              <span class="material-symbols-outlined itemsymbol">person</span>
+              <p className="item-description">Profile</p>
+            </span>
+            <span className="STORIES menuitem">
+              <span class="material-symbols-outlined itemsymbol">list_alt</span>
+              <p className="item-description">Stories</p>
+            </span>
+        </span> */}
+        <span className="signout-span">
+          <button onClick={handleLogout} className="signoutbutton">Sign Out</button>
+          <li className="user-email">{obscureEmail(user.email)}</li>
+        </span>
       </ul>
     </div>
   );
