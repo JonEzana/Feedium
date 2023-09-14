@@ -35,7 +35,7 @@ function Navigation({ isLoaded }){
 		return (
 			<div className="loggedin_navbar" style={{justifyContent: "center"}}>
 					<div className="loggedin_left">
-						<span class="material-symbols-outlined logo" onClick={() => history.push('/all')} >lunch_dining</span>
+						<span class="material-symbols-outlined logo" onClick={goHome} >lunch_dining</span>
 						<p>Draft in {sessionUser.firstName} {sessionUser.lastName}</p>
 					</div>
 					<div className="loggedin_right">
@@ -53,7 +53,7 @@ function Navigation({ isLoaded }){
 			{ sessionUser ? (
 				<div className="loggedin_navbar">
 					<div className="loggedin_left">
-					<span class="material-symbols-outlined logo" onClick={() => history.push('/all')} >lunch_dining</span>
+					<span class="material-symbols-outlined logo" onClick={goHome} >lunch_dining</span>
 						<span>
 							<i className="fas fa-search" style={{color: "#828282", alignSelf: "center", position: "absolute", marginLeft: "0.6%", zIndex: "2", marginTop: "13px"}}></i>
 							<input type="text" style={{border: "none", borderRadius: "20px", backgroundColor: "#f4f4f4", height: "40px", width: "192px"}}></input>
@@ -68,7 +68,6 @@ function Navigation({ isLoaded }){
 						<i className="far fa-bell" onClick={upcomingFeature} style={{fontSize: "25px", color: "#828282"}}></i>
 						<div className="pro-pic-container">
 							<ProfileButton user={sessionUser} style={{border: "none", backgroundColor: "transparent"}}/>
-							<i class="fas fa-caret-down" style={{fontSize: "20px", color: "#828282", marginRight: "50px", marginLeft: "-42px"}}></i>
 						</div>
 					</div>
 				</div>
