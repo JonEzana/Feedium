@@ -14,13 +14,13 @@
 .greet{
     margin-bottom: 0px;
 }
-.input_field{
+.signup_input_field{
     border: none;
     height: 20px;
     background-color: rgb(242, 242, 242);
     border-radius: 20px;
     padding: 10px;
-    width: 20vw;
+    width: auto;
 }
 
 input:focus{
@@ -53,4 +53,25 @@ p{
 
 .signup-button:hover{
     cursor: pointer
+}
+
+.signup-pw-input{
+    display: flex;
+    flex-direction: row;
+}
+
+.signup-eye{
+    color: rgb(92, 92, 92);
+    align-self: center;
+    position: absolute;
+    z-index: 2;
+    font-size: 19px;
+    margin-left: 53%;
+}
+.signup-eye:hover{
+    cursor: pointer;
+}
+
+.signup_input_field.pw{
+    width: 100%;
 }

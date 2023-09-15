@@ -13,11 +13,14 @@ function SignupFormModal() {
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmPW, setConfirmPW] = useState("");
 	const [errors, setErrors] = useState([]);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	let [profilePic, setProfilePic] = useState(null);
 	const [disabled, setDisabled] = useState(true);
+	const [showPassword, setShowPassword] = useState(false);
+	const [pwType, setPwType] = useState("password");
 	const { closeModal } = useModal();
 
 	useEffect(() => {
@@ -26,16 +29,17 @@ function SignupFormModal() {
 		// if (password.length > 0 && password.length < 6) errObj.password = "Password must be at least 6 characters long";
 		// if (firstName.length > 0 && (firstName.length < 3 || firstName.length > 50)) errObj.firstName = "First name must be between 3 and 50 characters";
 		// if (lastName.length > 0 && (lastName.length < 3 || lastName.length > 50)) errObj.lastName = "Last name must be between 3 and 50 characters";
-		// if (password.length > 0 && password.length < 6) errObj.confirmPassword = "Password must be at least 6 characters";
+		// if (password.length > 0 && password.length < 6) errObj.password = "Password must be at least 6 characters";
+		// if (password.length > 0 && confirmPW.length > 0 && password !== confirmPW) errObj.confirmPW = "Password and Confirm Password fields must match";
 
-		if (username.length >= 3 && password.length >= 6 && firstName.length >= 3 && firstName.length <= 50 && lastName.length >= 3 && lastName.length <= 50) {
+		if (username.length >= 3 && password.length >= 6 && firstName.length >= 3 && firstName.length <= 50 && lastName.length >= 3 && lastName.length <= 50 && password === confirmPW) {
 			setDisabled(false);
-		} else setDisabled(true)
+		} else setDisabled(true);
 
-		// showPassword === false ? setPwType("password") : setPwType("text");
+		showPassword === false ? setPwType("password") : setPwType("text");
 
 		// setErrors(errObj);
-	}, [firstName, lastName, username, password]);
+	}, [firstName, lastName, username, password, confirmPW, showPassword]);
 
 	const reset = () => {
 		setEmail('')
@@ -45,20 +49,11 @@ function SignupFormModal() {
 		setLastName('')
 	}
 
+	const handleShowPW = () => {
+		showPassword === false ? setShowPassword(true) : setShowPassword(false);
+	  };
+
 	const handleSubmit = async (e) => {
-		// e.preventDefault();
-		// if (password === confirmPassword) {
-		// 	const data = await dispatch(signUp(username, email, password));
-		// 	if (data) {
-		// 		setErrors(data);
-		// 	} else {
-		// 		closeModal();
-		// 	}
-		// } else {
-		// 	setErrors([
-		// 		"Confirm Password field must be the same as the Password field",
-		// 	]);
-		// }
 		e.preventDefault();
 		const formData = new FormData();
 		formData.append("email", email);
@@ -84,7 +79,7 @@ function SignupFormModal() {
 			<h2 className="greet">Join Feedium.</h2>
 			<form onSubmit={handleSubmit} encType="multipart/form-data" className="signup-form">
 				<ul>
-					{errors.map((error, idx) => (
+					{Object.values(errors).length > 0 && errors.map((error, idx) => (
 						<li style={{listStyleType: "none", color: "red"}} key={idx}>{error}</li>
 					))}
 				</ul>
@@ -94,7 +89,7 @@ function SignupFormModal() {
 					value={firstName}
 					onChange={(e) => setFirstName(e.target.value)}
 					required
-					className="input_field"
+					className="signup_input_field"
 				/>
 				<input
 					type="text"
@@ -102,7 +97,7 @@ function SignupFormModal() {
 					value={lastName}
 					onChange={(e) => setLastName(e.target.value)}
 					required
-					className="input_field"
+					className="signup_input_field"
 				/>
 				<input
 					type="email"
@@ -110,7 +105,7 @@ function SignupFormModal() {
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					required
-					className="input_field"
+					className="signup_input_field"
 				/>
 				<input
 					type="text"
@@ -118,15 +113,27 @@ function SignupFormModal() {
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 					required
-					className="input_field"
+					className="signup_input_field"
 				/>
+				<span className="signup-pw-input">
+					<input
+						type={pwType}
+						placeholder="Password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						required
+						className="signup_input_field pw"
+						/>
+					{showPassword === true && <span class="material-symbols-outlined signup-eye" onClick={handleShowPW}>visibility</span>}
+            		{showPassword === false && <span class="material-symbols-outlined signup-eye" onClick={handleShowPW}>visibility_off</span>}
+				</span>
 				<input
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+					type={pwType}
+					placeholder="Confirm Password"
+					value={confirmPW}
+					onChange={(e) => setConfirmPW(e.target.value)}
 					required
-					className="input_field"
+					className="signup_input_field"
 				/>
 				<span className="file-span">
 					{/* <label id='file-label'>Upload your profile picture (optional):</label> */}

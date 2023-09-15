@@ -12,21 +12,18 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [borderStyle, setBorderStyle] = useState(false)
-  const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [pwType, setPwType] = useState("password");
   const { closeModal } = useModal();
   const history = useHistory();
 
   useEffect(() => {
     if (password.length >= 6) setDisabled(false);
     else setDisabled(true);
-    // showPassword === false ? setPwType("password") : setPwType("text");
-  }, [password])
 
-  const borderColor = () => {
-    if (borderStyle) return {border: "1px solid red"};
-    return {border: "none"}
-  }
+    showPassword === false ? setPwType("password") : setPwType("text");
+  }, [password, showPassword])
 
   const LoginTheDemoUserFunction = () => {
     const email = 'demo@aa.io';
@@ -38,6 +35,10 @@ function LoginFormModal() {
         const data = await res.json();
       });
   }
+
+  const handleShowPW = () => {
+    showPassword === false ? setShowPassword(true) : setShowPassword(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,14 +70,18 @@ function LoginFormModal() {
           // style={borderColor()}
         />
         {errors.email && <p>{errors.email}</p>}
-        <input
-          className="input-field"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <span className="pw-input">
+          <input
+            className="input-field"
+            type={pwType}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            />
+            {showPassword === true && <span class="material-symbols-outlined eye" onClick={handleShowPW}>visibility</span>}
+            {showPassword === false && <span class="material-symbols-outlined eye" onClick={handleShowPW}>visibility_off</span>}
+          </span>
         <button type="submit" className="login-btn" disabled={disabled}>Log In</button>
       </form>
       <span style={{display: "flex", flexDirection: "row"}}>
