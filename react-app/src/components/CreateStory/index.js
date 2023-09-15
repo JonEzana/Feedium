@@ -15,8 +15,6 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
     let [urlArr, setUrlArr] = useState(story && story.urlArr ? story.urlArr : []);
     const [disabled, setDisabled] = useState(true);
     const [valObj, setValObj] = useState({});
-    const [isTitle2Short, setIsTitle2Short] = useState(true);
-    const [isStory2Short, setIsStory2Short] = useState(true);
     const [titlecolor, setTitlecolor] = useState('red');
     const [storycolor, setStoryColor] = useState('red');
 
@@ -32,16 +30,10 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
         }
     }
 
-    const changeTextColor = (e, val) => {
-        if (val) {
-            return e.target.style.color = "red"
-        } else {
-            return e.target.style.color = "black"
-        }
-    }
-
     useEffect(() => {
         const errObj = {};
+        if (title && (title.length < 5 || title.length > 255)) errObj.TITLE = "Title must be between 5 and 255 characters long";
+        if (storyText && storyText.length < 5 || storyText.length > 4000) errObj.STORYTEXT = "Stories must be between 5 and 4000 characters long";
         if (title && title.length >= 5 && storyText && storyText.length >= 5) {
             setDisabled(false)
         } else setDisabled(true);
@@ -168,6 +160,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                         </span>
                     }
                     <span className="input-fields-span">
+                        {valObj.TITLE && <p className="errors">{valObj.TITLE}</p>}
                         <textarea
                             type="textarea"
                             placeholder="Title"
@@ -180,6 +173,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                             style={{height: "60px", color: `${titlecolor}`}}
                             />
                             {urlArr.length > 0 && <em style={{marginBottom: "10px"}}>{urlArr.length} attachments.</em>}
+                            {valObj.STORYTEXT && <p className="errors">{valObj.STORYTEXT}</p>}
                         <textarea
                             type="textarea"
                             placeholder="Tell your story..."
@@ -188,13 +182,6 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                             required
                             className="input-field_ _2"
                             rows="50"
-                            // onFocus={(e) => {
-                            //     if (isStory2Short) {
-                            //         e.target.style.border = "1px solid red"
-                            //     } else {
-                            //         e.target.style.border = '1px solid black'
-                            //     }
-                            // }}
                             style={{color: `${storycolor}`}}
                             />
                     </span>

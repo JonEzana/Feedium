@@ -55,7 +55,7 @@ function ProfileButton({ user, style }) {
 				<i class="fas fa-caret-down"></i>
       </span>
       <ul className={ulClassName} ref={ulRef}>
-        {/* <span className="top-buttons">
+        <span className="top-buttons">
             <span className="PROFILE menuitem">
               <span class="material-symbols-outlined itemsymbol">person</span>
               <p className="item-description">Profile</p>
@@ -64,7 +64,7 @@ function ProfileButton({ user, style }) {
               <span class="material-symbols-outlined itemsymbol">list_alt</span>
               <p className="item-description">Stories</p>
             </span>
-        </span> */}
+        </span>
         <span className="signout-span">
           <button onClick={handleLogout} className="signoutbutton">Sign Out</button>
           <li className="user-email">{obscureEmail(user.email)}</li>

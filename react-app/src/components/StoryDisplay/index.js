@@ -36,20 +36,19 @@ export const StoryDisplay = () => {
         history.push(`/stories/${singleStory.id}/edit`)
     }
 
-    const handleClicked = () => {
-        clicked ? setClicked(false) : setClicked(true)
-    }
-
     const handleHideUl = () => {
         isUlHidden ? setIsUlHidden(false) : setIsUlHidden(true);
     }
+
+    let storyContainerClassname;
+    currUser ? storyContainerClassname = "sd_container" : storyContainerClassname = "sd_container add-more-margin"
 
     if (!Object.values(singleStory).length) return <></>;
 
     return (
         <div style={{display: "flex", flexDirection:"row"}} onClick={() => {if (!isUlHidden) handleHideUl()}}>
             <div className="story_display_body">
-                <div className="sd_container">
+                <div className={storyContainerClassname}>
                     <h1>{singleStory?.title}</h1>
                     <div className="sd_author_block">
                         <div style={{display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", marginLeft: "4px", marginTop: "-20px"}}>
@@ -76,11 +75,6 @@ export const StoryDisplay = () => {
                             <p style={{color: "rgb(149, 149, 149)"}}>{comments.length}</p>
                         </span>
                        {currUser && currUser.id === singleStory?.userId &&
-                            // <OpenOptionsModalButton
-                            //     modalComponent={ <OptionsModalComponent story={singleStory}/>}
-                            //     buttonText={<i className="fas fa-ellipsis-h"></i>}
-                            //     style={{border: "none", backgroundColor: "transparent", marginLeft: "82%", position: "relative"}}
-                            // />
                             <>
                                 <button onClick={handleHideUl} className="ellipsis-button"><i className="fas fa-ellipsis-h"></i></button>
                                 <span className="pointed-border"></span>
@@ -104,52 +98,7 @@ export const StoryDisplay = () => {
                     <div className="sd_story_body">
                         <p>{singleStory?.storyText}</p>
                     </div>
-                    {/* {currUser && currUser.id === singleStory.userId &&
-                        <>
-                            <button onClick={handleStoryEdit}>Edit story</button>
-                            <OpenModalButton
-                                modalComponent={ <DeleteStoryOrComment story={singleStory} /> }
-                                buttonText={"Delete story"}
-                            />
-                        </>
-                    } */}
-                    {/* {comments.toReversed().map(comment =>
-                        <div style={{display: "flex", flexDirection: "row", gap: "20px"}} key={comment.id}>
-                            {currUser.id !== comment.userId &&
-                            <>
-                                <img src={comment?.user?.profilePic} style={{height: "50px", width: "50px", borderRadius: "26px"}}/>
-                                <p>{comment?.user?.username}</p>
-                                <p>{comment?.commentText}</p>
-                            </>
-                            }
-                            {currUser.id === comment.userId &&
-                                <>
-                                    { clicked ?
-                                        (
-                                            <div className={!shown}>
-                                                <CreateComment comment={comment} clicked={clicked} setClicked={setClicked} type={"Update"}/>
-                                            </div>
-                                        ) : (
-                                            <div className={shown} style={{display: "flex", flexDirection: "row", gap: "20px"}}>
-                                                <img src={comment?.user?.profilePic} style={{height: "50px", width: "50px", borderRadius: "26px"}}/>
-                                                <p>{comment?.user?.username}</p>
-                                                <p>{comment?.commentText}</p>
-                                                <button onClick={handleClicked}>Edit Comment</button>
-                                                <OpenModalButton
-                                                    modalComponent={ <DeleteStoryOrComment story={singleStory} comment={comment} /> }
-                                                    buttonText={"Delete comment"}
-                                                />
-                                            </div>
-                                        )
-                                    }
-                                </>
-                            }
-                        </div>
-                    )} */}
                 </div>
-            </div>
-            <div>
-                 {/* <CreateComment story={singleStory} clicked={clicked} setClicked={setClicked} /> */}
             </div>
         </div>
     )

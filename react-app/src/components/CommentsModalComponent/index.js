@@ -26,10 +26,13 @@ export const CommentsModalComponent = ({ story, currentUser }) => {
                 <i className="fas fa-times" onClick={closeCommentModal}></i>
             </span>
             <span className="create-comment-container">
-                <CreateComment story={story} />
+                {currentUser ? (
+                    <CreateComment story={story} />
+                ) : (
+                    <div style={{marginBottom: "100px"}}>Must be logged in to leave comments!</div>
+                )}
             </span>
             <div className="comment-section">
-                {/* <CommentDisplay comments={comments}/> */}
                 {latestComments.length > 0 ? (
                     <>
                         {latestComments.toReversed().map(comment =>
