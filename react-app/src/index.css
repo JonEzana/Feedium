@@ -6,3 +6,7 @@
 *{
     font-family: "Sans";
 }
+
+.errors{
+    color: red;
+}

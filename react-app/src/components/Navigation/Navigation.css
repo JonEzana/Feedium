@@ -235,7 +235,11 @@ li{
 }
 
 .PROFILE:hover,
-.STORIES:hover,
+.STORIES:hover{
+  cursor: not-allowed;
+}
+
+
 .signoutbutton:hover{
   cursor: pointer;
   font-weight: 590;

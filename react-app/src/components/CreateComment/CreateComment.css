@@ -8,7 +8,8 @@
 }
 
 .comment-creation-container._update-container{
-    height: 90%;
+    height: 160px;
+    margin-top: 30px;
     border-bottom: 1px solid rgb(234, 234, 234);
     border-top: 1px solid rgb(234, 234, 234);
 }
