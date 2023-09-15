@@ -4,21 +4,13 @@ import { useHistory, NavLink, Link } from "react-router-dom";
 import { thunkGetMostPopularStories } from "../../store/stories";
 import "./LandingPage.css"
 import {TrendingStoryCard} from "./TrendingStoryCard";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 
 export const LandingPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const stories = useSelector(state => state.stories.hotStories);
-
-    // const LoginTheDemoUserFunction = () => {
-    //     const email = 'demo@aa.io';
-    //     const password = 'password';
-    //     return dispatch(sessionActions.login(email, password))
-    //       .then (() => history.push('/all'))
-    //       .catch(async (res) => {
-    //         const data = await res.json();
-    //       });
-    //   }
 
     const upcomingFeature = () => {
         window.alert('Feature Coming Soon...');
@@ -37,7 +29,12 @@ export const LandingPage = () => {
                     <div className="words_btn">
                         <h1>Stay hungry.</h1>
                         <h3>Discover recipies, restaurants, and dish ideas from writers who appreciate great cuisine.</h3>
-                        <button className="start_reading_button" onClick={upcomingFeature}>Start Reading</button>
+                        <OpenModalButton
+                            className="start_reading_button"
+							buttonText="Start Reading"
+							modalComponent={<SignupFormModal />}
+							// style={{backgroundColor: "black", color: "white", height: "50px", width: "250px", fontSize: "20px", borderRadius: "30px", border: "none"}}
+						/>
                     </div>
                 </div>
                 <div className="m-field">

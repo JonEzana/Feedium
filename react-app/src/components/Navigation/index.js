@@ -5,12 +5,13 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useLocation } from 'react-router-dom';
 import ProfileButton from "./ProfileButton";
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	const history = useHistory();
+	const location = useLocation();
 	const [transition, setTransition] = useState(false);
 
 	const goHome = () => {
@@ -30,21 +31,29 @@ function Navigation({ isLoaded }){
 		window.addEventListener("scroll", bgColor)
 	}, [window.scrollY, transition])
 
+	if (sessionUser && (location.pathname === '/new-story' || location.pathname.includes('/edit'))) {
+		return (
+			<div className="loggedin_navbar" style={{justifyContent: "center"}}>
+					<div className="loggedin_left">
+						<span class="material-symbols-outlined logo" onClick={goHome} >lunch_dining</span>
+						<p>Draft in {sessionUser.firstName} {sessionUser.lastName}</p>
+					</div>
+					<div className="loggedin_right">
+						<button type="submit" form="story-form" className="submit-story-button">Publish</button>
+						<div className="pro-pic-container">
+							<ProfileButton user={sessionUser} style={{border: "none", backgroundColor: "transparent", marginLeft:"0px", width: "fit-content"}}/>
+						</div>
+					</div>
+				</div>
+		)
+	}
+
 	return (
-		// <ul>
-		// 	<li>
-		// 		<NavLink exact to={homeUrl(sessionUser)}>Home</NavLink>
-		// 	</li>
-		// 	{isLoaded && (
-		// 		<li>
-		// 		</li>
-		// 	)}
-		// </ul>
 		<div>
 			{ sessionUser ? (
 				<div className="loggedin_navbar">
 					<div className="loggedin_left">
-					<span class="material-symbols-outlined logo" onClick={() => history.push('/all')} >lunch_dining</span>
+					<span class="material-symbols-outlined logo" onClick={goHome} >lunch_dining</span>
 						<span>
 							<i className="fas fa-search" style={{color: "#828282", alignSelf: "center", position: "absolute", marginLeft: "0.6%", zIndex: "2", marginTop: "13px"}}></i>
 							<input type="text" style={{border: "none", borderRadius: "20px", backgroundColor: "#f4f4f4", height: "40px", width: "192px"}}></input>
@@ -59,7 +68,6 @@ function Navigation({ isLoaded }){
 						<i className="far fa-bell" onClick={upcomingFeature} style={{fontSize: "25px", color: "#828282"}}></i>
 						<div className="pro-pic-container">
 							<ProfileButton user={sessionUser} style={{border: "none", backgroundColor: "transparent"}}/>
-							<i class="fas fa-caret-down" style={{fontSize: "20px", color: "#828282", marginRight: "50px", marginLeft: "-42px"}}></i>
 						</div>
 					</div>
 				</div>

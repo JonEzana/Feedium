@@ -1,17 +1,17 @@
 import "./SignedInLandingPage.css";
 
+export const convertDate = (date) => {
+    const dateArr = date.split(' ');
+    return `${dateArr[2]} ${dateArr[1]}`
+}
 export const AllStoryContainer = ({ story }) => {
 
     const storyPreview = (str) => {
         let res;
-        str.length > 200 ? res = str.substring(0, 200) + "..." : res = str;
+        str.length > 200 ? res = `${str.substring(0, 200)}...` : res = str;
         return res;
     }
 
-    const convertDate = (date) => {
-        const dateArr = date.split(' ');
-        return `${dateArr[2]} ${dateArr[1]}`
-    }
 
     return  (
         <div className="story_and_img">
@@ -30,7 +30,7 @@ export const AllStoryContainer = ({ story }) => {
                 </div>
             </div>
             <div className="story_image">
-                { story.imageUrl1 && <img className="preview_img" src={story.imageUrl1}/>}
+                { story.imageUrl_1 && <img className="preview_img" src={story.imageUrl_1}/>}
             </div>
     </div>
     )

@@ -1,0 +1,22 @@
+.comment-modal{
+    margin: 5% 7%;
+}
+
+.comment-modal-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-times{
+    color: #606060;
+}
+
+.fa-times:hover{
+    cursor: pointer;
+}
+
+.no-comment-message{
+    margin-top: 20vh;
+}

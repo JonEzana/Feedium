@@ -1,0 +1,85 @@
+.comment-creation-container{
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+    box-shadow: 0 0 5px 1px rgb(173, 173, 173);
+    border-radius: 6px;
+    color: #606060;
+}
+
+.comment-creation-container._update-container{
+    height: 160px;
+    margin-top: 30px;
+    border-bottom: 1px solid rgb(234, 234, 234);
+    border-top: 1px solid rgb(234, 234, 234);
+}
+
+.commenter-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-left: 5px;
+}
+
+.commenter-prof-pic{
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
+
+.commenter-name{
+    font-size: 15px;
+    color: #242424
+}
+
+.comment-creation-form{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    padding: 5px;
+}
+
+textarea{
+    border: none;
+}
+
+.comment-buttons-span{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-top: 10px;
+}
+
+.comment-cancel-button{
+    border: none;
+    background-color: transparent;
+    color: #606060;
+}
+
+.comment-submit-button{
+    color: white;
+    background-color: #1A8917;
+    border-radius: 15px;
+    border: none;
+}
+
+.comment-cancel-button,
+.comment-submit-button,
+.comment-submit-button-disabled{
+    height: 30px;
+    width: 80px;
+    font-size: 16px;
+}
+
+.comment-cancel-button:hover,
+.comment-submit-button:hover{
+    cursor: pointer;
+}
+
+.comment-submit-button-disabled{
+    background-color: #C1DCBD;
+    color: white;
+    border-radius: 15px;
+    border: none;
+}

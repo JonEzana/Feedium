@@ -1,1 +1,12 @@
 /* TODO Add site wide styles */
+@font-face {
+    font-family: "Sans";
+    src: url("https://db.onlinewebfonts.com/t/952bab25f6798d6bb1937d67e9bee4dd.ttf")format("truetype");
+}
+*{
+    font-family: "Sans";
+}
+
+.errors{
+    color: red;
+}
