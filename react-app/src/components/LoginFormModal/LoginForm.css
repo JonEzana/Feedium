@@ -59,7 +59,7 @@
     background-color: rgb(242, 242, 242);
     border-radius: 11px;
     padding: 5px;
-    width: 15vw;
+    width: 16em;
 }
 .input-field:focus{
     border: 1px solid green;
@@ -74,5 +74,22 @@
 }
 
 .login-btn:hover{
+    cursor: pointer;
+}
+
+.pw-input{
+    display: flex;
+    flex-direction: row;
+}
+
+.eye{
+    color: rgb(92, 92, 92);
+    align-self: center;
+    position: absolute;
+    margin-left: 55%;
+    z-index: 2;
+    font-size: 19px;
+}
+.eye:hover{
     cursor: pointer;
 }
