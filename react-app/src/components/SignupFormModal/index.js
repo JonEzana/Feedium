@@ -24,21 +24,13 @@ function SignupFormModal() {
 	const { closeModal } = useModal();
 
 	useEffect(() => {
-		// const errObj = {};
-		// if (username.length > 0 && username.length < 4) errObj.username = "Username must be at least 4 characters long";
-		// if (password.length > 0 && password.length < 6) errObj.password = "Password must be at least 6 characters long";
-		// if (firstName.length > 0 && (firstName.length < 3 || firstName.length > 50)) errObj.firstName = "First name must be between 3 and 50 characters";
-		// if (lastName.length > 0 && (lastName.length < 3 || lastName.length > 50)) errObj.lastName = "Last name must be between 3 and 50 characters";
-		// if (password.length > 0 && password.length < 6) errObj.password = "Password must be at least 6 characters";
-		// if (password.length > 0 && confirmPW.length > 0 && password !== confirmPW) errObj.confirmPW = "Password and Confirm Password fields must match";
-
 		if (username.length >= 3 && password.length >= 6 && firstName.length >= 3 && firstName.length <= 50 && lastName.length >= 3 && lastName.length <= 50 && password === confirmPW) {
 			setDisabled(false);
-		} else setDisabled(true);
+		} else {
+			setDisabled(true);
+		}
 
 		showPassword === false ? setPwType("password") : setPwType("text");
-
-		// setErrors(errObj);
 	}, [firstName, lastName, username, password, confirmPW, showPassword]);
 
 	const reset = () => {
@@ -68,8 +60,8 @@ function SignupFormModal() {
 			setErrors(data);
 			reset()
 		  } else {
+			  reset();
 			  closeModal();
-			  reset()
 			  history.push("/all");
 		}
 	};
@@ -136,7 +128,6 @@ function SignupFormModal() {
 					className="signup_input_field"
 				/>
 				<span className="file-span">
-					{/* <label id='file-label'>Upload your profile picture (optional):</label> */}
 					<label className='upload-btn-label' for="file-upload">Upload your profile picture (optional):<i className="fas fa-upload"></i></label>
 						<input
 							id="file-upload"

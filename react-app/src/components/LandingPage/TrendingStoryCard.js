@@ -1,12 +1,7 @@
+import { convertDate } from "../../helpers";
 import "./LandingPage.css"
 
 export const TrendingStoryCard = ({story, stories}) => {
-
-    const convertDate = (date) => {
-        const dateArr = date.split(' ');
-        return `${dateArr[2]} ${dateArr[1]}`
-    }
-
     return (
         <div className="individual_card_container">
             <div className="individual_card">

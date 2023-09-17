@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import * as storyActions from '../../store/stories';
-import { thunkCommentsByStoryId, thunkDeleteComment } from '../../store/comments'
+import { thunkCommentsByStoryId } from '../../store/comments'
 import { useCommentModal } from '../../context/CommentModal';
-import { useHistory, useParams } from 'react-router-dom';
-import { DeleteStoryOrComment } from "../DeleteStoryOrComment";
 import { CreateComment } from "../CreateComment";
 import { CommentDisplay } from '../CommentDisplay';
 import "./CommentsModalComponent.css";

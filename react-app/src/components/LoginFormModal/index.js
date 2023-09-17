@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import "./LoginForm.css";
 import { useHistory } from "react-router-dom";
+import { login } from "../../store/session";
+import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import SignupFormModal from "../SignupFormModal";
+import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -67,7 +67,6 @@ function LoginFormModal() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          // style={borderColor()}
         />
         {errors.email && <p>{errors.email}</p>}
         <span className="pw-input">

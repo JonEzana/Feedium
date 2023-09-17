@@ -12,9 +12,12 @@ export const LandingPage = () => {
     const history = useHistory();
     const stories = useSelector(state => state.stories.hotStories);
 
-    const upcomingFeature = () => {
-        window.alert('Feature Coming Soon...');
-    };
+    const foodImg = <img src="https://feedium-bucket.s3.amazonaws.com/favicon2.png" style={{height: '25px', width: '25px'}} />;
+    const foodArr = new Array(200).fill(foodImg);
+
+    const generateBlinkLag = (min, max) => {
+        return Math.floor(Math.random() * (max - min) + min);
+    }
 
     useEffect(() => {
         dispatch(thunkGetMostPopularStories())
@@ -33,13 +36,14 @@ export const LandingPage = () => {
                             className="start_reading_button"
 							buttonText="Start Reading"
 							modalComponent={<SignupFormModal />}
-							// style={{backgroundColor: "black", color: "white", height: "50px", width: "250px", fontSize: "20px", borderRadius: "30px", border: "none"}}
 						/>
                     </div>
                 </div>
-                <div className="m-field">
-                    <h1>figure out M thing</h1>
-                </div>
+                <span className="food-field">
+                    {foodArr.map((x, i) =>
+                        <p key={i} className="food-icon" style={{animation: `${generateBlinkLag(3,30)}s infinite blinking steps(5, start)`}}>{x}</p>
+                    )}
+                </span>
             </div>
             <div className="trending_stories">
                 <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "10px"}}>

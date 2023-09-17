@@ -62,26 +62,21 @@ export const thunkDeleteComment = (commentId) => async (dispatch) => {
 }
 
 export const thunkUpdateComment = (commentData) => async (dispatch) => {
-    console.log('in thunk', commentData)
     const res = await fetch(`/api/comments/${commentData.id}/edit`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(commentData)
     });
     if (res.ok) {
-        console.log('in resok')
         const comment = await res.json();
         dispatch(updateComment(comment));
         return comment;
     } else if (res.status < 500) {
-        console.log('in status < 500')
 		const data = await res.json();
 		if (data.errors) {
-            console.log('data errors', data.errors)
 			return data.errors;
 		}
 	} else {
-        console.log('in else')
 		return ["An error occurred. Please try again."];
 	}
 }

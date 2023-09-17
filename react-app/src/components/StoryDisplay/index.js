@@ -5,10 +5,9 @@ import { thunkGetSingleStory } from "../../store/stories";
 import OpenCommentModalButton from "../OpenCommentModalButton";
 import OpenModalButton from "../OpenModalButton";
 import { DeleteStoryOrComment } from "../DeleteStoryOrComment";
-import { CreateComment } from "../CreateComment";
 import { thunkCommentsByStoryId } from "../../store/comments";
-import {convertDate} from "../SignedInLandingPage/AllStoryContainer";
 import {CommentsModalComponent} from "../CommentsModalComponent";
+import { convertDate } from "../../helpers";
 
 import "./StoryDisplay.css";
 
@@ -103,22 +102,3 @@ export const StoryDisplay = () => {
         </div>
     )
 }
-
-
-
-
-
-
-
-
-// <>
-//     {clicked && <div><CreateComment story={singleStory} comment={comment} clicked={clicked} setClicked={setClicked}/></div>}
-//     {!clicked &&
-//         <>
-//             <button onClick={handleCommentEdit}>Edit Comment</button>
-//             <OpenModalButton
-//             modalComponent={ <DeleteStoryOrComment story={singleStory} comment={comment} /> }
-//             buttonText={"Delete comment"}
-//             />
-//         </>}
-// </>

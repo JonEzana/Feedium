@@ -13,25 +13,35 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: background-color 0.5s ease-in;
+  transition: background-color 0.4s ease-in;
+  z-index: 2
 }
 
 .active{
   background-color: white;
+  z-index: 2;
 }
 
 .lp_logo{
   display: flex;
   flex-direction: row;
+  align-items: center;
   font-size: 30px;
   width: 40%;
   gap: 20px;
 }
 
-.site_name{
-  font-weight: 900;
+.logo-img{
+  height: 40px;
+  width: 40px;
 }
 
+.site_name{
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.logo-img:hover,
 .site_name:hover{
   cursor: pointer;
 }

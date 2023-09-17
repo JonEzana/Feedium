@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { convertDate } from "../SignedInLandingPage/AllStoryContainer";
-import "./CommentDisplay.css";
-import { EllipsisDropdown } from "../EllipsisDropdown";
-import OpenModalButton from "../OpenCommentModalButton";
+import { convertDate } from "../../helpers";
 import OpenCommentModalButton from "../OpenCommentModalButton";
-import { DeleteStoryOrComment } from "../DeleteStoryOrComment";
 import { CreateComment } from "../CreateComment";
+import { DeleteStoryOrComment } from "../DeleteStoryOrComment";
+import "./CommentDisplay.css";
 
 export const CommentDisplay = ({ comment, currentUser }) => {
     const [isUlHidden, setIsUlHidden] = useState(true);
     const [showEditComponent, setShowEditComponent] = useState(false);
+    const [isUpdated, setIsUpdated] = useState(false);
 
     const handleHideUl = () => {
         isUlHidden ? setIsUlHidden(false) : setIsUlHidden(true);
@@ -54,7 +53,13 @@ export const CommentDisplay = ({ comment, currentUser }) => {
             </div>)
         }
         { showEditComponent &&
-            <CreateComment comment={comment} type={"Update"} showEditComponent={showEditComponent} setShowEditComponent={setShowEditComponent}/>
+            <CreateComment
+                comment={comment}
+                type={"Update"}
+                showEditComponent={showEditComponent}
+                setShowEditComponent={setShowEditComponent}
+                setIsUpdated={setIsUpdated}
+                />
         }
         </>
     )
