@@ -6,13 +6,10 @@ body{
 
 .lp_text_box{
     background-color: #FFBF17;
-  }
-.lp_text_box{
     display: flex;
     justify-content: space-between;
     height: 600px;
     width: 100vw;
-    margin-top: -40px;
     border-bottom: 1.5px solid black;
 }
 
@@ -21,10 +18,37 @@ body{
     align-content: center;
 }
 
-.m-field{
+.food-field{
+    height: 400px;
     width: 50%;
-    margin-top: 6%;
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(20, 3%);
+    grid-template-rows: repeat(10, 7%);
+    gap: 15px;
 }
+.food-icon{
+    height: 2px;
+    width: 2px;
+}
+@keyframes blinking {
+    /* 0% {
+        border: none;
+        color: transparent;
+        opacity: 0;
+    }
+    100% {
+        color: black;
+        border: none;
+        opacity: 1;
+    } */
+    to {
+        visibility: hidden;
+    }
+
+}
+
+
 
 .words_btn{
     width: 80%;

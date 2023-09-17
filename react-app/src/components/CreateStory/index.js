@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import * as storyActions from '../../store/stories';
-import  Navigation  from '../Navigation';
 import "./CreateStory.css";
 
-export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUploadSize, formType}) => {
+export const CreateStory = ({story, storyUrl, setStoryUrl, setUploadSize, formType}) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const {storyId} = useParams();
@@ -51,19 +50,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
 
     useEffect(() => {
         dispatch(storyActions.thunkGetSingleStory(storyId))
-    }, [dispatch])
-
-    // const handleTitleFocus = () => {
-    //     let style;
-    //     title && title.length < 5 ? style = "1px solid red" : style = "none"
-    //     return style;
-    // }
-
-    // const handleStoryTextFocus = () => {
-    //     let style;
-    //     storyText && storyText.length < 5 ? style = "1px solid red" : style = "none"
-    //     return style;
-    // }
+    }, [dispatch]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -95,7 +82,6 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                     remainingSlots = 0;
                 }
                 urlArr.forEach((url)=> {
-                    console.log('URL!!!!!', url)
                     while (remainingSlots < 4) {
                         remainingSlots += 1;
                         imgFormData.append(`image_url${remainingSlots}`, url)
@@ -113,7 +99,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                 await dispatch(storyActions.thunkGetAllStories());
                 history.push(`/stories/${updatedStory.id}`);
             } else {
-                console.log('update failed')
+                return "Update failed."
             }
         } else {
             if (urlArr.length) {
@@ -127,7 +113,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                 await dispatch(storyActions.thunkGetAllStories());
                 history.push(`/stories/${newStory.id}`);
             } else {
-                console.log('Create story failed in component')
+                return 'Create story failed in component';
             }
         }
     }
@@ -136,8 +122,6 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
 
     return (
         <div className='create_page_container'>
-            {/* <Navigation pageType="create" type="submit" form="story-form" disabled={disabled} /> */}
-            {/* <button type="submit" form="story-form" disabled={disabled}>Publish</button> */}
             <div className="create_page_body" style={{width: "90vw"}}>
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="create-story-form" id='story-form'>
                     { !formType &&
@@ -169,7 +153,6 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, uploadSize, setUpload
                             required
                             className="input-field_ _1"
                             rows="5"
-                            // onFocus={ e => changeTextColor(e, isTitle2Short)}
                             style={{height: "60px", color: `${titlecolor}`}}
                             />
                             {urlArr.length > 0 && <em style={{marginBottom: "10px"}}>{urlArr.length} attachments.</em>}

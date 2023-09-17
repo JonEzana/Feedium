@@ -2,21 +2,18 @@ import { useEffect, useState } from "react";
 import * as commentActions from "../../store/comments";
 import * as storyActions from "../../store/stories";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, useLocation } from "react-router-dom";
-import { thunkGetSingleStory } from "../../store/stories";
+import { useHistory } from "react-router-dom";
 import "./CreateComment.css";
 
-export const CreateComment = ({ story, comment, type, showEditComponent, setShowEditComponent }) => {
+export const CreateComment = ({ story, comment, type, showEditComponent, setShowEditComponent, setIsUpdated }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const comments = Object.values(useSelector(state => state.comments.storyComments));
-    const {storyId} = useParams();
     const user = useSelector(state => state.session.user);
     const [commentTxt, setCommentTxt] = useState(comment ? comment.commentText: '');
     const [valObj, setValObj] = useState({});
     const [disabled, setDisabled] = useState(true);
     const [buttonId, setButtonId] = useState('disabled-comment-button');
-    const location = useLocation();
 
     useEffect(() => {
         const errObj = {};
@@ -33,13 +30,12 @@ export const CreateComment = ({ story, comment, type, showEditComponent, setShow
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (type && type === "Update") {
-            // comment['comment_text'] = commentTxt;
-            // console.log('COMMENT', comment)
             const updatedComment = await dispatch(commentActions.thunkUpdateComment({comment_text: commentTxt, user_id: user.id, story_id: comment.storyId, id: comment.id}));
             if (updatedComment.id) {
                 await storyActions.thunkGetSingleStory(updatedComment.storyId);
                 await commentActions.thunkCommentsByStoryId(updatedComment.storyId);
                 setShowEditComponent(!showEditComponent);
+                setIsUpdated(true)
                 history.push(`/stories/${updatedComment.storyId}`)
             }
         } else {
@@ -52,10 +48,6 @@ export const CreateComment = ({ story, comment, type, showEditComponent, setShow
                     history.push(`/stories/${story.id}`);
                 }
         }
-            // .then(() => dispatch(commentActions.thunkCommentsByStoryId(storyId)))
-            // .then(() => dispatch(storyActions.thunkGetSingleStory(storyId)))
-            // .then(() => history.push(`/stories/${storyId}`))
-            // .catch((e) => console.log(e));
     }
 
     const handleCancel = () => {

@@ -54,7 +54,7 @@ export const thunkGetMostPopularStories = () => async (dispatch) => {
         dispatch(getMostPopularStories(stories.stories));
         return stories;
     } else {
-        console.log('most popular fetch failed');
+        return 'Trending stories fetch failed';
     }
 }
 
@@ -65,7 +65,7 @@ export const thunkGetCurrentUserStories = (userId) => async (dispatch) => {
         dispatch(getCurrentUserStories(stories.stories))
         return stories
     } else {
-        console.log('current user stories fetch failed');
+        return 'Current user stories fetch failed';
     }
 }
 
@@ -88,7 +88,6 @@ export const thunkGetAllStories = () => async (dispatch) => {
 }
 
 export const thunkCreateStory = (formData, imgFormData, offset) => async (dispatch) => {
-    console.log('offset create', offset)
     const res = await fetch('/api/stories/new', {
         method: "POST",
         body: formData
@@ -109,49 +108,39 @@ export const thunkCreateStory = (formData, imgFormData, offset) => async (dispat
 
 
 export const thunkUpdateStory = (formData, imgFormData, storyId, offset) => async (dispatch) => {
-    console.log('offset update', offset)
     const res = await fetch(`/api/stories/${+storyId}/edit`, {
         method: "PUT",
         body: formData
     });
     if (res.ok) {
-        console.log('in update resok')
         const story = await res.json();
         dispatch(thunkAddImagesToStory(story, imgFormData, offset))
         return story;
     } else if (res.status < 500) {
-        console.log('in update status < 500')
 		const data = await res.json();
 		if (data.errors) {
-            console.log('in update data.errors', data.errors)
 			return data.errors;
 		}
 	} else {
-        console.log('in update else')
 		return ["An error occurred. Please try again."];
 	}
 }
 
 export const thunkAddImagesToStory = (story, imgFormData, offset) => async (dispatch) => {
-    console.log('offset add image', offset)
     const res = await fetch(`/api/stories/${story.id}/${offset}/images`, {
         method: "PUT",
         body: imgFormData
     });
     if (res.ok) {
-        console.log('in addimg resok')
         const story = await res.json();
         dispatch(addImagesToStory(story));
         return story
     } else if (res.status < 500) {
-        console.log('in addimg status < 500')
         const data = await res.json();
         if (data.errors) {
-            console.log('in addimg data.errors', data.errors)
             return data.errors;
         }
     } else {
-        console.log('in addimg else')
         return ["An error occurred. Please try again."];
     }
 }

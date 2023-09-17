@@ -14,7 +14,6 @@ export const DeleteStoryOrComment = ({ story, comment }) => {
 
     const handleDelete = async () => {
         if (comment) {
-            console.log('COMMENT...', comment)
             await dispatch(thunkDeleteComment(comment.id));
             await dispatch(storyActions.thunkGetSingleStory(comment.storyId));
             closeCommentModal();
