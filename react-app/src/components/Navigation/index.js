@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, userHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import './Navigation.css';
-import { useHistory, useLocation } from 'react-router-dom';
 import ProfileButton from "./ProfileButton";
+import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -73,19 +72,25 @@ function Navigation({ isLoaded }){
 				</div>
 			) : (
 				<div className={transition ? "lp_header active" : "lp_header"}>
-					<div className="lp_logo">
-						<p>Logo</p>
-						<p className="site_name" onClick={goHome}>Feedium</p>
+					<div className="lp_logo" onClick={goHome}>
+						<img className="logo-img" src="https://feedium-bucket.s3.amazonaws.com/LOGO.png" />
+						<p className="site_name">Feedium</p>
 					</div>
 					<div className="lp_links">
 						<Link onClick={upcomingFeature} className="lp_link">Our Story</Link>
 						<Link onClick={upcomingFeature} className="lp_link">Membership</Link>
-						<Link onClick={upcomingFeature} className="lp_link">Write</Link>
+						{/* <Link onClick={upcomingFeature} className="lp_link">Write</Link> */}
+						<OpenModalButton
+							className = "modal_btn"
+							buttonText="Write"
+							modalComponent={<SignupFormModal />}
+							style={{border: "none", backgroundColor: "transparent", fontSize: "20px"}}
+						/>
 						<OpenModalButton
 							className = "modal_btn"
 							buttonText="Sign In"
 							modalComponent={<LoginFormModal />}
-							style={{border: "none", backgroundColor: "transparent", fontSize: "18px"}}
+							style={{border: "none", backgroundColor: "transparent", fontSize: "20px"}}
 						/>
 						<OpenModalButton
 							className = "modal_btn"

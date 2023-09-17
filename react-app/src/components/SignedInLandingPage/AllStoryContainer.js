@@ -1,9 +1,6 @@
+import { convertDate } from "../../helpers";
 import "./SignedInLandingPage.css";
 
-export const convertDate = (date) => {
-    const dateArr = date.split(' ');
-    return `${dateArr[2]} ${dateArr[1]}`
-}
 export const AllStoryContainer = ({ story }) => {
 
     const storyPreview = (str) => {
@@ -11,7 +8,6 @@ export const AllStoryContainer = ({ story }) => {
         str.length > 200 ? res = `${str.substring(0, 200)}...` : res = str;
         return res;
     }
-
 
     return  (
         <div className="story_and_img">
