@@ -83,7 +83,7 @@ function Navigation({ isLoaded }){
 						<OpenModalButton
 							className = "modal_btn"
 							buttonText="Write"
-							modalComponent={<LoginFormModal />}
+							modalComponent={<SignupFormModal />}
 							style={{border: "none", backgroundColor: "transparent", fontSize: "20px"}}
 						/>
 						<OpenModalButton
