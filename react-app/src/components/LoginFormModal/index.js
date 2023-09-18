@@ -83,7 +83,7 @@ function LoginFormModal() {
           </span>
         <button type="submit" className="login-btn" disabled={disabled}>Log In</button>
       </form>
-      <span style={{display: "flex", flexDirection: "row"}}>
+      <span style={{display: "flex", flexDirection: "row", marginTop: "10px"}}>
         <p>No account?</p>
         <OpenModalButton
 					className = "modal_btn"
