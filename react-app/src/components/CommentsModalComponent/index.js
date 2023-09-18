@@ -26,7 +26,7 @@ export const CommentsModalComponent = ({ story, currentUser }) => {
                 {currentUser ? (
                     <CreateComment story={story} />
                 ) : (
-                    <div style={{marginBottom: "100px"}}>Must be logged in to leave comments!</div>
+                    <div style={{margin: "100px 0"}}>Must be logged in to leave comments!</div>
                 )}
             </span>
             <div className="comment-section">

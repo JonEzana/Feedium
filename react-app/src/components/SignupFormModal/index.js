@@ -68,7 +68,7 @@ function SignupFormModal() {
 
 	return (
 		<div className="signup-modal">
-			<h2 className="greet">Join Feedium.</h2>
+			<p className="greet">Join Feedium.</p>
 			<form onSubmit={handleSubmit} encType="multipart/form-data" className="signup-form">
 				<ul>
 					{Object.values(errors).length > 0 && errors.map((error, idx) => (

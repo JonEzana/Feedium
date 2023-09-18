@@ -45,7 +45,6 @@ h1{
     border-radius: 10px;
 }
 
-.snap-count:hover,
 .comment-icon:hover,
 .fa-ellipsis-h:hover{
     cursor: pointer;
