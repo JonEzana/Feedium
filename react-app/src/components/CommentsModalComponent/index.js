@@ -39,7 +39,7 @@ export const CommentsModalComponent = ({ story, currentUser }) => {
                         )}
                     </>
                 ) : (
-                    <em className="no-comment-message">There are currently no responses for this story. Be the first to respond.</em>
+                    <p className="no-comment-message"><em>There are currently no responses for this story. Be the first to respond.</em></p>
                 )}
             </div>
         </div>

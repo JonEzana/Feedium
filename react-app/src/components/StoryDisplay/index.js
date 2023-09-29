@@ -61,7 +61,7 @@ export const StoryDisplay = () => {
                     </div>
                     <div style={{display: "flex", margin: "15px 0 20px 0", flexDirection: "row", gap: "20px", borderTop: "1px solid rgb(231, 231, 231)", borderBottom: "1px solid rgb(231, 231, 231)", height: "47px", width: "720px"}}>
                         <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "6px"}} className="snap-count">
-                            <p>🫰</p>
+                            <p>👏</p>
                             <p style={{color: "rgb(149, 149, 149)"}}>{singleStory?.snapCount}</p>
                         </span>
                         <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: '5px'}} className="comment-count">

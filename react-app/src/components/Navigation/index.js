@@ -27,8 +27,8 @@ function Navigation({ isLoaded }){
 
 	useEffect(() => {
 		bgColor();
-		window.addEventListener("scroll", bgColor)
-	}, [window.scrollY, transition])
+		window.addEventListener("scroll", bgColor);
+	}, [window.scrollY, transition]);
 
 	if (sessionUser && (location.pathname === '/new-story' || location.pathname.includes('/edit'))) {
 		return (
@@ -62,7 +62,7 @@ function Navigation({ isLoaded }){
 					<div className="loggedin_right">
 						<div className="new_story_button" onClick={() => history.push('/new-story')}>
 							<span  class="material-symbols-outlined write">edit_square</span>
-							<p style={{marginTop: "23px"}}>Write</p>
+							<p style={{marginTop: "15px"}}>Write</p>
 						</div>
 						<i className="far fa-bell" onClick={upcomingFeature} style={{fontSize: "25px", color: "#828282"}}></i>
 						<div className="pro-pic-container">

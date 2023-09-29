@@ -14,7 +14,7 @@ export const AllStoryContainer = ({ story }) => {
             <div className="story_cards_container">
                 <div className="card_top">
                     <img className="author_pro_pic" src={story.user.profilePic}/>
-                    <p>{story.user.firstName} {story.user.firstName}</p>
+                    <p>{story.user.firstName} {story.user.lastName}</p>
                     <p>·</p>
                     <p>{convertDate(story.createdAt)}</p>
                 </div>
