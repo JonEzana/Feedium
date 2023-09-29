@@ -50,7 +50,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('title', sa.String(length=255), nullable=False),
-    sa.Column('story_text', sa.String(length=4000), nullable=False),
+    sa.Column('story_text', sa.String(length=6000), nullable=False),
     sa.Column('snap_count', sa.Integer(), nullable=False),
     sa.Column('image_url1', sa.String(length=500), nullable=True),
     sa.Column('image_url2', sa.String(length=500), nullable=True),
