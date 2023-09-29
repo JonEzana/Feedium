@@ -13,7 +13,7 @@ class Story(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
   title = db.Column(db.String(255), nullable=False)
-  story_text = db.Column(db.String(4000), nullable=False)
+  story_text = db.Column(db.String(6000), nullable=False)
   snap_count = db.Column(db.Integer, nullable=False, default=0)
   image_url1 = db.Column(db.String(500))
   image_url2 = db.Column(db.String(500))
