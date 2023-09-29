@@ -7,7 +7,7 @@ from app.api.aws_routes import ALLOWED_EXTENSIONS
 
 class UpdateStoryForm(FlaskForm):
   title = StringField('Title', validators=[DataRequired(), Length(min=5, max=255)])
-  story_text = TextAreaField('Tell your story...', validators=[DataRequired(), Length(min=5, max=4000)])
+  story_text = TextAreaField('Tell your story...', validators=[DataRequired(), Length(min=5, max=6000)])
   image_url_1 = StringField('')
   image_url_2 = StringField('')
   image_url_3 = StringField('')
