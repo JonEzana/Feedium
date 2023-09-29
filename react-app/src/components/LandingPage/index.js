@@ -30,8 +30,8 @@ export const LandingPage = () => {
             <div className="lp_text_box lp">
                 <div className="byline_and_button">
                     <div className="words_btn">
-                        <h1>Stay hungry.</h1>
-                        <h3>Discover recipies, restaurants, and dish ideas from writers who appreciate great cuisine.</h3>
+                        <p>Stay hungry.</p>
+                        <p>Discover recipies, restaurants, and thought pieces from writers who appreciate great cuisine.</p>
                         <OpenModalButton
                             className="start_reading_button"
 							buttonText="Start Reading"
@@ -59,7 +59,7 @@ export const LandingPage = () => {
                 </div>
             </div>
             <div style={{height: "600px"}}>
-                <p style={{fontSize: "30px", textAlign: "center", marginTop: "20%"}}>Something else here</p>
+                <p style={{fontSize: "30px", textAlign: "center", marginTop: "20%"}}>Topics coming soon!</p>
             </div>
         </div>
     )

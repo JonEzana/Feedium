@@ -11,6 +11,7 @@ import { CreateStory } from "./components/CreateStory";
 import { StoryDisplay } from "./components/StoryDisplay";
 import { EditStory } from "./components/EditStory";
 import { SignedInLandingPage } from "./components/SignedInLandingPage";
+import { Footer } from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
           </Route> */}
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

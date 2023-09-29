@@ -3,7 +3,7 @@
     /* border: 1px solid red; */
     display: flex;
     width: 50vw;
-    margin: 0 25% 0 25%;
+    margin: 0 25% 100px 25%;
 }
 
 .sd_container{
@@ -21,8 +21,9 @@ h1{
     /* border: 1px solid green; */
     /* color: rgb(149, 149, 149); */
     display: grid;
-    gap: 15px;
-    width: 720px;
+    gap: 7px;
+    margin-left: 5%;
+    max-width: 720px;
     grid-template-areas:
     "a b"
     "c d";
@@ -41,7 +42,7 @@ h1{
 }
 .image{
     height: 300px;
-    width: 300px;
+    width: 315px;
     border-radius: 10px;
 }
 
@@ -52,8 +53,10 @@ h1{
 
 .sd_story_body{
     font-size: 22px;
-    letter-spacing: .03em;
+    /* letter-spacing: .03em; */
+    text-align: justify;
     line-height: 25px;
+    text-indent: 25px;
 }
 
 .false{
