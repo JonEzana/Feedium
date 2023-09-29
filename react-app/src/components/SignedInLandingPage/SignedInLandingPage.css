@@ -33,8 +33,12 @@
     gap: 7px;
 }
 
+.card_title{
+    margin-top: 1.5%;
+}
+
 .card_preview{
-    margin-top: -10%;
+    margin-top: -6.5%;
     width: 80%;
 }
 
@@ -57,4 +61,5 @@
     height: 150px;
     width: 150px;
     margin-bottom: 20px;
+    border-radius: 10px;
 }

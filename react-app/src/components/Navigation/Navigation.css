@@ -121,7 +121,7 @@
   align-items: center;
   gap: 10px;
   font-size: 20px;
-  margin-right: 25px;
+  margin-right: 20px;
 }
 .new_story_button:hover{
   cursor: pointer;
