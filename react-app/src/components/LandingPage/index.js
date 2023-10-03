@@ -7,6 +7,7 @@ import {TrendingStoryCard} from "./TrendingStoryCard";
 import OpenModalButton from "../OpenModalButton";
 import SignupFormModal from "../SignupFormModal";
 import { TopicCard } from "./TopicCard";
+import { Loading } from "../Loading";
 import "./LandingPage.css"
 
 export const LandingPage = () => {
@@ -17,7 +18,7 @@ export const LandingPage = () => {
     const hotStories = useSelector(state => state.stories.hotStories);
     const topics = Object.values(useSelector(state => state.topics.allTopics))
     const allStories = Object.values(useSelector(state => state.stories.allStories));
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const foodImg = <img src="https://feedium-bucket.s3.amazonaws.com/favicon2.png" style={{height: '25px', width: '25px'}} />;
     const foodArr = new Array(200).fill(foodImg);
@@ -28,17 +29,18 @@ export const LandingPage = () => {
 
     useEffect(() => {
         dispatch(storyActions.thunkGetMostPopularStories())
-        dispatch(storyActions.thunkGetAllStories())
-        dispatch(thunkGetAllTopics())
-        .then(() => setIsLoaded(true))
-    }, [dispatch, location.pathname]);
+        .then(() => dispatch(storyActions.thunkGetAllStories()))
+        .then(() => dispatch(thunkGetAllTopics()))
+        .then(() => setLoading(false))
+    }, [dispatch]);
 
-    if (!hotStories.length) return null;
-    if (!allStories.length) return null;
+    // if (!hotStories.length) return null;
+    // if (!allStories.length) return null;
 
     return (
         <>
-            { isLoaded ? (<div className="landing_page_container">
+            { loading ? ( <Loading /> ) :
+            (<div className="landing_page_container">
                 <div className="lp_text_box lp">
                     <div className="byline_and_button">
                         <div className="words_btn">
@@ -90,9 +92,7 @@ export const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                </div>) : (
-                    <div>Loading...</div>
-            )}
+                </div>)}
         </>
     )
 }
