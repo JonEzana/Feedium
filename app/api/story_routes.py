@@ -1,9 +1,7 @@
 from flask import Blueprint, session, request
 from flask_login import login_required, current_user
-from app.models import Story, db
+from app.models import Story, db, Topic
 from app.forms import CreateStoryForm, UpdateStoryForm, AddImagesToStoryForm
-# from app.forms import UpdatePhotoForm
-# from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from sqlalchemy import and_
 from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -11,7 +9,6 @@ story_routes = Blueprint('story', __name__)
 
 
 @story_routes.route('/all')
-@login_required
 def all_stories():
     """
     Returns all stories
@@ -32,6 +29,21 @@ def most_popular_stories():
     final_res = sorted(res, key=lambda x: x["snapCount"], reverse=True)[0:6]
 
     return {'stories': final_res}
+
+
+@story_routes.route('/topics/<int:id>')
+def stories_by_topic(id):
+    """
+    Returns all stories associated with given topic
+    """
+    all_stories = Story.query.all()
+    stories = [story.to_dict() for story in all_stories]
+    res_list = []
+    for story in stories:
+        topic_ids = [topic["id"] for topic in story["topics"]]
+        if id in topic_ids:
+            res_list.append(story)
+    return {"stories": res_list}
 
 
 @story_routes.route('/users/<int:userId>/stories')

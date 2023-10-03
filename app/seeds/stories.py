@@ -1,10 +1,8 @@
-from app.models import db, Story, environment, SCHEMA
+from app.models import db, Story, Topic, environment, SCHEMA
 import random
 from sqlalchemy.sql import text
 
-other_stories = []
-
-def seed_stories():
+def seed_storiesandtopics():
   Story1 = Story(
     user_id=1, title="A Culinary Gem in D.C.: Jyoti Indian Cuisine", story_text="I recently dined at Jyoti Indian Cuisine in Washington, D.C., and it was an unforgettable experience that exceeded all expectations. From the moment I entered, I was transported to the vibrant streets of India.\nThe restaurant's decor blends traditional Indian elements with modern sophistication, creating an inviting space for intimate dinners and lively gatherings. The lighting sets the perfect mood.\nNow, let's talk about the food. Jyoti Indian Cuisine offers an extensive menu that showcases the rich tapestry of Indian flavors. The diversity of Indian cuisine is well represented, catering to all tastes.\nFor starters, I had the samosas and crispy pakoras. The samosas were perfectly crisp with a flavorful filling, and the pakoras were delightful, served with tantalizing chutneys.\nFor the main course, I tried the butter chicken, a classic North Indian dish. The tender chicken pieces were bathed in a rich, creamy tomato sauce that was heavenly. Paired with freshly baked naan, it was a match made in culinary paradise.\nThe service deserves special mention. The staff was attentive, knowledgeable, and offered great recommendations for a personalized experience.\nThe dessert selection was the perfect finale. I indulged in a slice of their mango cheesecake, a delightful fusion of Indian and Western flavors.\nIn conclusion, Jyoti Indian Cuisine in D.C. is a culinary gem that should not be missed. It offers an authentic taste of India in the heart of the city, making it a must-visit for both locals and tourists. Whether you're a seasoned lover of Indian cuisine or trying it for the first time, Jyoti Indian Cuisine will leave you with a lasting impression and a craving for more. I can't wait to return and explore more of their exquisite offerings.", snap_count=random.randint(1, 40), image_url_1="https://feedium-bucket.s3.amazonaws.com/jyotione.jpeg", image_url_2="https://feedium-bucket.s3.amazonaws.com/jyotitwo.jpeg", image_url_3="https://feedium-bucket.s3.amazonaws.com/jyotithree.jpeg", image_url_4="https://feedium-bucket.s3.amazonaws.com/jyotifour.jpeg"
   )
@@ -40,22 +38,46 @@ def seed_stories():
      user_id=3, title="Exceptional Korean BBQ Experience", story_text="Honey Pig Korean BBQ is a culinary gem that stands out in the world of Korean barbecue restaurants. From the moment you walk in, the warm and inviting ambiance sets the stage for an exceptional dining experience. The centerpiece of this establishment is the built-in tabletop grills, where you take charge of grilling your selection of marinated meats and vegetables, ensuring a hands-on and interactive meal. The menu boasts an extensive array of options, from classic beef bulgogi and thinly sliced pork belly to more adventurous cuts like beef tongue and intestine, catering to both traditionalists and adventurous eaters alike. The quality of the meat is superb, impeccably seasoned and fresh, making each bite a tantalizing burst of flavor. The banchan (side dishes) are a delightful accompaniment, offering a variety of pickled vegetables and kimchi to complement the grilled meats. The attentive and knowledgeable staff guide you through the process, ensuring your meal is a success. While the prices may be on the higher side, the quantity and quality of food justify the cost. The experience at Honey Pig is not just about the food but also the communal aspect of sharing a meal and creating lasting memories with friends and family. Whether you're a barbecue aficionado or a first-timer, Honey Pig Korean BBQ is a must-visit, offering a delightful journey into the world of Korean cuisine that leaves you craving more.", snap_count=random.randint(1, 40), image_url_1="https://feedium-bucket.s3.amazonaws.com/hpone.jpeg", image_url_2="https://feedium-bucket.s3.amazonaws.com/hptwo.jpeg", image_url_3="https://feedium-bucket.s3.amazonaws.com/hpthree.jpeg", image_url_4="https://feedium-bucket.s3.amazonaws.com/hpjfour.png"
   )
 
-  db.session.add(Story1)
-  db.session.add(Story2)
-  db.session.add(Story3)
-  db.session.add(Story4)
-  db.session.add(Story5)
-  db.session.add(Story6)
-  db.session.add(Story7)
-  db.session.add(Story8)
-  db.session.add(Story9)
-  db.session.add(Story10)
+  topic1 = Topic(name="Vegan")
+  topic2 = Topic(name="Vegetarian")
+  topic3 = Topic(name="Restaurant review")
+  topic4 = Topic(name="Japanese")
+  topic5 = Topic(name="Korean")
+  topic6 = Topic(name="North African")
+  topic7 = Topic(name="Pizza")
+  topic8 = Topic(name="Opinion")
+  topic9 = Topic(name="Recipe")
+  topic10 = Topic(name="North Indian")
+
+  Story1.topics.append(topic3)
+  Story1.topics.append(topic10)
+  Story2.topics.append(topic8)
+  Story3.topics.append(topic1)
+  Story3.topics.append(topic9)
+  Story4.topics.append(topic1)
+  Story4.topics.append(topic8)
+  Story5.topics.append(topic2)
+  Story5.topics.append(topic8)
+  Story6.topics.append(topic8)
+  Story7.topics.append(topic3)
+  Story7.topics.append(topic4)
+  Story8.topics.append(topic6)
+  Story8.topics.append(topic8)
+  Story9.topics.append(topic3)
+  Story9.topics.append(topic7)
+  Story9.topics.append(topic8)
+  Story10.topics.append(topic3)
+  Story10.topics.append(topic5)
+
+  db.session.add_all([topic1, topic2, topic3, topic4, topic4, topic5, topic6, topic7, topic8, topic9])
+
+  db.session.add_all([Story1, Story2, Story3, Story4, Story5, Story6, Story7, Story8, Story9, Story10])
   db.session.commit()
 
-def undo_stories():
+def undo_storiesandtopics():
   if environment == "production":
-    db.session.execute(f"TRUNCATE table {SCHEMA}.stories RESTART IDENTITY CASCADE;")
+    db.session.execute(f"TRUNCATE table {SCHEMA}.storiesandtopics RESTART IDENTITY CASCADE;")
   else:
-      db.session.execute(text("DELETE FROM stories"))
+      db.session.execute(text("DELETE FROM storiesandtopics"))
 
   db.session.commit()

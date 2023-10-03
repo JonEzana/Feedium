@@ -5,16 +5,17 @@ import { AllStoryContainer } from "./AllStoryContainer";
 import { useHistory } from "react-router-dom";
 import "./SignedInLandingPage.css";
 
-export const SignedInLandingPage = () => {
+export const AllStories = ({ topicStories }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const stories = Object.values(useSelector(state => state.stories.allStories));
+    let stories = Object.values(useSelector(state => state.stories.allStories));
 
     useEffect(() => {
         dispatch(thunkGetAllStories())
     }, [dispatch])
 
     if (!stories.length) return <></>;
+    if (topicStories) stories = topicStories;
 
     return (
         <div className="signedin-landingpage-container">

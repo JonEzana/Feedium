@@ -93,10 +93,9 @@ function Navigation({ isLoaded }){
 							style={{border: "none", backgroundColor: "transparent", fontSize: "20px"}}
 						/>
 						<OpenModalButton
-							className = "modal_btn"
+							className = {transition ? "active-button modal_btn get-started" : "modal_btn get-started"}
 							buttonText="Get Started"
 							modalComponent={<SignupFormModal />}
-							style={{backgroundColor: "black", color: "white", height: "45px", width: "130px", fontSize: "17px", borderRadius: "30px", border: "none"}}
 						/>
 					</div>
             	</div>

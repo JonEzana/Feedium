@@ -10,8 +10,9 @@ import { LandingPage } from "./components/LandingPage";
 import { CreateStory } from "./components/CreateStory";
 import { StoryDisplay } from "./components/StoryDisplay";
 import { EditStory } from "./components/EditStory";
-import { SignedInLandingPage } from "./components/SignedInLandingPage";
+import { AllStories } from "./components/AllStories";
 import { Footer } from "./components/Footer";
+import { StoriesByTopic } from "./components/StoriesByTopic";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,9 +29,9 @@ function App() {
           <Route exact path="/">
             <LandingPage />
           </Route>
-          <ProtectedRoute exact path="/all">
-            <SignedInLandingPage />
-          </ProtectedRoute>
+          <Route exact path="/all">
+            <AllStories />
+          </Route>
           <ProtectedRoute exact path="/new-story">
             <CreateStory />
           </ProtectedRoute>
@@ -40,6 +41,9 @@ function App() {
           <ProtectedRoute exact path="/stories/:storyId/edit">
             <EditStory />
           </ProtectedRoute>
+          <Route exact path="/topics/:topicId">
+            <StoriesByTopic />
+          </Route>
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route>
