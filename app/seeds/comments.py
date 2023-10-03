@@ -11,7 +11,7 @@ def seed_comments():
     comment2 = Comment(
         story_id=9,
         user_id=random.randint(1, 3),
-        comment_text="big bro CHILL my nutritionist is on this app",
+        comment_text="WOWWW",
     )
     comment3 = Comment(
         story_id=random.randint(1, 10),
@@ -83,22 +83,8 @@ def seed_comments():
         user_id=random.randint(1, 3),
         comment_text="amazing 🧎🧎🧎"
     )
-    db.session.add(comment1)
-    db.session.add(comment2)
-    db.session.add(comment3)
-    db.session.add(comment4)
-    db.session.add(comment5)
-    db.session.add(comment6)
-    db.session.add(comment7)
-    db.session.add(comment8)
-    db.session.add(comment9)
-    db.session.add(comment10)
-    db.session.add(comment11)
-    db.session.add(comment12)
-    db.session.add(comment13)
-    db.session.add(comment14)
-    db.session.add(comment15)
-    db.session.add(comment16)
+
+    db.session.add_all([comment1, comment2, comment3, comment4, comment5, comment6, comment7, comment8, comment9, comment10, comment11, comment12, comment13, comment14, comment15, comment16])
     db.session.commit()
 
 def undo_comments():

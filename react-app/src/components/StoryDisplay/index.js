@@ -8,6 +8,7 @@ import { DeleteStoryOrComment } from "../DeleteStoryOrComment";
 import { thunkCommentsByStoryId } from "../../store/comments";
 import {CommentsModalComponent} from "../CommentsModalComponent";
 import { convertDate } from "../../helpers";
+import { TopicsBanner } from "../TopicsBanner";
 
 import "./StoryDisplay.css";
 
@@ -21,6 +22,8 @@ export const StoryDisplay = () => {
     const [clicked, setClicked] = useState(false);
     const [shown, setShown] = useState(true);
     const [isUlHidden, setIsUlHidden] = useState(true);
+
+    console.log('singlestory', singleStory)
 
     useEffect(() => {
         dispatch(thunkGetSingleStory(storyId))
@@ -57,7 +60,11 @@ export const StoryDisplay = () => {
                                 <p style={{marginTop: "-12%", fontSize: "15px"}}>{convertDate(singleStory?.createdAt)}</p>
                             </span>
                         </div>
-
+                        <div className="story-topics">
+                            {singleStory.topics &&
+                                <TopicsBanner topics={singleStory.topics} history={history} />
+                            }
+                        </div>
                     </div>
                     <div style={{display: "flex", margin: "15px 0 20px 0", flexDirection: "row", gap: "20px", borderTop: "1px solid rgb(231, 231, 231)", borderBottom: "1px solid rgb(231, 231, 231)", height: "47px", width: "720px"}}>
                         <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "6px"}} className="snap-count">

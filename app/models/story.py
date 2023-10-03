@@ -50,5 +50,6 @@ class Story(db.Model):
       'imageUrl_4': self.image_url_4,
       'createdAt': self.created_at,
       'updatedAt': self.updated_at,
-      'user': self.user.to_dict_no_story()
+      'user': self.user.to_dict_no_story(),
+      'topics': [topic.to_dict() for topic in self.topics]
     }

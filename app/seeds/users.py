@@ -13,10 +13,7 @@ def seed_users():
     jon = User(
         username='jon', first_name='Jon', last_name='Ezana', email='jon@aa.io', password='password', profile_pic='https://static.wikia.nocookie.net/boondockstv/images/a/af/Hueyfreeman-jpg.png/')
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.add(jon)
+    db.session.add_all([demo, marnie, bobbie, jon])
     db.session.commit()
 
 

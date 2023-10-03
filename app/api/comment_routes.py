@@ -10,7 +10,6 @@ comment_routes = Blueprint('comment', __name__)
 
 
 @comment_routes.route('/<int:id>')
-@login_required
 def comments_by_story_id(id):
     '''
     Returns all comments belonging to a particular story

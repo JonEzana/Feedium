@@ -74,7 +74,7 @@ h3{
     cursor: pointer;
 }
 
-/************ BOTTOM HALF ***********/
+/************ TRENDING STORIES ***********/
 .trending_stories{
     margin: 2% 10% 0 15%;
     height: fit-content;
@@ -138,9 +138,87 @@ h3{
     grid-area: f;
 }
 
-.individual_card{
+.individual_card,
+.individual_card_all{
     display: flex;
     flex-direction: row;
     gap: 15px;
     align-items: start;
+}
+
+.individual_card_all{
+    justify-content: start;
+    gap: 70px;
+    width: max-content;
+    margin-right: 70px;
+}
+
+.hr{
+    margin: 50px 0;
+    height: 0.5px;
+    background-color: rgb(230, 230, 230);
+}
+/********* TOPICS **********/
+
+.landing-bottom-half{
+    display: flex;
+    flex-direction: row;
+}
+
+.allStories-container{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 40px;
+}
+
+.allstory-item:hover{
+    cursor: pointer;
+}
+
+.landing-page-story-img,
+.no-photo{
+    height: 150px;
+    width: 200px;
+    border-radius: 14px;
+}
+
+.no-photo{
+    border: none;
+}
+
+.topics-container{
+    position: sticky;
+    top: 90px;
+    height: fit-content;
+}
+
+.topics{
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    /* grid-auto-flow:column-dense; */
+    gap: 2px;
+    margin-bottom: 200px;
+    flex-grow: 2;
+}
+
+.discover-tag{
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.individual-topic{
+    background-color: #F2F2F2;
+    border-radius: 20px;
+    width: max-content;
+    height: max-content;
+    padding: 15px;
+    font-size: 17px;
+}
+
+.individual-topic:hover{
+    cursor: pointer;
 }

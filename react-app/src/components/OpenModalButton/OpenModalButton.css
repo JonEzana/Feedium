@@ -1,3 +1,18 @@
 .modal_btn:hover{
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
+
+.get-started{
+  background-color: black;
+  color: white;
+  height: 40px;
+  width: 120px;
+  font-size: 17px;
+  border-radius: 30px;
+  border: none;
+  transition: background-color 0.4s ease-in;
+}
+
+.active-button{
+  background-color: #198917;
+}
