@@ -29,6 +29,7 @@ boto3 = "*"
 flask-oauthlib = "*"
 google-auth = "*"
 google-auth-oauthlib = "*"
+requests = "*"
 
 [dev-packages]
 
