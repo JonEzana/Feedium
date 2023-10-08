@@ -79,6 +79,7 @@ def seed_users():
    Story20 = Story(
       user_id=random.randint(1, 4), title="Ingredients for a Delectable Francesinha", story_text="Creating a Francesinha, a delectable Portuguese sandwich originating from Porto, requires a medley of tantalizing ingredients. At its core is a generous serving of tender, thinly-sliced cured meats, such as ham and linguica, whose savory and smoky flavors infuse the dish with richness. A succulent steak, cooked to perfection, forms another layer of indulgence. The sandwich's contents are then complemented by the creaminess of melted cheese, typically a blend of mozzarella and a local cheese called queijo da serra, draping over the meats like a luscious blanket. The magic of a Francesinha lies in its spicy sauce, which is a harmonious blend of tomatoes, beer, and piri-piri sauce, delivering a fiery kick to the palate. To achieve the perfect balance, a final touch of a fried egg crowns the creation. All these ingredients are enclosed within slices of thick, crusty bread, making the Francesinha a true gastronomic masterpiece, packed with contrasting textures and bold flavors that make it an iconic dish in Portuguese cuisine.", snap_count=random.randint(10, 40), image_url_1="https://feedium-bucket.s3.amazonaws.com/fran.jpeg", image_url_2="https://feedium-bucket.s3.amazonaws.com/franc.jpeg"
    )
+
    topic1 = Topic(name="Vegan")
    topic2 = Topic(name="Vegetarian")
    topic3 = Topic(name="Review")
@@ -236,8 +237,8 @@ def seed_users():
    )
 
    snap1 = Snap(
-      story_id=1,
-      user_id=1
+      user_id=1,
+      story_id=1
    )
    snap2 = Snap(
       user_id=1,
@@ -319,9 +320,13 @@ def seed_users():
 
 
    db.session.add_all([demo, marnie, bobbie, jon])
+   db.session.commit()
    db.session.add_all([Story1, Story2, Story3, Story4, Story5, Story6, Story7, Story8, Story9, Story10, Story11, Story12, Story13, Story14, Story15, Story16, Story17, Story18, Story19, Story20])
+   db.session.commit()
    db.session.add_all([topic1, topic2, topic3, topic4, topic4, topic5, topic6, topic7, topic8, topic9, topic10, topic11, topic12, topic13, topic14, topic15, topic16, topic17, topic18, topic19, topic20, topic21])
+   db.session.commit()
    db.session.add_all([comment1, comment2, comment3, comment4, comment5, comment6, comment7, comment8, comment9, comment10, comment11, comment12, comment13, comment14, comment15, comment16, comment17, comment18, comment19, comment20])
+   db.session.commit()
    db.session.add_all([snap1, snap2, snap3, snap4, snap5, snap6, snap7, snap8, snap9, snap10, snap11, snap12, snap13, snap14, snap15, snap16, snap17, snap18, snap19, snap20])
    db.session.commit()
 
