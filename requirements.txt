@@ -28,3 +28,7 @@ sqlalchemy==1.4.46
 werkzeug==2.2.2
 wtforms==3.0.1
 boto3==1.28.34
+flask-oauthlib==0.9.6
+google-auth==1.1.0
+google-auth-oauthlib==1.1.0
+requests==2.31.0
