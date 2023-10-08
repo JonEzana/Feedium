@@ -8,6 +8,7 @@ const UPDATE_STORY = "stories/update";
 const DELETE_STORY = "stories/delete";
 const ADD_IMG_TO_STORY = "stories/addImg";
 
+
 const getMostPopularStories = (stories) => ({
     type: GET_MOST_POPULAR_STORIES,
     payload: stories
@@ -97,7 +98,6 @@ export const thunkGetStoriesByTopic = (id) => async (dispatch) => {
     const res = await fetch(`/api/stories/topics/${id}`);
     if (res.ok) {
         const stories = await res.json();
-        console.log('in resok, stories: ', stories.stories)
         dispatch(getStoriesByTopic(stories.stories));
         return stories;
     } else {
@@ -187,9 +187,9 @@ export default function storiesReducer(state = initialState, action) {
             return newState;
         }
         case GET_CURRENT_USER_STORIES: {
-            const newState = {...state, allStories: {...state.allStories}, userStories: {}};
+            const newState = {...state, allStories: {...state.allStories}, usersStories: {}};
             action.payload.forEach(story => {
-                newState.userStories[story.id] = story;
+                newState.usersStories[story.id] = story;
             });
             return newState
         }

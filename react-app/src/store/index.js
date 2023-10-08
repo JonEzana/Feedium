@@ -4,12 +4,16 @@ import session from './session'
 import storiesReducer from './stories';
 import commentsReducer from './comments';
 import topicsReducer from './topics';
+import snapsReducer from './snaps';
+import usersReducer from './users';
 
 const rootReducer = combineReducers({
   session,
   stories: storiesReducer,
   comments: commentsReducer,
-  topics: topicsReducer
+  topics: topicsReducer,
+  snaps: snapsReducer,
+  users: usersReducer
 });
 
 

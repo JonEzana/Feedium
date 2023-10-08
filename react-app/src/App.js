@@ -13,6 +13,10 @@ import { EditStory } from "./components/EditStory";
 import { AllStories } from "./components/AllStories";
 import { Footer } from "./components/Footer";
 import { StoriesByTopic } from "./components/StoriesByTopic";
+import { QueryResults } from "./components/QueryResults";
+import { ProfilePage } from "./components/ProfilePage";
+import { LikedStories } from "./components/LikedStories";
+import { Error } from "./components/Error";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,12 +48,18 @@ function App() {
           <Route exact path="/topics/:topicId">
             <StoriesByTopic />
           </Route>
-          {/* <Route path="/login" >
-            <LoginFormPage />
+          <Route path="/search/:term">
+            <QueryResults />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
+          <Route exact path="/users/:userId/stories">
+            <ProfilePage />
+          </Route>
+          <Route exact path="/users/:userId/likes">
+            <LikedStories />
+          </Route>
+          <Route>
+            <Error />
+          </Route>
         </Switch>
       )}
       <Footer />

@@ -10,11 +10,11 @@ export const StoriesByTopic = () => {
     const storiesByTopic = Object.values(useSelector(state => state.stories.topicStories));
 
     useEffect(() => {
-        dispatch(storyActions.thunkGetStoriesByTopic(topicId));
+        dispatch(storyActions.thunkGetStoriesByTopic(topicId))
     }, [dispatch]);
 
+    if (!storiesByTopic.length) return <></>;
 
-    if (!storiesByTopic.length) return <h1>HMMMMMM</h1>
     return (
         <AllStories topicStories={storiesByTopic} />
     )

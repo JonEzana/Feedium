@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as storyActions from "../../store/stories";
 import { thunkGetAllTopics } from "../../store/topics";
 import {TrendingStoryCard} from "./TrendingStoryCard";
 import OpenModalButton from "../OpenModalButton";
 import SignupFormModal from "../SignupFormModal";
 import { TopicCard } from "./TopicCard";
-import { Loading } from "../Loading";
+import { thunkGetAllUsers } from "../../store/users";
 import "./LandingPage.css"
 
 export const LandingPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const location = useLocation();
-    console.log('LOCATION!!!: ', location)
     const hotStories = useSelector(state => state.stories.hotStories);
-    const topics = Object.values(useSelector(state => state.topics.allTopics))
+    let topics = Object.values(useSelector(state => state.topics.allTopics))
     const allStories = Object.values(useSelector(state => state.stories.allStories));
+    const users = Object.values(useSelector(state => state.users.allUsers))
     const [loading, setLoading] = useState(true);
+
+    const [showAllTopics, setShowAllTopics] = useState(false);
+    if (!showAllTopics) topics = topics.slice(0, 9);
 
     const foodImg = <img src="https://feedium-bucket.s3.amazonaws.com/favicon2.png" style={{height: '25px', width: '25px'}} />;
     const foodArr = new Array(200).fill(foodImg);
@@ -31,15 +33,13 @@ export const LandingPage = () => {
         dispatch(storyActions.thunkGetMostPopularStories())
         .then(() => dispatch(storyActions.thunkGetAllStories()))
         .then(() => dispatch(thunkGetAllTopics()))
+        .then(() => dispatch(thunkGetAllUsers()))
         .then(() => setLoading(false))
     }, [dispatch]);
 
-    // if (!hotStories.length) return null;
-    // if (!allStories.length) return null;
-
     return (
         <>
-            { loading ? ( <Loading /> ) :
+            { loading ? ( <></> ) :
             (<div className="landing_page_container">
                 <div className="lp_text_box lp">
                     <div className="byline_and_button">
@@ -54,8 +54,8 @@ export const LandingPage = () => {
                         </div>
                     </div>
                     <span className="food-field">
-                        {foodArr.map((x, i) =>
-                            <p key={i} className="food-icon" style={{animation: `${generateBlinkLag(3,30)}s infinite blinking steps(5, start)`}}>{x}</p>
+                        {foodArr.map((x, idx) =>
+                            <p key={idx} className="food-icon" style={{animation: `${generateBlinkLag(3,30)}s infinite blinking steps(5, start)`}}>{x}</p>
                             )}
                     </span>
                 </div>
@@ -67,7 +67,7 @@ export const LandingPage = () => {
                     <div className="story_card_container">
                         {hotStories.map(story =>
                             <div key={story.id} onClick={() => history.push(`/stories/${story.id}`)} className={`_${hotStories.indexOf(story)} story`}>
-                                <TrendingStoryCard story={story} stories={hotStories} type={'hot'} />
+                                <TrendingStoryCard story={story} stories={hotStories} user={story.User} type={'hot'} />
                             </div>
                         )}
                     </div>
@@ -89,10 +89,15 @@ export const LandingPage = () => {
                                     <TopicCard topic={topic} />
                                 </div>
                             )}
+                            {showAllTopics ?
+                                (<span className="show-topics" onClick={() => setShowAllTopics(false)}>Collapse topics ^</span>)
+                                :
+                                (<span className="show-topics" onClick={() => setShowAllTopics(true)}>Show all topics ⌄</span>)
+                            }
                         </div>
                     </div>
                 </div>
-                </div>)}
+            </div>)}
         </>
     )
 }

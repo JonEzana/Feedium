@@ -12,12 +12,13 @@
     border-radius: 20px;
     gap: 6px;
     padding: 0 10px;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.1s ease-in;
+    height: 40px;
 }
 
 .one-topic:hover{
     cursor: pointer;
-    background-color: #198917;
+    background-color: rgb(0, 0, 0);
     color: white;
 }
 

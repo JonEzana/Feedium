@@ -22,10 +22,10 @@ export const Footer = () => {
                      Jon Ezana
                 </div>
                 <div id='profile-items-container'>
-                    <a href="https://github.com/JonEzana" id='creator-item'>
+                    <a href="https://github.com/JonEzana" id='creator-item' target="_blank">
                         <i id="github-icon" className="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/jon-ezana" id='creator-item'>
+                    <a href="https://www.linkedin.com/in/jon-ezana" id='creator-item' target="_blank">
                         <i id="linkedin-icon" className="fab fa-linkedin"></i>
                     </a>
                 </div>
