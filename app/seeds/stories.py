@@ -2,7 +2,7 @@ from app.models import db, Story, User, Topic, Comment, Snap, environment, SCHEM
 import random
 from sqlalchemy.sql import text
 
-def seed_users_stories_topics_comments_likes():
+def seed_users():
    demo = User(
       username='demo', first_name='Demo', last_name='Lition', email='demo@aa.io', password='password', profile_pic='https://pyxis.nymag.com/v1/imgs/29b/bae/50c47f603f465c28cc385853c6a36169c1-29-steve-brule-check-it-out.rsquare.w700.jpg')
    marnie = User(
@@ -330,10 +330,10 @@ def seed_users_stories_topics_comments_likes():
    db.session.add_all([snap1, snap2, snap3, snap4, snap5, snap6, snap7, snap8, snap9, snap10, snap11, snap12, snap13, snap14, snap15, snap16, snap17, snap18, snap19, snap20])
    db.session.commit()
 
-def undo_users_stories_topics_comments_likes():
+def undo_users():
   if environment == "production":
-    db.session.execute(f"TRUNCATE table {SCHEMA}.users_stories_topics_comments_likes RESTART IDENTITY CASCADE;")
+    db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
   else:
-      db.session.execute(text("DELETE FROM users_stories_topics_comments_likes"))
+      db.session.execute(text("DELETE FROM users"))
 
   db.session.commit()
