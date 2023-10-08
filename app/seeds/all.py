@@ -240,85 +240,80 @@ def seed_users():
       user_id=1
    )
    snap2 = Snap(
+      user_id=1,
       story_id=2,
-      user_id=1
    )
    snap3 = Snap(
+      user_id=1,
       story_id=3,
-      user_id=1
    )
    snap4 = Snap(
+      user_id=1,
       story_id=4,
-      user_id=1
    )
    snap5 = Snap(
+      user_id=1,
       story_id=5,
-      user_id=1
    )
    snap6 = Snap(
+      user_id=2,
       story_id=6,
-      user_id=2
    )
    snap7 = Snap(
+      user_id=2,
       story_id=7,
-      user_id=2
    )
    snap8 = Snap(
+      user_id=2,
       story_id=8,
-      user_id=2
    )
    snap9 = Snap(
+      user_id=2,
       story_id=9,
-      user_id=2
    )
    snap10 = Snap(
+      user_id=2,
       story_id=10,
-      user_id=2
    )
    snap11 = Snap(
+      user_id=3,
       story_id=11,
-      user_id=3
    )
    snap12 = Snap(
+      user_id=3,
       story_id=12,
-      user_id=3
    )
    snap13 = Snap(
+      user_id=3,
       story_id=13,
-      user_id=3
    )
    snap14 = Snap(
+      user_id=3,
       story_id=14,
-      user_id=3
    )
    snap15 = Snap(
+      user_id=3,
       story_id=15,
-      user_id=3
    )
-
    snap16 = Snap(
+      user_id=4,
       story_id=16,
-      user_id=4
    )
-
    snap17 = Snap(
+      user_id=4,
       story_id=17,
-      user_id=4
    )
-
    snap18 = Snap(
+      user_id=4,
       story_id=18,
-      user_id=4
    )
-
    snap19 = Snap(
+      user_id=4,
       story_id=19,
-      user_id=4
    )
-
    snap20 = Snap(
+      user_id=4,
       story_id=20,
-      user_id=4
    )
 
 
