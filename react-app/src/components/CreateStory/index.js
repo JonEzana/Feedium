@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import * as storyActions from '../../store/stories';
 import "./CreateStory.css";
 
 export const CreateStory = ({story, storyUrl, setStoryUrl, setUploadSize, formType}) => {
     const history = useHistory();
     const dispatch = useDispatch();
+    const location = useLocation();
     const {storyId} = useParams();
     let singleStory = Object.values(useSelector(state => state.stories.singleStory));
     let [title, setTitle] = useState(story ? story.title : '');
@@ -32,7 +33,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, setUploadSize, formTy
     useEffect(() => {
         const errObj = {};
         if (title && (title.length < 5 || title.length > 255)) errObj.TITLE = "Title must be between 5 and 255 characters long";
-        if (storyText && storyText.length < 5 || storyText.length > 4000) errObj.STORYTEXT = "Stories must be between 5 and 4000 characters long";
+        if (storyText && (storyText.length < 5 || storyText.length > 4000)) errObj.STORYTEXT = "Stories must be between 5 and 4000 characters long";
         if (title && title.length >= 5 && storyText && storyText.length >= 5) {
             setDisabled(false)
         } else setDisabled(true);
@@ -51,6 +52,10 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, setUploadSize, formTy
     useEffect(() => {
         dispatch(storyActions.thunkGetSingleStory(storyId))
     }, [dispatch]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -118,7 +123,7 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, setUploadSize, formTy
         }
     }
 
-    if (formType === "Update" && !Object.values(story)) return <></>;
+    if (location.pathname.includes('/edit') && (!story || !Object.values(story))) return <></>;
 
     return (
         <div className='create_page_container'>
@@ -155,7 +160,13 @@ export const CreateStory = ({story, storyUrl, setStoryUrl, setUploadSize, formTy
                             rows="5"
                             style={{height: "60px", color: `${titlecolor}`}}
                             />
-                            {urlArr.length > 0 && <em style={{marginBottom: "10px"}}>{urlArr.length} attachments.</em>}
+                            {urlArr.length > 0 &&
+                                <span className="preview-images">
+                                    {urlArr.map(url =>
+                                        <img className="prev-img" src={URL.createObjectURL(url)} />
+                                    )}
+                                </span>
+                            }
                             {valObj.STORYTEXT && <p className="errors">{valObj.STORYTEXT}</p>}
                         <textarea
                             type="textarea"

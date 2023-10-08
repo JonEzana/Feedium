@@ -6,3 +6,4 @@ __pycache__/
 .vscode/
 *.db
 node_modules
+client_secret.json

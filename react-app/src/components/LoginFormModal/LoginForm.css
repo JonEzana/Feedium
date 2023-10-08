@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    margin-top: 40px;
+    padding: 30px;
     border-radius: 20px;
 }
 
@@ -17,7 +17,8 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin-top: -35px;
+    margin-top: 5px;
+    /* border: 1px solid red; */
 }
 
 .or{
@@ -61,13 +62,11 @@
     padding: 5px;
     width: 16em;
 }
-.input-field:focus{
-    border: 1px solid green;
-}
 
 .login-btn{
     border-radius: 10px;
-    width: 8vw;
+    width: 60%;
+    height: 40%;
     border: 0.5px solid grey;
     align-self: center;
     margin-top: 8px;
@@ -86,7 +85,7 @@
     color: rgb(92, 92, 92);
     align-self: center;
     position: absolute;
-    margin-left: 55%;
+    margin-left: 48%;
     z-index: 2;
     font-size: 19px;
 }

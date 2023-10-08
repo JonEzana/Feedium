@@ -1,0 +1,54 @@
+.err-container{
+    margin-top: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 70%;
+    gap: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.err-container.add-margin{
+    margin-top: 120px;
+}
+
+.err-left{
+    flex: 1;
+}
+
+.err-left > img{
+    height: 450px;
+    width: 450px;
+}
+
+.err-right{
+    width: 20%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.err-right > span:nth-child(1){
+    font-size: 18px;
+}
+
+.err-right > span:nth-child(2){
+    font-size: 152px;
+    color: #B2B2B2;
+}
+
+.err-right > span:nth-child(3){
+    font-size: 66px;
+}
+
+.err-right > span:nth-child(4){
+    font-size: 20px;
+}
+
+.err-right > span:nth-child(5){
+    font-size: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -5,3 +5,4 @@ from .create_comment_form import CreateCommentForm
 from .update_story_form import UpdateStoryForm
 from .update_comment_form import UpdateCommentForm
 from .add_img_to_story_form import AddImagesToStoryForm
+from .create_topic_form import CreateTopicForm

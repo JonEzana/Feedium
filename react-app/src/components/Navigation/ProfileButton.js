@@ -19,7 +19,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -31,8 +31,8 @@ function ProfileButton({ user }) {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(logout());
-    history.push('/')
+    dispatch(logout())
+    history.push('/');
   };
 
   const obscureEmail = (email) => {
@@ -43,7 +43,6 @@ function ProfileButton({ user }) {
   }
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <div className="profilepic-component">
@@ -53,13 +52,12 @@ function ProfileButton({ user }) {
       </span>
       <ul className={ulClassName} ref={ulRef}>
         <span className="top-buttons">
-            <span className="PROFILE menuitem">
+            <span className="PROFILE menuitem" onClick={(e) => {
+              e.preventDefault();
+              history.push(`/users/${user.id}/stories`)
+            }}>
               <span class="material-symbols-outlined itemsymbol">person</span>
               <p className="item-description">Profile</p>
-            </span>
-            <span className="STORIES menuitem">
-              <span class="material-symbols-outlined itemsymbol">list_alt</span>
-              <p className="item-description">Stories</p>
             </span>
         </span>
         <span className="signout-span">

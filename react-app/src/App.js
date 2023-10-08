@@ -10,8 +10,13 @@ import { LandingPage } from "./components/LandingPage";
 import { CreateStory } from "./components/CreateStory";
 import { StoryDisplay } from "./components/StoryDisplay";
 import { EditStory } from "./components/EditStory";
-import { SignedInLandingPage } from "./components/SignedInLandingPage";
+import { AllStories } from "./components/AllStories";
 import { Footer } from "./components/Footer";
+import { StoriesByTopic } from "./components/StoriesByTopic";
+import { QueryResults } from "./components/QueryResults";
+import { ProfilePage } from "./components/ProfilePage";
+import { LikedStories } from "./components/LikedStories";
+import { Error } from "./components/Error";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,9 +33,9 @@ function App() {
           <Route exact path="/">
             <LandingPage />
           </Route>
-          <ProtectedRoute exact path="/all">
-            <SignedInLandingPage />
-          </ProtectedRoute>
+          <Route exact path="/all">
+            <AllStories />
+          </Route>
           <ProtectedRoute exact path="/new-story">
             <CreateStory />
           </ProtectedRoute>
@@ -40,12 +45,21 @@ function App() {
           <ProtectedRoute exact path="/stories/:storyId/edit">
             <EditStory />
           </ProtectedRoute>
-          {/* <Route path="/login" >
-            <LoginFormPage />
+          <Route exact path="/topics/:topicId">
+            <StoriesByTopic />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
+          <Route path="/search/:term">
+            <QueryResults />
+          </Route>
+          <Route exact path="/users/:userId/stories">
+            <ProfilePage />
+          </Route>
+          <Route exact path="/users/:userId/likes">
+            <LikedStories />
+          </Route>
+          <Route>
+            <Error />
+          </Route>
         </Switch>
       )}
       <Footer />

@@ -5,18 +5,20 @@ import { login } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import SignupFormModal from "../SignupFormModal";
+import { OAuthLink } from "../OAuthLink";
 import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [valError, setValError] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [pwType, setPwType] = useState("password");
   const { closeModal } = useModal();
   const history = useHistory();
+
 
   useEffect(() => {
     if (password.length >= 6) setDisabled(false);
@@ -44,7 +46,7 @@ function LoginFormModal() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setValError("Invalid credentials");
     } else {
         closeModal()
         history.push("/all")
@@ -54,12 +56,9 @@ function LoginFormModal() {
   return (
     <div className="modal login">
       <p className="greeting">Welcome back.</p>
+      <OAuthLink/>
       <form onSubmit={handleSubmit} className="login_form">
-        <ul>
-          {errors.map((error, idx) => (
-            <li style={{listStyleType: "none", color: "red"}} key={idx}>{error}</li>
-          ))}
-        </ul>
+        {valError.length > 1 && <p className="errors">{valError}</p>}
         <input
           className="input-field"
           type="email"
@@ -68,7 +67,6 @@ function LoginFormModal() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        {errors.email && <p>{errors.email}</p>}
         <span className="pw-input">
           <input
             className="input-field"
@@ -78,12 +76,12 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
             />
-            {showPassword === true && <span class="material-symbols-outlined eye" onClick={handleShowPW}>visibility</span>}
-            {showPassword === false && <span class="material-symbols-outlined eye" onClick={handleShowPW}>visibility_off</span>}
+            {showPassword === true && <span className="material-symbols-outlined eye" onClick={handleShowPW}>visibility</span>}
+            {showPassword === false && <span className="material-symbols-outlined eye" onClick={handleShowPW}>visibility_off</span>}
           </span>
         <button type="submit" className="login-btn" disabled={disabled}>Log In</button>
       </form>
-      <span style={{display: "flex", flexDirection: "row", marginTop: "10px"}}>
+      <span style={{display: "flex", flexDirection: "row", marginTop: "2px"}}>
         <p>No account?</p>
         <OpenModalButton
 					className = "modal_btn"

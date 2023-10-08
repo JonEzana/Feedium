@@ -8,7 +8,10 @@ import { DeleteStoryOrComment } from "../DeleteStoryOrComment";
 import { thunkCommentsByStoryId } from "../../store/comments";
 import {CommentsModalComponent} from "../CommentsModalComponent";
 import { convertDate } from "../../helpers";
-
+import { TopicsBanner } from "../TopicsBanner";
+import * as snapActions from "../../store/snaps";
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import "./StoryDisplay.css";
 
 export const StoryDisplay = () => {
@@ -18,74 +21,106 @@ export const StoryDisplay = () => {
     const singleStory = useSelector(state => state.stories.singleStory);
     const currUser = useSelector(state => state.session.user);
     const comments = Object.values(useSelector(state => state.comments.storyComments));
-    const [clicked, setClicked] = useState(false);
-    const [shown, setShown] = useState(true);
+    const allSnaps = useSelector(state => state.snaps.allSnaps);
+    let userSnaps = [];
+    if (currUser) userSnaps = [...[allSnaps[currUser.id]]];
+    const [liked, setLiked] = useState(userSnaps?.filter(story => story.id == storyId).length === 1 ? true : false);
     const [isUlHidden, setIsUlHidden] = useState(true);
 
     useEffect(() => {
         dispatch(thunkGetSingleStory(storyId))
         dispatch(thunkCommentsByStoryId(storyId))
+        dispatch(snapActions.thunkGetSnaps());
     }, [dispatch]);
 
     useEffect(() => {
-        clicked ? setShown(false) : setShown(true)
-    }, [clicked])
-
-    const handleStoryEdit = () => {
-        history.push(`/stories/${singleStory.id}/edit`)
-    }
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleHideUl = () => {
         isUlHidden ? setIsUlHidden(false) : setIsUlHidden(true);
     }
+    const handleVisitStory = (e, singleStory) => {
+        e.preventDefault();
+        if (currUser) history.push(`/users/${singleStory.user.id}/stories`)
+    }
+    const handleStoryEdit = () => {
+        history.push(`/stories/${singleStory.id}/edit`)
+    }
+    const mustBeLoggedIn = () => {
+        window.alert('Must be logged in to like stories');
+    }
+    const handleLikes = (e) => {
+        e.stopPropagation();
+        if (!currUser) return mustBeLoggedIn();
+        dispatch(snapActions.thunkChangeSnap(storyId, currUser.id))
+        .then(() => dispatch(snapActions.thunkGetSnaps()))
+        .then(() => dispatch(thunkGetSingleStory(storyId)))
+        .then(() => setLiked(!liked))
+    }
 
-    let storyContainerClassname;
-    currUser ? storyContainerClassname = "sd_container" : storyContainerClassname = "sd_container add-more-margin"
+    const storyContainerClassname = currUser
+        ? "sd_container"
+        : "sd_container add-more-margin";
+
+    const hoverClassName = currUser
+        ? "author-info block"
+        : "author-info";
 
     if (!Object.values(singleStory).length) return <></>;
 
     return (
-        <div style={{display: "flex", flexDirection:"row"}} onClick={() => {if (!isUlHidden) handleHideUl()}}>
+        <div className="single-story-container" onClick={() => {if (!isUlHidden) handleHideUl()}}>
             <div className="story_display_body">
                 <div className={storyContainerClassname}>
-                    <h1>{singleStory?.title}</h1>
+                    <p>{singleStory?.title}</p>
                     <div className="sd_author_block">
-                        <div style={{display: "flex", flexDirection: "row", gap: "20px", alignItems: "center", marginLeft: "4px", marginTop: "-20px"}}>
-                            <img src={singleStory?.user?.profilePic} style={{height: "30px", width: "30px", borderRadius: "15px"}} />
-                            <span style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                        <div className={hoverClassName} onClick={(e) => handleVisitStory(e, singleStory)}>
+                            <img src={singleStory?.user?.profilePic}/>
+                            <span className="author-name-date">
                                 <p>By: {singleStory?.user?.firstName} {singleStory?.user?.lastName}</p>
-                                <p style={{marginTop: "-12%", fontSize: "15px"}}>{convertDate(singleStory?.createdAt)}</p>
+                                <p>{convertDate(singleStory?.createdAt)}</p>
                             </span>
                         </div>
-
+                        <div className="story-topics">
+                            {singleStory.topics &&
+                                <TopicsBanner topics={singleStory.topics} history={history} />
+                            }
+                        </div>
                     </div>
-                    <div style={{display: "flex", margin: "15px 0 20px 0", flexDirection: "row", gap: "20px", borderTop: "1px solid rgb(231, 231, 231)", borderBottom: "1px solid rgb(231, 231, 231)", height: "47px", width: "720px"}}>
-                        <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "6px"}} className="snap-count">
-                            <p>👏</p>
-                            <p style={{color: "rgb(149, 149, 149)"}}>{singleStory?.snapCount}</p>
-                        </span>
-                        <span style={{display: "flex", flexDirection: "row", alignItems: "center", gap: '5px'}} className="comment-count">
-                            <OpenCommentModalButton
-                                modalComponent={ <CommentsModalComponent story={singleStory} currentUser={currUser}/>}
-                                buttonText={<i className="far fa-comment fa-flip-horizontal" style={{color: "rgb(149, 149, 149)"}}></i>}
-                                style={{backgroundColor: "transparent", border: "none"}}
-                                className="comment-icon"
-                            />
-                            <p style={{color: "rgb(149, 149, 149)"}}>{comments.length}</p>
+                    <div className="single-story-banner">
+                        <span className="snap-and-comment">
+                            <span className="snap-count" onClick={handleLikes}>
+                                {liked ? <ThumbUpAltIcon /> : <ThumbUpOffAltIcon />}
+                                <p>{singleStory?.snapCount}</p>
+                            </span>
+                            <span className="comment-count" >
+                                <OpenCommentModalButton
+                                    modalComponent={
+                                        <CommentsModalComponent
+                                        story={singleStory}
+                                        currentUser={currUser}
+                                        />}
+                                        buttonText={<i className="far fa-comment fa-flip-horizontal" style={{color: "rgb(149, 149, 149)", fontSize: "18px"}}></i>}
+                                        style={{backgroundColor: "transparent", border: "none"}}
+                                        className="comment-icon"
+                                        />
+                                <p>{comments.length}</p>
+                            </span>
                         </span>
                        {currUser && currUser.id === singleStory?.userId &&
-                            <>
-                                <button onClick={handleHideUl} className="ellipsis-button"><i className="fas fa-ellipsis-h"></i></button>
-                                <span className="pointed-border"></span>
-                                <span className={isUlHidden ? "hidden" : "options-span"}>
-                                    <button className="edit-story-button" onClick={handleStoryEdit}>Edit Story</button>
-                                    <OpenModalButton
-                                        modalComponent={ <DeleteStoryOrComment story={singleStory} /> }
-                                        buttonText={"Delete story"}
-                                        className="delete-story-button"
-                                    />
-                                </span>
-                            </>
+                            <span className="ellipsis-span">
+                                <button className="ellipsis-button" onClick={handleHideUl}><i className="fas fa-ellipsis-h"></i></button>
+                                {!isUlHidden &&
+                                    <div className="options-span">
+                                        <button className="edit-story-button" onClick={handleStoryEdit}>Edit Story</button>
+                                        <OpenModalButton
+                                            modalComponent={ <DeleteStoryOrComment story={singleStory} /> }
+                                            buttonText={"Delete story"}
+                                            className="delete-story-button"
+                                            />
+                                    </div>}
+                            </span>
                        }
                     </div>
                     <div className="story_images">

@@ -9,6 +9,9 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.story_routes import story_routes
 from .api.comment_routes import comment_routes
+from .api.topic_routes import topic_routes
+from .api.oauth_routes import oauth_routes
+from .api.snap_routes import snap_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -32,6 +35,9 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(story_routes, url_prefix='/api/stories')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
+app.register_blueprint(topic_routes, url_prefix='/api/topics')
+app.register_blueprint(oauth_routes, url_prefix='/api/oauth')
+app.register_blueprint(snap_routes, url_prefix='/api/snaps')
 db.init_app(app)
 Migrate(app, db)
 

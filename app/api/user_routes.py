@@ -23,3 +23,13 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/all')
+def all_users():
+    """
+    Return all users
+    """
+    users_data = User.query.all()
+    res = [user.to_dict() for user in users_data]
+    return {"users": res}

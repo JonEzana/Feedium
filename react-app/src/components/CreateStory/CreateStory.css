@@ -85,3 +85,21 @@ textarea::placeholder{
 textarea:focus{
     outline: none;
 }
+input[type=checkbox]{
+    height: 20px;
+}
+.create_page_container{
+    margin-top: 50px;
+}
+
+.preview-images{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.prev-img{
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+}

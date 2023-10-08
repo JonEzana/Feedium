@@ -1,0 +1,130 @@
+.signedin-landingpage-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 200px;
+}
+
+.add-margin{
+    margin-top: 100px;
+}
+
+.query-display-message{
+    font-size: 25px;
+    text-align: center;
+}
+
+.every-story-container{
+    height: inherit;
+    width: 60%;
+    align-self: center;
+}
+
+.story_container{
+    height: inherit;
+    width: auto;
+    max-width: 1920px;
+}
+
+.story_container:hover{
+    cursor: pointer;
+}
+
+/******* ((PROFILE PAGE)) ALL STORY CONTAINER *******/
+
+.page-story_and_img{
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    height: inherit;
+}
+
+.page-story_cards_container{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 50px;
+    width: 80%;
+}
+
+.page-card_top{
+    font-weight: 100;
+    color: rgb(163, 163, 163);
+}
+
+.page-story_and_img:hover{
+    cursor: pointer;
+}
+.page-story_image{
+    align-self: end;
+    display: flex;
+    flex-direction: row;
+}
+
+.page-card_preview{
+    margin-top: -10%;
+    /* border: 1px solid orange; */
+}
+
+.page-story_image >img{
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    align-self: end;
+}
+
+/******* ALL STORY CONTAINER *******/
+
+.story_and_img{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2%;
+    width: inherit;
+    height: inherit;
+    border-bottom: 1px solid rgb(216, 216, 216);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.story_cards_container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: inherit;
+    height: inherit;
+}
+.card_top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.card_title{
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: -10px;
+}
+
+.card_preview >span{
+    color: rgb(117, 117, 117);
+    font-size: 19px;
+}
+
+.story_image{
+    width: 30%;
+    height: 100%;
+}
+.preview_img{
+    height: 150px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.author_pro_pic{
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}

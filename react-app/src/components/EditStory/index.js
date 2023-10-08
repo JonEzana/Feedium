@@ -7,7 +7,7 @@ import { CreateStory } from "../CreateStory";
 export const EditStory = () => {
     const dispatch = useDispatch();
     const {storyId} = useParams();
-    const singleStory = useSelector(state => state.stories.singleStory);
+    const singleStory = useSelector(state => state.stories.allStories[storyId]);
 
     const storyimgs = [];
     if (singleStory) {
@@ -23,7 +23,7 @@ export const EditStory = () => {
         dispatch(storyActions.thunkGetSingleStory(storyId))
     }, [dispatch]);
 
-    return (
+   return (
         <CreateStory
             story={singleStory}
             storyUrl={storyUrl}

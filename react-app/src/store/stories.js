@@ -2,10 +2,12 @@ const GET_MOST_POPULAR_STORIES = "stories/getMostPopular";
 const GET_CURRENT_USER_STORIES = "stories/getCurrentUser";
 const GET_SINGLE_STORY = "stories/getSingle";
 const GET_ALL_STORIES = "stories/getAll";
+const GET_STORIES_BY_TOPIC = "stories/getTopic"
 const CREATE_STORY = "stories/create";
 const UPDATE_STORY = "stories/update";
 const DELETE_STORY = "stories/delete";
 const ADD_IMG_TO_STORY = "stories/addImg";
+
 
 const getMostPopularStories = (stories) => ({
     type: GET_MOST_POPULAR_STORIES,
@@ -26,6 +28,11 @@ const getAllStories = (stories) => ({
     type: GET_ALL_STORIES,
     payload: stories
 });
+
+const getStoriesByTopic = (stories) => ({
+    type: GET_STORIES_BY_TOPIC,
+    payload: stories
+})
 
 const createStory = (story) => ({
     type: CREATE_STORY,
@@ -84,6 +91,17 @@ export const thunkGetAllStories = () => async (dispatch) => {
         const stories = await res.json();
         dispatch(getAllStories(stories.stories));
         return stories;
+    }
+}
+
+export const thunkGetStoriesByTopic = (id) => async (dispatch) => {
+    const res = await fetch(`/api/stories/topics/${id}`);
+    if (res.ok) {
+        const stories = await res.json();
+        dispatch(getStoriesByTopic(stories.stories));
+        return stories;
+    } else {
+        console.log('an error occured')
     }
 }
 
@@ -159,7 +177,7 @@ export const thunkDeleteStory = (id) => async (dispatch) => {
 	}
 }
 
-const initialState = {allStories: {}, hotStories: {}, usersStories: {}, singleStory: {}}
+const initialState = {allStories: {}, hotStories: {}, usersStories: {}, singleStory: {}, topicStories: {}}
 
 export default function storiesReducer(state = initialState, action) {
     switch (action.type) {
@@ -169,9 +187,9 @@ export default function storiesReducer(state = initialState, action) {
             return newState;
         }
         case GET_CURRENT_USER_STORIES: {
-            const newState = {...state, allStories: {...state.allStories}, userStories: {}};
+            const newState = {...state, allStories: {...state.allStories}, usersStories: {}};
             action.payload.forEach(story => {
-                newState.userStories[story.id] = story;
+                newState.usersStories[story.id] = story;
             });
             return newState
         }
@@ -188,6 +206,13 @@ export default function storiesReducer(state = initialState, action) {
             const newState = {...state, allStories: {}};
             action.payload.forEach(story => {
                 newState.allStories[story.id] = story;
+            });
+            return newState;
+        }
+        case GET_STORIES_BY_TOPIC: {
+            const newState = {...state, allStories: {...state.allStories}, topicStories: {}}
+            action.payload.forEach(story => {
+                newState.topicStories[story.id] = story;
             });
             return newState;
         }
