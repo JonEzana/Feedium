@@ -240,97 +240,93 @@ def seed_users():
       comment_text="Profoundly informative."
    )
 
-   snap1 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)   )
-   snap2 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap3 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap4 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap5 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap6 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap7 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap8 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap9 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories)
-   )
-   snap10 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap11 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap12 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap13 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap14 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap15 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap16 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap17 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap18 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap19 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
-   snap20 = Snap(
-      user=random.choice(all_users),
-      story=random.choice(all_stories),
-   )
+   # snap1 = Snap(
+   #    user_id=1,
+   #    story_id=1
+   # )
+   # snap2 = Snap(
+   #    user_id=1,
+   #    story_id=2,
+   # )
+   # snap3 = Snap(
+   #    user_id=1,
+   #    story_id=3,
+   # )
+   # snap4 = Snap(
+   #    user_id=1,
+   #    story_id=4,
+   # )
+   # snap5 = Snap(
+   #    user_id=1,
+   #    story_id=5,
+   # )
+   # snap6 = Snap(
+   #    user_id=2,
+   #    story_id=6,
+   # )
+   # snap7 = Snap(
+   #    user_id=2,
+   #    story_id=7,
+   # )
+   # snap8 = Snap(
+   #    user_id=2,
+   #    story_id=8,
+   # )
+   # snap9 = Snap(
+   #    user_id=2,
+   #    story_id=9,
+   # )
+   # snap10 = Snap(
+   #    user_id=2,
+   #    story_id=10,
+   # )
+   # snap11 = Snap(
+   #    user_id=3,
+   #    story_id=11,
+   # )
+   # snap12 = Snap(
+   #    user_id=3,
+   #    story_id=12,
+   # )
+   # snap13 = Snap(
+   #    user_id=3,
+   #    story_id=13,
+   # )
+   # snap14 = Snap(
+   #    user_id=3,
+   #    story_id=14,
+   # )
+   # snap15 = Snap(
+   #    user_id=3,
+   #    story_id=15,
+   # )
+   # snap16 = Snap(
+   #    user_id=4,
+   #    story_id=16,
+   # )
+   # snap17 = Snap(
+   #    user_id=4,
+   #    story_id=17,
+   # )
+   # snap18 = Snap(
+   #    user_id=4,
+   #    story_id=18,
+   # )
+   # snap19 = Snap(
+   #    user_id=4,
+   #    story_id=19,
+   # )
+   # snap20 = Snap(
+   #    user_id=4,
+   #    story_id=20,
+   # )
 
 
 
    db.session.add_all([demo, marnie, bobbie, jon])
-   db.session.commit()
    db.session.add_all([Story1, Story2, Story3, Story4, Story5, Story6, Story7, Story8, Story9, Story10, Story11, Story12, Story13, Story14, Story15, Story16, Story17, Story18, Story19, Story20])
-   db.session.commit()
    db.session.add_all([topic1, topic2, topic3, topic4, topic4, topic5, topic6, topic7, topic8, topic9, topic10, topic11, topic12, topic13, topic14, topic15, topic16, topic17, topic18, topic19, topic20, topic21])
-   db.session.commit()
    db.session.add_all([comment1, comment2, comment3, comment4, comment5, comment6, comment7, comment8, comment9, comment10, comment11, comment12, comment13, comment14, comment15, comment16, comment17, comment18, comment19, comment20])
-   db.session.commit()
-   db.session.add_all([snap1, snap2, snap3, snap4, snap5, snap6, snap7, snap8, snap9, snap10, snap11, snap12, snap13, snap14, snap15, snap16, snap17, snap18, snap19, snap20])
    db.session.commit()
 
 def undo_users():
