@@ -12,10 +12,10 @@ import google.auth.transport.requests
 oauth_routes = Blueprint("oauth", __name__)
 
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID")
-# UNAUTHORIZED_REDIRECT_URI = 'http://localhost:5000/api/oauth/callback' if os.environ.get('FLASK_ENV') == 'development' else 'https://feedium.onrender.com/api/oauth/callback'
-# AUTHORIZED_REDIRECT_URI = 'http://localhost:3000/all' if os.environ.get('FLASK_ENV') == 'development' else 'https://feedium.onrender.com/all'
-UNAUTHORIZED_REDIRECT_URI = 'https://feedium.onrender.com/api/oauth/callback'
-AUTHORIZED_REDIRECT_URI = 'https://feedium.onrender.com/all'
+UNAUTHORIZED_REDIRECT_URI = 'http://localhost:5000/api/oauth/callback' if os.environ.get('FLASK_ENV') == 'development' else 'https://feedium.onrender.com/api/oauth/callback'
+AUTHORIZED_REDIRECT_URI = 'http://localhost:3000/all' if os.environ.get('FLASK_ENV') == 'development' else 'https://feedium.onrender.com/all'
+# UNAUTHORIZED_REDIRECT_URI = 'https://feedium.onrender.com/api/oauth/callback'
+# AUTHORIZED_REDIRECT_URI = 'https://feedium.onrender.com/all'
 PW = os.environ.get("PW")
 
 if os.environ.get("FLASK_ENV") == "development":
@@ -40,12 +40,14 @@ def google_login():
 @oauth_routes.route("/callback")
 def callback():
     flow.fetch_token(authorization_response=request.url)
+    print('~~~~~~ SESSION STATE ~~~~~', session["state"])
+    print('~~~~~~ REQ STATE ~~~~~', request.args["state"])
 
     if not session["state"] == request.args["state"]:
         abort(500)  # State does not match!
 
     credentials = flow.credentials
-    print('~~~~~~~ CREDENTIALS ~~~~~~~', credentials)
+    # print('~~~~~~~ CREDENTIALS ~~~~~~~', credentials)
     request_session = requests.session()
     cached_session = cachecontrol.CacheControl(request_session)
     token_request = google.auth.transport.requests.Request(session=cached_session)
@@ -56,7 +58,7 @@ def callback():
         audience=GOOGLE_CLIENT_ID
     )
 
-    print('~~~~~~~ ID_INFO ~~~~~~', id_info)
+    # print('~~~~~~~ ID_INFO ~~~~~~', id_info)
 
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
