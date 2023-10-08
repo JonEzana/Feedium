@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 from .story_topic import story_topics
-from .snap import snaps
+from .snap import Snap
 
 
 class Story(db.Model):
@@ -30,7 +30,7 @@ class Story(db.Model):
   user = db.relationship("User", back_populates="stories")
   comments = db.relationship('Comment', back_populates='story', cascade="all, delete-orphan")
   topics = db.relationship("Topic", secondary=story_topics, back_populates="stories")
-  story_snaps = db.relationship("User", secondary=snaps, back_populates="user_snaps")
+  snaps = db.relationship("Snap", back_populates="story", cascade="all, delete-orphan")
 
 
   def to_dict(self):

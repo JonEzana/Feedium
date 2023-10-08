@@ -4,15 +4,17 @@
     height: 600px;
     width: 450px;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
+    padding: 20px;
 }
 .signup-form{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    /* border: 1px solid red; */
 }
 .greet{
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     font-size: 30px;
 }
 .signup_input_field{
@@ -22,10 +24,6 @@
     border-radius: 20px;
     padding: 10px;
     width: auto;
-}
-
-input:focus{
-    border-color: red;
 }
 
 p{
@@ -67,7 +65,7 @@ p{
     position: absolute;
     z-index: 2;
     font-size: 19px;
-    margin-left: 54%;
+    margin-left: 50%;
 }
 .signup-eye:hover{
     cursor: pointer;

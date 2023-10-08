@@ -1,0 +1,19 @@
+.oauth_span{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.oauth_span > img{
+    width: 15px;
+    height: 15px;
+}
+
+.oauth_link{
+    text-decoration: none;
+    height: max-content;
+    width: max-content;
+    font-size: 18px;
+}

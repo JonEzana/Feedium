@@ -5,6 +5,7 @@ import { signUp } from "../../store/session";
 import { useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
+import { OAuthLink } from "../OAuthLink";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -69,6 +70,7 @@ function SignupFormModal() {
 	return (
 		<div className="signup-modal">
 			<p className="greet">Join Feedium.</p>
+			<OAuthLink />
 			<form onSubmit={handleSubmit} encType="multipart/form-data" className="signup-form">
 				<ul>
 					{Object.values(errors).length > 0 && errors.map((error, idx) => (

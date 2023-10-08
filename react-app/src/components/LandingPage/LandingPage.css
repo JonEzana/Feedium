@@ -2,6 +2,7 @@ body{
     width: 100%;
     margin-left: 0px;
     overflow-x: hidden;
+    margin-bottom: 100px;
 }
 
 .lp_text_box{
@@ -148,7 +149,7 @@ h3{
 
 .individual_card_all{
     justify-content: start;
-    gap: 70px;
+    gap: 80px;
     width: max-content;
     margin-right: 70px;
 }
@@ -179,7 +180,7 @@ h3{
 
 .landing-page-story-img,
 .no-photo{
-    height: 150px;
+    height: 140px;
     width: 200px;
     border-radius: 14px;
 }
@@ -221,4 +222,12 @@ h3{
 
 .individual-topic:hover{
     cursor: pointer;
+}
+
+.show-topics{
+    font-size: 18px;
+    width: 100%;
+    color: rgb(26, 137, 23);
+    cursor: pointer;
+    margin-top: 10px;
 }

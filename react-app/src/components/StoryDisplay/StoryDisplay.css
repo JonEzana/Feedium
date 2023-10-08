@@ -1,96 +1,146 @@
+.single-story-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1920px;
+    margin-bottom: 100px;
+}
 
 .story_display_body{
-    /* border: 1px solid red; */
     display: flex;
-    width: 50vw;
-    margin: 0 25% 100px 25%;
+    justify-self: center;
+    width: inherit;
 }
 
 .sd_container{
     width: 720px;
 }
 
-h1{
-    font-size: 50px;
+.sd_container > p{
+    font-size: 35px;
+    font-weight: 900;
 }
+
+.add-more-margin{
+    margin-top: 90px;
+}
+
 .sd_author_block{
     display: flex;
     flex-direction: column;
 }
-.story_images{
-    /* border: 1px solid green; */
-    /* color: rgb(149, 149, 149); */
-    display: grid;
-    gap: 7px;
-    margin-left: 5%;
-    max-width: 720px;
-    grid-template-areas:
-    "a b"
-    "c d";
+
+.author-info{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin-left: 4px;
+    margin-top: -20px;
+    width: fit-content;
 }
-.story_img1{
-    grid-area: a;
+
+.author-info > img{
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
 }
-.story_img2{
-    grid-area: b;
+
+.block:hover{
+    cursor: pointer;
 }
-.story_img3{
-    grid-area: c;
+
+.author-name-date{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.story_img4{
-    grid-area: d;
+
+.author-name-date > p:nth-child(2){
+    margin-top: -12%;
+    font-size: 15px;
 }
-.image{
-    height: 300px;
-    width: 315px;
-    border-radius: 10px;
+
+.single-story-banner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid rgb(231,231,231);
+    border-bottom: 1px solid rgb(231,231,231);
+    margin: 15px 0 20px 0;
+    height: 47px;
+    width: 720px;
+}
+
+.snap-and-comment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.snap-count{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.snap-count > p{
+    color: rgb(149,149,149);
+}
+
+.snap-count:hover{
+    cursor: pointer;
+}
+
+.comment-count{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.comment-count > p{
+    color: rgb(149,149,149);
 }
 
 .comment-icon:hover,
+.ellipsis-span:hover,
+.ellipsis-button:hover,
 .fa-ellipsis-h:hover{
     cursor: pointer;
 }
 
-.sd_story_body{
-    font-size: 22px;
-    /* letter-spacing: .03em; */
-    text-align: justify;
-    line-height: 25px;
-    text-indent: 25px;
-}
-
-.false{
-    visibility: hidden;
+.ellipsis-span{
+    position: relative;
+    display: inline-block;
+    top: 30%;
 }
 
 .ellipsis-button{
-    border: none;
     background-color: transparent;
-    margin-left: 81%;
+    border: none;
 }
 
 .options-span{
-    position: relative;
-    right: 0;
-    top: 0;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
     left: 0;
-    bottom: 0;
-    margin-left: -7vw;
-    margin-top: 5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    gap: 10px;
     background-color:white;
     box-shadow: 0 0 5px .8px grey;
     border-radius: 5px;
-    height: 85px;
+    height: 90px;
     width: 100px;
-    /*
-    margin-top: 2.8%;
-    */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
 
+.options-span > button{
+    font-size: 16px;
 }
 
 .edit-story-button{
@@ -116,11 +166,49 @@ h1{
     color: #C94A4A;
 }
 
-
-.hidden{
-    visibility: hidden;
+/* .story_images{
+    display: grid;
+    gap: 30px;
+    margin-left: 5%;
+    max-width: 720px;
+    grid-template-areas:
+    "a b"
+    "c d";
+}
+.story_img1{
+    grid-area: a;
+}
+.story_img2{
+    grid-area: b;
+}
+.story_img3{
+    grid-area: c;
+}
+.story_img4{
+    grid-area: d;
+}
+.image{
+    height: 300px;
+    width: 315px;
+    border-radius: 10px;
+} */
+.story_images{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: inherit;
+    gap: 10px;
 }
 
-.add-more-margin{
-    margin-top: 90px;
+.image{
+    width: 190px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.sd_story_body{
+    font-size: 22px;
+    text-align: justify;
+    line-height: 25px;
+    text-indent: 25px;
 }

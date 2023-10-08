@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 def seed_topics():
     topic1 = Topic(name="Veganism")
     topic2 = Topic(name="Vegetarianism")
-    topic3 = Topic(name="Restaurant review")
+    topic3 = Topic(name="Review")
     topic4 = Topic(name="Japanese")
     topic5 = Topic(name="Korean")
     topic6 = Topic(name="North African")

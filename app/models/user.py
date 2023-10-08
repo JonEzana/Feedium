@@ -2,7 +2,6 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
-from .snap import snaps
 from .follow import follows
 
 class User(db.Model, UserMixin):
@@ -24,7 +23,7 @@ class User(db.Model, UserMixin):
     # relationships
     stories = db.relationship('Story', back_populates='user', cascade="all, delete-orphan")
     comments = db.relationship('Comment', back_populates='user', cascade="all, delete-orphan")
-    user_snaps = db.relationship("Story", secondary=snaps, back_populates="story_snaps")
+    snaps = db.relationship("Snap", back_populates="users", cascade="all, delete-orphan")
     followers = db.relationship(
         "User",
         secondary=follows,
@@ -45,7 +44,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self, stories=False, followers=False, following=False):
+    def to_dict(self, stories=False, comments=False, snaps=False, followers=False, following=False):
         user_dictionary = {
             'id': self.id,
             'firstName': self.first_name,
@@ -59,6 +58,12 @@ class User(db.Model, UserMixin):
         if stories:
             user_dictionary["stories"] = [story.to_dict() for story in self.stories]
 
+        if comments:
+            user_dictionary["comments"] = [comment.to_dict() for comment in self.comments]
+
+        if snaps:
+            user_dictionary["snaps"] = [snap.to_dict() for snap in self.snaps]
+
         if followers:
             user_dictionary["followers"] = [follower.to_dict() for follower in self.followers]
 
@@ -67,7 +72,7 @@ class User(db.Model, UserMixin):
 
         return user_dictionary
 
-    def to_dict_no_story(self, followers=False, following=False):
+    def to_dict_no_story(self, followers=False, following=False, snaps=False):
         user_dictionary = {
             'id': self.id,
             'firstName': self.first_name,
@@ -83,5 +88,8 @@ class User(db.Model, UserMixin):
 
         if following:
             user_dictionary["following"] = [following.to_dict() for following in self.following]
+
+        if snaps:
+            user_dictionary["snaps"] = [snap.to_dict() for snap in self.snaps]
 
         return user_dictionary
