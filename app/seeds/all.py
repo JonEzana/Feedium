@@ -241,84 +241,83 @@ def seed_users():
    )
 
    snap1 = Snap(
-      user_id=1,
-      story_id=1
-   )
+      user=random.choice(all_users),
+      story=random.choice(all_stories)   )
    snap2 = Snap(
-      user_id=1,
-      story_id=2,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap3 = Snap(
-      user_id=1,
-      story_id=3,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap4 = Snap(
-      user_id=1,
-      story_id=4,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap5 = Snap(
-      user_id=1,
-      story_id=5,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap6 = Snap(
-      user_id=2,
-      story_id=6,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap7 = Snap(
-      user_id=2,
-      story_id=7,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap8 = Snap(
-      user_id=2,
-      story_id=8,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap9 = Snap(
-      user_id=2,
-      story_id=9,
+      user=random.choice(all_users),
+      story=random.choice(all_stories)
    )
    snap10 = Snap(
-      user_id=2,
-      story_id=10,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap11 = Snap(
-      user_id=3,
-      story_id=11,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap12 = Snap(
-      user_id=3,
-      story_id=12,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap13 = Snap(
-      user_id=3,
-      story_id=13,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap14 = Snap(
-      user_id=3,
-      story_id=14,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap15 = Snap(
-      user_id=3,
-      story_id=15,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap16 = Snap(
-      user_id=4,
-      story_id=16,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap17 = Snap(
-      user_id=4,
-      story_id=17,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap18 = Snap(
-      user_id=4,
-      story_id=18,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap19 = Snap(
-      user_id=4,
-      story_id=19,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
    snap20 = Snap(
-      user_id=4,
-      story_id=20,
+      user=random.choice(all_users),
+      story=random.choice(all_stories),
    )
 
 
