@@ -9,6 +9,7 @@ class Story(db.Model):
 
   if environment == "production":
     __table_args__ = {'schema': SCHEMA}
+    db.session.execute(f"TRUNCATE table {SCHEMA}.snaps RESTART IDENTITY CASCADE;")
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
