@@ -1,9 +1,15 @@
-from app.models import db, Snap, environment, SCHEMA
+from app.models import db, Story, User, Topic, Comment, Snap, environment, SCHEMA
 import random
 from sqlalchemy.sql import text
 
 
 def seed_snaps():
+    users = User.query.all()
+    stories = Story.query.all()
+
+    all_users = [user for user in users]
+    all_stories = [story for story in stories]
+
     snap1 = Snap(
         user_id=random.randint(1, 4),
         story_id=random.randint(1, 20)

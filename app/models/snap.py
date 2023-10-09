@@ -20,8 +20,8 @@ class Snap(db.Model):
     )
 
     id = db.Column(db.Integer, primary_key=True, unique=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    story_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('stories.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')))
+    story_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('story.id')))
 
 
     users = db.relationship('User', back_populates='snaps')
