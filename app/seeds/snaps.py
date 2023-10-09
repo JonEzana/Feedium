@@ -4,13 +4,13 @@ from sqlalchemy.sql import text
 
 
 def seed_snaps():
-    users = User.query.all()
-    stories = Story.query.all()
+    # users = User.query.all()
+    # stories = Story.query.all()
 
-    all_users = [user.to_dict() for user in users]
-    all_stories = [story.to_dict() for story in stories]
-    print('~~~~~ SNAP SEEDER: ALL STORIES~~~~~~~~', all_stories)
-    print('~~~~~ SNAP SEEDER: ALL USERS~~~~~~~~', all_users)
+    # all_users = [user.to_dict() for user in users]
+    # all_stories = [story.to_dict() for story in stories]
+    # print('~~~~~ SNAP SEEDER: ALL STORIES~~~~~~~~', all_stories)
+    # print('~~~~~ SNAP SEEDER: ALL USERS~~~~~~~~', all_users)
 
     # snap1 = Snap(
     #     user_id=random.randint(1, 4),
