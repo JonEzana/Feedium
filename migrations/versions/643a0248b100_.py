@@ -84,7 +84,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('id'),
-    sa.UniqueConstraint('user_id', 'photo_id', name='unique_combination_constraint')
+    sa.UniqueConstraint('user_id', 'story_id', name='unique_combination_constraint')
     )
     op.create_table('story_topics',
     sa.Column('story_id', sa.Integer(), nullable=False),
