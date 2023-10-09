@@ -30,7 +30,7 @@ class Story(db.Model):
   user = db.relationship("User", back_populates="stories")
   comments = db.relationship('Comment', back_populates='story', cascade="all, delete-orphan")
   topics = db.relationship("Topic", secondary=story_topics, back_populates="stories")
-  snaps = db.relationship("Snap", back_populates="story", cascade="all, delete-orphan")
+  snaps = db.relationship("Snap", back_populates="stories", cascade="all, delete-orphan")
 
 
   def to_dict(self):
