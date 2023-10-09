@@ -1,8 +1,6 @@
-from .db import db, add_prefix_for_prod
+from .db import db, add_prefix_for_prod, SCHEMA, environment
 from sqlalchemy import UniqueConstraint
 import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 
