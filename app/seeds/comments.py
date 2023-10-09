@@ -4,9 +4,9 @@ from sqlalchemy.sql import text
 
 def seed_comments():
 
-    if environment == 'production':
+    # if environment == 'production':
         # Before seeding, truncate all tables prefixed with schema name
-        db.session.execute(f"TRUNCATE table {SCHEMA}.comment RESTART IDENTITY CASCADE;")
+        # db.session.execute(f"TRUNCATE table {SCHEMA}.comment RESTART IDENTITY CASCADE;")
 
     comment1 = Comment(
         story_id=1,

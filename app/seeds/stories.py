@@ -93,6 +93,9 @@ def seed_stories():
     topic20 = Topic(name="Chilean")
     topic21 = Topic(name="Portuguese")
 
+    db.session.add_all([Story1, Story2, Story3, Story4, Story5, Story6, Story7, Story8, Story9, Story10, Story11, Story12, Story13, Story14, Story15, Story16, Story17, Story18, Story19, Story20])
+    db.session.add_all([topic1, topic2, topic3, topic4, topic4, topic5, topic6, topic7, topic8, topic9, topic10, topic11, topic12, topic13, topic14, topic15, topic16, topic17, topic18, topic19, topic20, topic21])
+
     Story1.topics.append(topic3)
     Story1.topics.append(topic10)
     Story2.topics.append(topic8)
@@ -129,8 +132,6 @@ def seed_stories():
     # db.session.add(Story1)
     # db.session.add(topic3)
 
-    db.session.add_all([Story1, Story2, Story3, Story4, Story5, Story6, Story7, Story8, Story9, Story10, Story11, Story12, Story13, Story14, Story15, Story16, Story17, Story18, Story19, Story20])
-    db.session.add_all([topic1, topic2, topic3, topic4, topic4, topic5, topic6, topic7, topic8, topic9, topic10, topic11, topic12, topic13, topic14, topic15, topic16, topic17, topic18, topic19, topic20, topic21])
     db.session.commit()
 
 def undo_stories():
