@@ -5,10 +5,10 @@ from sqlalchemy.sql import text
 
 def seed_snaps():
     # users = User.query.all()
-    # stories = Story.query.all()
-    if environment == 'production':
-        # Before seeding, truncate all tables prefixed with schema name
-        db.session.execute(f"TRUNCATE table {SCHEMA}.snaps RESTART IDENTITY CASCADE;")
+    # # stories = Story.query.all()
+    # if environment == 'production':
+    #     # Before seeding, truncate all tables prefixed with schema name
+    #     db.session.execute(f"TRUNCATE table {SCHEMA}.snaps RESTART IDENTITY CASCADE;")
         # Add a truncate command here for every table that will be seeded.
 
     # all_users = [user.to_dict() for user in users]

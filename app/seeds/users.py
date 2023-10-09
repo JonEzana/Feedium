@@ -3,9 +3,9 @@ from sqlalchemy.sql import text
 
 def seed_users():
 
-   if environment == 'production':
-      # Before seeding, truncate all tables prefixed with schema name
-      db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+   # if environment == 'production':
+   #    # Before seeding, truncate all tables prefixed with schema name
+   #    db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
 
    demo = User(
       username='demo', first_name='Demo', last_name='Lition', email='demo@aa.io', password='password', profile_pic='https://pyxis.nymag.com/v1/imgs/29b/bae/50c47f603f465c28cc385853c6a36169c1-29-steve-brule-check-it-out.rsquare.w700.jpg')
