@@ -31,6 +31,8 @@ def change_snap_count(storyId, userId):
     """
     add or remove like from story
     """
+
+    print('~~~~~~ IN SNAP ~~~~~~')
     story = Story.query.get(storyId)
     already_snapped = Snap.query.filter(and_(Snap.user_id == userId, Snap.story_id == storyId)).first()
 
@@ -46,4 +48,5 @@ def change_snap_count(storyId, userId):
         db.session.delete(already_snapped)
         db.session.commit()
 
+        print('~~~~~ SNAPPED ~~~~~')
         return {"snappedStory": story.to_dict(), "Delete": "DeletedSnap"}
