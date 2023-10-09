@@ -96,84 +96,85 @@ def seed_snaps():
         user_id=random.choice(all_users)["id"],
         story_id=random.choice(all_stories)["id"]
     )
-    snap2 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap3 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap4 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap5 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap6 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap7 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap8 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap9 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
-    )
-    snap10 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap11 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap12 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap13 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap14 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap15 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap16 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap17 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap18 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap19 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
-    snap20 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"],
-    )
+    # snap2 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap3 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap4 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap5 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap6 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap7 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap8 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap9 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"]
+    # )
+    # snap10 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap11 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap12 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap13 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap14 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap15 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap16 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap17 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap18 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap19 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
+    # snap20 = Snap(
+    #     user_id=random.choice(all_users)["id"],
+    #     story_id=random.choice(all_stories)["id"],
+    # )
 
-    db.session.add_all([snap1, snap2, snap3, snap4, snap5, snap6, snap7, snap8, snap9, snap10, snap11, snap12, snap13, snap14, snap15, snap16, snap17, snap18, snap19, snap20])
+    db.session.add(snap1)
+    # db.session.add_all([snap1, snap2, snap3, snap4, snap5, snap6, snap7, snap8, snap9, snap10, snap11, snap12, snap13, snap14, snap15, snap16, snap17, snap18, snap19, snap20])
     db.session.commit()
 
 def undo_snaps():
