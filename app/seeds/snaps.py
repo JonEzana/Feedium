@@ -11,6 +11,18 @@ def seed_snaps():
     # all_stories = [story.to_dict() for story in stories]
     # print('~~~~~ SNAP SEEDER: ALL STORIES~~~~~~~~', all_stories)
     # print('~~~~~ SNAP SEEDER: ALL USERS~~~~~~~~', all_users)
+    snap1 = Snap(
+        user_id=1,
+        story_id=2
+    )
+    snap2 = Snap(
+        user_id=1,
+        story_id=1
+    )
+    snap3 = Snap(
+        user_id=1,
+        story_id=3
+    )
 
     # snap1 = Snap(
     #     user_id=random.randint(1, 4),
@@ -92,10 +104,10 @@ def seed_snaps():
     #     user_id=random.randint(1, 4),
     #     story_id=random.randint(1, 20),
     # )
-    snap1 = Snap(
-        user_id=1,
-        story_id=1
-    )
+    # snap1 = Snap(
+    #     user_id=1,
+    #     story_id=1
+    # )
     # snap2 = Snap(
     #     user_id=random.choice(all_users)["id"],
     #     story_id=random.choice(all_stories)["id"]
@@ -173,7 +185,7 @@ def seed_snaps():
     #     story_id=random.choice(all_stories)["id"],
     # )
 
-    db.session.add(snap1)
+    db.session.add_all([snap1, snap2, snap3])
     # db.session.add_all([snap1, snap2, snap3, snap4, snap5, snap6, snap7, snap8, snap9, snap10, snap11, snap12, snap13, snap14, snap15, snap16, snap17, snap18, snap19, snap20])
     db.session.commit()
 
