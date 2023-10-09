@@ -7,10 +7,12 @@ import os
 class Snap(db.Model):
     __tablename__ = "snaps"
 
-    __tableargs__ = (
-        # UniqueConstraint('user_id', 'story_id', name='unique_combination_constraint'),
-        {'schema': SCHEMA} if environment == "production" else None
-    )
+    # __tableargs__ = (
+    #     {'schema': SCHEMA} if environment == "production" else None
+    # )
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True, unique=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
