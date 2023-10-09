@@ -4,12 +4,7 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-# snaps = db.Table(
-#     "snaps",
-#     db.Model.metadata,
-#     db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"), primary_key=True),
-#     db.Column("story_id", db.Integer, db.ForeignKey(add_prefix_for_prod("stories.id"), ondelete="CASCADE"), primary_key=True)
-# )
+
 
 class Snap(db.Model):
     __tablename__ = "snaps"
@@ -35,3 +30,10 @@ class Snap(db.Model):
             'storyId': self.story_id,
             'story': self.story.to_dict()
         }
+
+# snaps = db.Table(
+#     "snaps",
+#     db.Model.metadata,
+#     db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"), primary_key=True),
+#     db.Column("story_id", db.Integer, db.ForeignKey(add_prefix_for_prod("stories.id"), ondelete="CASCADE"), primary_key=True)
+# )
