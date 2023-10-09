@@ -15,7 +15,7 @@ class Snap(db.Model):
     __tablename__ = "snaps"
 
     __tableargs__ = (
-        # UniqueConstraint('user_id', 'story_id', name='unique_combination_constraint'),
+        UniqueConstraint('user_id', 'story_id', name='unique_combination_constraint'),
         {'schema': SCHEMA} if environment == "production" else None
     )
 
