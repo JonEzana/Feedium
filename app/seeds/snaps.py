@@ -93,8 +93,8 @@ def seed_snaps():
     #     story_id=random.randint(1, 20),
     # )
     snap1 = Snap(
-        user_id=random.choice(all_users)["id"],
-        story_id=random.choice(all_stories)["id"]
+        user_id=1,
+        story_id=1
     )
     # snap2 = Snap(
     #     user_id=random.choice(all_users)["id"],
