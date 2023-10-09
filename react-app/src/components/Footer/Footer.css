@@ -8,6 +8,7 @@
     margin-left: -38px;
     justify-content: space-between;
     padding: 10px 0px;
+    z-index: 20;
 }
 
 #technologies-left {
