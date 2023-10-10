@@ -216,6 +216,7 @@ input::placeholder{
 
 li{
   list-style-type: none;
+  word-wrap: break-word;
 }
 
 .pic-caret{
@@ -260,9 +261,11 @@ li{
   justify-content: start;
   align-items: start;
   margin-left: 7px;
+  width: 100%;
 }
 .user-email{
   margin-left: 6px;
+  width: 70%;
 }
 
 .signoutbutton{

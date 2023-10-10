@@ -37,9 +37,10 @@ function ProfileButton({ user }) {
 
   const obscureEmail = (email) => {
     const splitEmail = email.split('@');
-    let pre = splitEmail[0].split('').slice(0, 2).join('');
-    splitEmail[0].split('').slice(2).forEach(i => pre += "*");
-    return `${pre}@${splitEmail[1]}`;
+    let pre = `${splitEmail[0].split('').slice(0, 2).join('')}**...@${splitEmail[1]}`;
+    // splitEmail[0].split('').slice(2).forEach(i => pre += "*");
+    // return `${pre}@${splitEmail[1]}`;
+    return pre;
   }
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");

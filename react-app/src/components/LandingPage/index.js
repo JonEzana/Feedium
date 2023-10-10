@@ -18,6 +18,7 @@ export const LandingPage = () => {
     const allStories = Object.values(useSelector(state => state.stories.allStories));
     const users = Object.values(useSelector(state => state.users.allUsers))
     const [loading, setLoading] = useState(true);
+    const currUser = useSelector(state => state.session.user)
 
     const [showAllTopics, setShowAllTopics] = useState(false);
     if (!showAllTopics) topics = topics.slice(0, 9);
@@ -28,6 +29,7 @@ export const LandingPage = () => {
     const generateBlinkLag = (min, max) => {
         return Math.floor(Math.random() * (max - min) + min);
     }
+
 
     useEffect(() => {
         dispatch(storyActions.thunkGetMostPopularStories())
