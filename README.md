@@ -8,7 +8,6 @@ Checkout out [Feedium](https://feedium.onrender.com/) and find your inspiration.
 
 [User Stories](https://github.com/JonEzana/feedium/wiki/User-Stories) |
 [Database Schema](https://github.com/JonEzana/feedium/wiki/DB-Schema) |
-[User Stories](https://github.com/JonEzana/aperture_project/wiki/User-Stories) |
 
 ## Technologies Used
 
