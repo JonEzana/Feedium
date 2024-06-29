@@ -20,7 +20,7 @@ function Navigation({ isLoaded }){
 	const bgColor = () => {
 		window.scrollY >= 500 ? setTransition(true) : setTransition(false);
 	}
-	const handleSearch = (e) => {
+	const handleeSearch = (e) => {
 		e.preventDefault();
 		setQuery('');
 		history.push(`/search/${query}`)
@@ -62,7 +62,7 @@ function Navigation({ isLoaded }){
 					<span class="material-symbols-outlined logo" onClick={goHome} >lunch_dining</span>
 						<span className="searchbar">
 							<i className="fas fa-search" style={{color: "#828282", alignSelf: "center", position: "absolute", marginLeft: "0.6%", zIndex: "2", marginTop: "13px"}}></i>
-							<form onSubmit={handleSearch}>
+							<form onSubmit={handleeSearch}>
 								<input
 									type="text"
 									placeholder="Search Feedium"
