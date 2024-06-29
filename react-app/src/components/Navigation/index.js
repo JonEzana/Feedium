@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
 	const [transition, setTransition] = useState(false);
 	const [query, setQuery] = useState('');
 
-	const goHome = () => {
+	const goHomee = () => {
 		sessionUser ? history.push("/all") : history.push("/");
 	}
 	const bgColor = () => {
@@ -35,7 +35,7 @@ function Navigation({ isLoaded }){
 		return (
 			<div className="loggedin_navbar" style={{justifyContent: "center"}}>
 					<div className="loggedin_left">
-						<span class="material-symbols-outlined logo" onClick={goHome} >lunch_dining</span>
+						<span class="material-symbols-outlined logo" onClick={goHomee} >lunch_dining</span>
 						<p>Draft in {sessionUser.firstName} {sessionUser.lastName}</p>
 					</div>
 					<div className="loggedin_right">
@@ -59,7 +59,7 @@ function Navigation({ isLoaded }){
 			{ sessionUser ? (
 				<div className="loggedin_navbar">
 					<div className="loggedin_left">
-					<span class="material-symbols-outlined logo" onClick={goHome} >lunch_dining</span>
+					<span class="material-symbols-outlined logo" onClick={goHomee} >lunch_dining</span>
 						<span className="searchbar">
 							<i className="fas fa-search" style={{color: "#828282", alignSelf: "center", position: "absolute", marginLeft: "0.6%", zIndex: "2", marginTop: "13px"}}></i>
 							<form onSubmit={handleSearch}>
@@ -90,7 +90,7 @@ function Navigation({ isLoaded }){
 				</div>
 			) : (
 				<div className={transition ? "lp_header active" : "lp_header"}>
-					<div className="lp_logo" onClick={goHome}>
+					<div className="lp_logo" onClick={goHomee}>
 						<img className="logo-img" src="https://feedium-bucket.s3.amazonaws.com/LOGO.png" />
 						<p className="site_name">Feedium</p>
 					</div>
